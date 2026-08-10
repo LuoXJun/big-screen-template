@@ -1,3 +1,3 @@
-declare interface Window {
-    Cesium: Cesium;
+interface Window {
+    Cesium: typeof Cesium;
 }

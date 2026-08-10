@@ -4,6 +4,7 @@
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
         "types": ["vite/client"],
         "allowArbitraryExtensions": true,
+        "allowUmdGlobalAccess": true,
 
         /* 路径别名 */
         "paths": {
