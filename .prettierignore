@@ -1,0 +1,14 @@
+dist
+dist-ssr
+node_modules
+coverage
+public
+logs
+pnpm-lock.yaml
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico

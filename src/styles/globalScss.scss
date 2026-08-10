@@ -1,0 +1,90 @@
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'YouSheBiaoTiHei';
+    src: url('@/assets/font/YouSheBiaoTiHei-2.ttf');
+}
+
+/* 苹方 */
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Ultralight.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Thin.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PingFang SC';
+    src: url('@/assets/font/PingFangSC/PingFangSC-Semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ===== 大屏主题变量 ===== */
+$screen-bg: #0a0f2a; /* 全屏背景 */
+$panel-bg: rgba(9, 25, 54, 0.72); /* 面板底色 */
+$panel-border: rgba(0, 168, 255, 0.35); /* 面板描边 */
+$panel-title: #7fd4ff; /* 面板标题 */
+$text-primary: #e8f4ff; /* 主文字 */
+$text-secondary: #8fb4dd; /* 次文字 */
+$accent: #00d4ff; /* 强调色（青蓝） */
+$warn: #ffc64a; /* 警示色（琥珀） */
+
+/* ===== 自适应尺寸体系（1920×1080 设计基准，等比 + 字号限幅）===== */
+:root {
+    /* 等效 16:9 视口宽度：16:9 系屏 = 100vw（等比放大）；
+       窄屏/超宽屏按高度折算（100vh×16/9），UI 等比居中、留白露出地图。
+       所有尺寸 = base × 设计稿占比，宽高同基准 → 任意尺寸下 UI 等比不变形 */
+    --screen-base: min(100vw, calc(100vh * 1.7778));
+
+    /* 字号（保留 clamp 限幅：小屏保可读下限，大屏不臃肿；中值随 base 等比） */
+    --font-hero: clamp(22px, calc(var(--screen-base) * 0.01875), 40px); /* 主标题，基准 36px */
+    --font-sub: clamp(11px, calc(var(--screen-base) * 0.00729), 16px); /* 辅助文字，基准 14px */
+    --font-panel: clamp(13px, calc(var(--screen-base) * 0.00833), 17px); /* 面板标题，基准 16px */
+    --font-body: clamp(11px, calc(var(--screen-base) * 0.00677), 15px); /* 正文，基准 13px */
+    --font-small: clamp(10px, calc(var(--screen-base) * 0.00625), 13px); /* 小字/日志，基准 12px */
+
+    /* 间距/尺寸（严格等比，不设限幅——保证宽高同基准） */
+    --space-screen: calc(var(--screen-base) * 0.00729); /* 布局间距，基准 14px */
+    --space-panel: calc(var(--screen-base) * 0.00625); /* 面板内边距，基准 12px */
+}
