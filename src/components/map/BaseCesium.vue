@@ -25,11 +25,6 @@ onMounted(() => {
         infoBox: false,
         selectionIndicator: false
     });
-    // 初始视野：中国全景（容器为真实尺寸，Cesium 自带容器 resize 自适应）
-    viewer.camera.setView({
-        destination: Cesium.Cartesian3.fromDegrees(104, 35, 9000000)
-    });
-    viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#0a0f2a');
 });
 
 onBeforeUnmount(() => {

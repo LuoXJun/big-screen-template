@@ -41,12 +41,12 @@ onBeforeUnmount(() => window.clearInterval(timer));
 
 <style scoped lang="scss">
 .screen-header {
-    height: calc(var(--screen-base) * 0.04167); /* 基准 80px，等比 */
+    height: base(80px);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 calc(var(--screen-base) * 0.0125); /* 基准 24px，等比 */
+    padding: 0 base(24px);
     background: linear-gradient(180deg, rgba(0, 84, 168, 0.35), rgba(0, 84, 168, 0.05));
     border-bottom: 1px solid rgba(0, 168, 255, 0.35);
 

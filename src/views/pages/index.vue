@@ -2,7 +2,9 @@
     <ScreenLayout>
         <!-- 地图层：Cesium 等全屏底图（真实尺寸弹性填充，不参与自适应）  -->
         <template #map>
-            <div class="map-layer"></div>
+            <div class="map-layer">
+                <BaseCesium />
+            </div>
         </template>
 
         <template #header>
@@ -36,6 +38,7 @@ import ScreenFooter from '@/components/screen/ScreenFooter.vue';
 import ScreenHeader from '@/components/screen/ScreenHeader.vue';
 import ScreenLayout from '@/components/screen/ScreenLayout.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
+import BaseCesium from '@/components/map/BaseCesium.vue';
 </script>
 
 <style scoped lang="scss">
@@ -47,7 +50,7 @@ import ScreenPanel from '@/components/screen/ScreenPanel.vue';
 
 /* 左右面板：base 等比宽度（340/1920 = 17.71%，与高度同基准 → 宽高等比） */
 .side-column {
-    width: calc(var(--screen-base) * 0.1771);
+    width: base(340px);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;

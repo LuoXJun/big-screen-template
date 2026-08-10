@@ -39,8 +39,7 @@
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%),
-        $screen-bg;
+        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%), $screen-bg;
 }
 
 .map-layer {

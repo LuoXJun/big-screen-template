@@ -14,7 +14,7 @@ withDefaults(defineProps<{ text?: string; status?: string }>(), {
 
 <style scoped lang="scss">
 .screen-footer {
-    height: calc(var(--screen-base) * 0.02917); /* 基准 56px，等比 */
+    height: base(56px);
     flex-shrink: 0;
     display: flex;
     align-items: center;

@@ -30,8 +30,8 @@ defineProps<{ title: string }>();
     .panel-header {
         display: flex;
         align-items: center;
-        gap: calc(var(--screen-base) * 0.00417); /* 基准 8px，等比 */
-        margin-bottom: calc(var(--screen-base) * 0.00417); /* 基准 8px，等比 */
+        gap: base(8px);
+        margin-bottom: base(8px);
 
         .panel-dot {
             width: 6px;
