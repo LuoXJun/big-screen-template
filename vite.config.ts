@@ -1,19 +1,9 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
-import cesiumModule from 'vite-plugin-cesium';
-
-// vite-plugin-cesium 的 types 在 ESM 项目（nodenext）下被判定为 CJS 模块，
-// default 导入的静态类型错位为模块命名空间；运行时为默认导出函数，此处显式断言。
-const cesium = cesiumModule as unknown as (options?: {
-    rebuildCesium?: boolean;
-    devMinifyCesium?: boolean;
-    cesiumBuildRootPath?: string;
-    cesiumBuildPath?: string;
-    cesiumBaseUrl?: string;
-}) => Plugin;
+import cesium from 'vite-plugin-cesium';
 
 // https://vite.dev/config/
 export default defineConfig({
