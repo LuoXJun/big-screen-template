@@ -8,7 +8,7 @@
         "node": "^20.19.0 || >=22.12.0"
     },
     "scripts": {
-        "preinstall": "npx only-allow pnpm",
+        "preinstall": "node scripts/check-package-manager.cjs",
         "dev": "vite",
         "build": "vue-tsc -b && vite build",
         "preview": "vite preview",

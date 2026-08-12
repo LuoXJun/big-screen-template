@@ -4,11 +4,22 @@ Vue 3 + TypeScript + Vite 基础大屏项目模板
 
 ## 包管理器（仅允许 pnpm）
 
-本项目通过三重机制约束包管理器与运行环境：
+本项目通过四重机制约束包管理器与运行环境：
 
 1. **Corepack 版本校验**：`package.json` 中的 `"packageManager": "pnpm@11.21.0"` 字段，Corepack 会校验 pnpm 版本是否一致
-2. **依赖安装拦截**：`preinstall` 钩子中的 `only-allow pnpm`，使用 npm / yarn 执行依赖安装时直接报错退出
-3. **Node 版本约束**：`engines.node`（`^20.19.0 || >=22.12.0`，vite 8 的最低要求）+ `.npmrc` 中的 `engine-strict=true`，Node 版本不满足时拒绝安装
+2. **依赖安装拦截**：`preinstall` 钩子调用 `node scripts/check-package-manager.cjs`，使用 npm / yarn / bun 执行依赖安装时直接报错退出（不依赖网络）
+3. **pnpm 自身版本校验**：`.npmrc` 中的 `package-manager-strict=true`，pnpm 运行时校验 `packageManager` 字段，版本不匹配则拒绝执行
+4. **Node 版本约束**：`engines.node`（`^20.19.0 || >=22.12.0`，vite 8 的最低要求）+ `.npmrc` 中的 `engine-strict=true`，Node 版本不满足时拒绝安装
+
+> 注：`npm install --ignore-scripts` 可跳过 preinstall 钩子（包管理器设计如此，仓库侧无法阻止），如需彻底防止，请在 CI 中统一使用 pnpm 执行安装。
+
+### 为什么不要用 npm i？（npm ≤ 11）
+
+npm ≤ 11 不检查 `packageManager` 字段，且执行顺序为「先联网解析依赖树 → 再执行 preinstall 拦截」，因此 `npm i` 会先长时间联网转圈（看起来像卡死），之后才被拦截报错；若本地 `node_modules` 由 pnpm 安装（`.pnpm/` 结构），npm 的 arborist 读不懂该布局，还会直接崩溃（`Cannot read properties of null`）。**请使用 `pnpm install` / `pnpm add`。**
+
+在 **npm 12+** 中，root `preinstall` 已提前到依赖安装之前执行，`npm i` 会在联网解析前被拦截脚本直接报错退出（实测约 2 秒）。环境要求：Node `^22.22.2 || ^24.15.0 || >=26.0.0` + `npm install -g npm@12`（nvm-windows 下每个 Node 版本的全局 npm / pnpm 相互独立，切换 Node 后需重新安装：`npm install -g npm@12 pnpm@11.21.0`）。
+
+> 注：`.npmrc` 中的 `package-manager-strict` 为 pnpm 专属配置（校验 `packageManager` 版本），npm 会提示 unknown config 警告，不影响使用。
 
 ## 迁移的外部代码一律不计入检查范围
 
