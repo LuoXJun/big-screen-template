@@ -1,0 +1,66 @@
+@use 'sass:color';
+@use '@/styles/globalScss.scss' as *;
+
+/* ============================================================
+   EP 主题变量覆盖：只在 :root 输出 CSS 变量（不产生组件规则）
+   值挂钩项目自适应体系：
+   - 颜色：引用 globalScss 色板（$screen-bg / $accent / $text-* …）
+   - 尺寸：base() / font() → --screen-base / clamp 运行时计算
+   ============================================================ */
+:root {
+    /* ===== ① 主题层：主色系 ===== */
+    --el-color-primary: #{$accent};
+    --el-color-primary-light-3: #{color.mix(#ffffff, $accent, 30%)};
+    --el-color-primary-light-5: #{color.mix(#ffffff, $accent, 50%)};
+    --el-color-primary-light-7: #{color.mix(#ffffff, $accent, 70%)};
+    --el-color-primary-light-8: #{color.mix(#ffffff, $accent, 80%)};
+    --el-color-primary-light-9: #{color.mix(#ffffff, $accent, 90%)};
+    --el-color-primary-dark-2: #{color.mix(#000000, $accent, 20%)};
+
+    --el-color-success: #00e396;
+    --el-color-warning: #{$warn};
+    --el-color-danger: #ff5b6e;
+    --el-color-error: #ff5b6e;
+    --el-color-info: #{$text-secondary};
+
+    /* ===== ① 主题层：背景 / 填充 ===== */
+    --el-bg-color: #0d1b3e;
+    --el-bg-color-overlay: #0d1b3e;
+    --el-fill-color: rgba(0, 168, 255, 0.08);
+    --el-fill-color-light: rgba(0, 168, 255, 0.06);
+    --el-fill-color-lighter: rgba(0, 168, 255, 0.04);
+    --el-fill-color-blank: #0d1b3e;
+
+    /* ===== ① 主题层：文字 ===== */
+    --el-text-color-primary: #{$text-primary};
+    --el-text-color-regular: #a8c6e8;
+    --el-text-color-secondary: #{$text-secondary};
+    --el-text-color-placeholder: rgba(143, 180, 221, 0.6);
+    --el-text-color-disabled: rgba(143, 180, 221, 0.4);
+
+    /* ===== ① 主题层：边框 ===== */
+    --el-border-color: #{$panel-border};
+    --el-border-color-light: rgba(0, 168, 255, 0.25);
+    --el-border-color-lighter: rgba(0, 168, 255, 0.15);
+    --el-border-color-extra-light: rgba(0, 168, 255, 0.1);
+    --el-border-color-hover: #{$accent};
+    --el-border-color-dark: rgba(0, 168, 255, 0.5);
+
+    /* ===== ① 主题层：遮罩（全屏 loading 防闪白） ===== */
+    --el-mask-color: rgba(10, 15, 42, 0.7);
+    --el-mask-color-extra-light: rgba(10, 15, 42, 0.3);
+
+    /* ===== ② 尺寸层：组件基础尺寸（挂钩 --screen-base 等比） ===== */
+    --el-component-size: #{base(32px)};
+    --el-component-size-small: #{base(24px)};
+    --el-component-size-large: #{base(40px)};
+    --el-border-radius-base: #{base(4px)};
+    --el-border-radius-small: #{base(2px)};
+
+    /* ===== ② 尺寸层：字号（clamp 限幅，与项目字号体系一致） ===== */
+    --el-font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --el-font-size-base: #{font(14px)};
+    --el-font-size-small: #{font(12px)};
+    --el-font-size-large: #{font(16px)};
+    --el-font-size-extra-large: #{font(20px)};
+}
