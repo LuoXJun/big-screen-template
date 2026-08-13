@@ -4,34 +4,21 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { clearHandlers, destroyViewer, initViewer, removeAllDataSources, removeAllEntities } from '@/cesium';
 
 const containerEl = ref<HTMLDivElement | null>(null);
 
-let viewer: Cesium.Viewer | null = null;
-let handler: Cesium.ScreenSpaceEventHandler | null = null;
-
 onMounted(() => {
     if (!containerEl.value) return;
-
-    viewer = new Cesium.Viewer(containerEl.value, {
-        animation: false,
-        timeline: false,
-        baseLayerPicker: false,
-        geocoder: false,
-        homeButton: false,
-        sceneModePicker: false,
-        navigationHelpButton: false,
-        fullscreenButton: false,
-        infoBox: false,
-        selectionIndicator: false
-    });
+    initViewer(containerEl.value);
 });
 
 onBeforeUnmount(() => {
-    handler?.destroy();
-    handler = null;
-    viewer?.destroy();
-    viewer = null;
+    // 清理顺序：先解除事件与数据，再销毁 Viewer，防止内存泄漏
+    clearHandlers();
+    removeAllDataSources();
+    removeAllEntities();
+    destroyViewer();
 });
 </script>
 

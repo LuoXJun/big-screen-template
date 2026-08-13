@@ -4,45 +4,40 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import { BarChart, LineChart, PieChart } from 'echarts/charts';
-import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
-import * as echarts from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
-import type { BarSeriesOption, LineSeriesOption, PieSeriesOption } from 'echarts/charts';
-import type { GridComponentOption, LegendComponentOption, TooltipComponentOption } from 'echarts/components';
-import type { ComposeOption } from 'echarts/core';
+import { echarts, type EChartsCoreOption } from './echarts';
 
-/** 按需注册：图表类型 / 组件 / 渲染器 */
-echarts.use([
-    BarChart,
-    LineChart,
-    PieChart,
-    GridComponent,
-    TooltipComponent,
-    LegendComponent,
-    CanvasRenderer
-]);
+type ChartInstance = ReturnType<typeof echarts.init>;
+type LoadingOptions = Parameters<ChartInstance['showLoading']>[0];
 
-/** 支持的 option 组合类型 */
-export type ChartOption = ComposeOption<
-    | BarSeriesOption
-    | LineSeriesOption
-    | PieSeriesOption
-    | GridComponentOption
-    | TooltipComponentOption
-    | LegendComponentOption
->;
-
-/** 图表交互事件的强类型载荷 */
+/** 图表交互事件的载荷（echarts 原始事件收敛后的强类型） */
 export interface ChartEventPayload {
     seriesName: string;
     name: string;
-    value: number;
+    value: unknown;
     dataIndex: number;
     color: string;
 }
 
-const props = defineProps<{ option: ChartOption }>();
+const props = withDefaults(
+    defineProps<{
+        /** 图表配置；组件不做任何加工，数据组装由业务侧完成 */
+        option: EChartsCoreOption;
+        /** 是否显示加载态（数据异步拉取时使用） */
+        loading?: boolean;
+        /** showLoading 配置（text 等） */
+        loadingOptions?: LoadingOptions;
+        /** 容器尺寸变化时自适应重绘 */
+        autoResize?: boolean;
+        /** merge：增量更新（默认）；replace：全量替换（大数据量/动态增删系列时更优） */
+        updateMode?: 'merge' | 'replace';
+    }>(),
+    {
+        loading: false,
+        loadingOptions: undefined,
+        autoResize: true,
+        updateMode: 'merge'
+    }
+);
 
 const emit = defineEmits<{
     (e: 'click', payload: ChartEventPayload): void;
@@ -51,7 +46,7 @@ const emit = defineEmits<{
 
 const chartEl = ref<HTMLDivElement | null>(null);
 
-let chart: echarts.ECharts | null = null;
+let chart: ChartInstance | null = null;
 let resizeObserver: ResizeObserver | null = null;
 let resizeTimer: number | undefined;
 
@@ -60,14 +55,14 @@ function toPayload(raw: unknown): ChartEventPayload {
     const p = raw as {
         seriesName?: string;
         name?: string | number;
-        value?: number;
+        value?: unknown;
         dataIndex?: number;
         color?: string;
     };
     return {
         seriesName: p.seriesName ?? '',
         name: String(p.name ?? ''),
-        value: p.value ?? 0,
+        value: p.value,
         dataIndex: p.dataIndex ?? -1,
         color: p.color ?? ''
     };
@@ -78,35 +73,62 @@ function bindEvents() {
     chart?.on('mouseover', (params) => emit('hover', toPayload(params)));
 }
 
+function destroy() {
+    chart?.dispose();
+    chart = null;
+}
+
 function init() {
     if (!chartEl.value) return;
     chart = echarts.init(chartEl.value);
-    chart.setOption(props.option);
+    if (props.loading) chart.showLoading(props.loadingOptions);
+    chart.setOption(props.option, { notMerge: props.updateMode === 'replace' });
     bindEvents();
+}
+
+function resize() {
+    chart?.resize();
 }
 
 watch(
     () => props.option,
-    (option) => chart?.setOption(option),
+    (option) => chart?.setOption(option, { notMerge: props.updateMode === 'replace' }),
     { deep: true }
+);
+
+watch(
+    () => props.loading,
+    (loading) => {
+        if (!chart) return;
+        loading ? chart.showLoading(props.loadingOptions) : chart.hideLoading();
+    }
 );
 
 onMounted(() => {
     init();
-    // 容器尺寸变化（窗口伸缩 / 面板折叠）时自适应重绘，150ms 防抖
-    resizeObserver = new ResizeObserver(() => {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(() => chart?.resize(), 150);
-    });
-    if (chartEl.value) resizeObserver.observe(chartEl.value);
+    if (props.autoResize) {
+        // 容器尺寸变化（窗口伸缩/面板折叠/初始隐藏后显示）时自适应重绘，150ms 防抖
+        resizeObserver = new ResizeObserver(() => {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(resize, 150);
+        });
+        if (chartEl.value) resizeObserver.observe(chartEl.value);
+    }
 });
 
 onBeforeUnmount(() => {
     window.clearTimeout(resizeTimer);
     resizeObserver?.disconnect();
     resizeObserver = null;
-    chart?.dispose();
-    chart = null;
+    destroy();
+});
+
+defineExpose({
+    /** 获取图表实例（可执行 dispatchAction 高亮、dataZoom 定位等高级操作） */
+    getChart: (): ChartInstance | null => chart,
+    resize,
+    setOption: (option: EChartsCoreOption, replace = false) =>
+        chart?.setOption(option, { notMerge: replace })
 });
 </script>
 

@@ -8,12 +8,7 @@ interface ViteTypeOptions {
 
 interface ImportMetaEnv {
     readonly VITE_APP_TITLE: string;
-    readonly VITE_LOGIN_PASSWORD: string;
-    readonly VITE_STATIC_URL: string;
-    readonly VITE_CALLBACK_URL: string;
-    readonly VITE_FILE_URL: string;
     readonly VITE_TIME_OUT: number;
-    readonly VITE_API_USER_URL: string;
     readonly VITE_API_URL: string;
     readonly VITE_SC_CODE: Array<number | string>;
 }
