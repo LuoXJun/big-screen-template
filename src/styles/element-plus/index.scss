@@ -2,12 +2,16 @@
    element-plus 样式覆盖层（主出口）
    原则：EP 只借组件逻辑，视觉全部重写为大屏深色科技风
    - _variables.scss：主题色 + 基础尺寸（挂钩 base()/font() 自适应体系）
-   - 结构性组件覆盖（按钮/表格/弹窗…）用到时逐个新建文件并在此 @use
+   - 分层结构：controls(交互控件) / data-display(数据展示) / feedback(浮层反馈)
+     新增组件时按领域归位，每层超过 8 个文件继续下沉子层
    ============================================================ */
 @use './variables';
-@use './button';
-@use './table';
-@use './form';
-@use './overlay';
-@use './tabs';
-@use './popper';
+@use './controls/button';
+@use './controls/form';
+@use './data-display/table';
+@use './data-display/tabs';
+@use './data-display/tag';
+@use './feedback/overlay';
+@use './feedback/message';
+@use './feedback/popper';
+@use './feedback/loading';

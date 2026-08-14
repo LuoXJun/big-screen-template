@@ -1,0 +1,24 @@
+/* ============================================================
+   loading 覆盖层
+   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
+   注意：loading 遮罩渲染在 body 下（teleport），
+         类名必须写在此全局文件中才能生效
+   ============================================================ */
+
+.el-loading-mask {
+    /* 遮罩：底色 */
+}
+
+.el-loading-spinner {
+    /* spinner 容器 */
+}
+
+.el-loading-spinner .circular,
+.el-loading-spinner .path {
+    /* 加载图标 */
+}
+
+.el-loading-spinner .el-loading-text {
+    /* 加载文字 */
+}
