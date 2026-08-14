@@ -1,0 +1,132 @@
+/* ============================================================
+   表格 + 分页覆盖层
+   大屏数据展示核心：透明底表格、表头强化、斑马纹、空态、分页
+   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
+   ============================================================ */
+
+/* ===== 表格整体 ===== */
+.el-table {
+    /* 整体：背景透明化、边框、圆角 */
+}
+
+.el-table--border {
+    /* 带边框模式：列分割线 */
+}
+
+.el-table__inner-wrapper {
+    /* 内容容器 */
+}
+
+/* ===== 表头 ===== */
+.el-table__header-wrapper {
+    /* 表头容器 */
+}
+
+.el-table__header {
+    /* 表头 table */
+}
+
+th.el-table__cell {
+    /* 表头单元格：背景、文字色、加粗、边框 */
+}
+
+.el-table__cell .cell {
+    /* 单元格内边距 */
+}
+
+.el-table__sort-icon,
+.el-table__caret-wrapper {
+    /* 排序图标 */
+}
+
+/* ===== 表体 ===== */
+.el-table__body-wrapper {
+    /* 表体容器（滚动区域） */
+}
+
+td.el-table__cell {
+    /* 表体单元格：背景透明化、边框 */
+}
+
+.el-table__row {
+    /* 行 */
+}
+
+.el-table__row:hover {
+    /* 悬停行 */
+}
+
+.el-table__body tr.current-row {
+    /* 当前选中行 */
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped {
+    /* 斑马纹行 */
+}
+
+/* ===== 空态 ===== */
+.el-table__empty-block {
+    /* 空数据容器 */
+}
+
+.el-table__empty-text {
+    /* 空数据文字 */
+}
+
+/* ===== 固定列 ===== */
+.el-table__fixed-right,
+.el-table__fixed-left {
+    /* 固定列容器 */
+}
+
+/* ===== 树形 / 展开行 ===== */
+.el-table__expand-icon {
+    /* 展开行图标 */
+}
+
+.el-table__indent {
+    /* 树形缩进 */
+}
+
+/* ===== 分页 ===== */
+.el-pagination {
+    /* 整体：字号、间距 */
+}
+
+.el-pagination__total {
+    /* 总数文字 */
+}
+
+.el-pagination__sizes {
+    /* 每页条数（select） */
+}
+
+.el-pagination .btn-prev,
+.el-pagination .btn-next {
+    /* 上/下一页按钮 */
+}
+
+.el-pagination .el-pager li {
+    /* 页码按钮 */
+}
+
+.el-pagination .el-pager li.is-active {
+    /* 激活页码 */
+}
+
+.el-pagination.is-background .el-pager li {
+    /* 背景模式页码 */
+}
+
+.el-pagination.is-background .el-pager li.is-active {
+    /* 背景模式激活页码 */
+}
+
+.el-pagination__jump {
+    /* 跳转 */
+}
+
+.el-pagination__editor.el-input {
+    /* 跳转输入框 */
+}

@@ -1,0 +1,87 @@
+/* ============================================================
+   页签 + 标签覆盖层
+   导航切换（下划线 / 卡片模式）+ 状态标签
+   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
+   ============================================================ */
+
+/* ===== 页签 ===== */
+.el-tabs__header {
+    /* 头部容器 */
+}
+
+.el-tabs__nav-wrap {
+    /* 导航容器 */
+}
+
+.el-tabs__nav-wrap::after {
+    /* 导航底部线条 */
+}
+
+.el-tabs__nav {
+    /* 导航条 */
+}
+
+.el-tabs__item {
+    /* 页签项：文字色、间距 */
+}
+
+.el-tabs__item:hover {
+    /* 悬停态 */
+}
+
+.el-tabs__item.is-active {
+    /* 激活项 */
+}
+
+.el-tabs__item.is-disabled {
+    /* 禁用项 */
+}
+
+.el-tabs__active-bar {
+    /* 激活下划线 */
+}
+
+.el-tabs__content {
+    /* 内容区 */
+}
+
+.el-tabs--card .el-tabs__header,
+.el-tabs--card .el-tabs__item {
+    /* 卡片模式 */
+}
+
+/* ===== 标签 ===== */
+.el-tag {
+    /* 标签主体：背景、边框、文字色、圆角 */
+}
+
+.el-tag--primary {
+    /* 主色 */
+}
+
+.el-tag--success {
+    /* 成功 */
+}
+
+.el-tag--warning {
+    /* 警告 */
+}
+
+.el-tag--danger {
+    /* 危险 */
+}
+
+.el-tag--info {
+    /* 信息 */
+}
+
+.el-tag__close {
+    /* 关闭按钮 */
+}
+
+.el-tag--dark,
+.el-tag--plain,
+.el-tag--light {
+    /* 深浅变体 */
+}

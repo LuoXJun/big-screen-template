@@ -1,0 +1,230 @@
+/* ============================================================
+   表单控件覆盖层
+   大屏筛选区：输入框 / 下拉 / 日期 / 数字 / 开关 / 单选 / 复选
+   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
+   注意：Select / DatePicker 的下拉面板渲染在 body 下（teleport），
+         面板类名（.el-select-dropdown / .el-picker-panel）必须写在此全局文件中
+   ============================================================ */
+
+/* ===== 输入框 ===== */
+.el-input__wrapper {
+    /* 输入框主体：背景、边框、阴影 */
+}
+
+.el-input__wrapper:hover {
+    /* 悬停态 */
+}
+
+.el-input__wrapper.is-focus {
+    /* 聚焦态 */
+}
+
+.el-input__wrapper.is-disabled {
+    /* 禁用态 */
+}
+
+.el-input__inner {
+    /* 输入内容 */
+}
+
+.el-input__prefix,
+.el-input__suffix {
+    /* 前/后缀容器 */
+}
+
+.el-input.is-disabled {
+    /* 整个输入框禁用 */
+}
+
+.el-textarea__inner {
+    /* 文本域 */
+}
+
+/* ===== 下拉选择 ===== */
+.el-select__wrapper {
+    /* 选择器主体 */
+}
+
+.el-select__wrapper.is-hovering,
+.el-select__wrapper.is-focused {
+    /* 悬停 / 聚焦态 */
+}
+
+.el-select__selection,
+.el-select__selected-item {
+    /* 已选内容 */
+}
+
+.el-select__tags {
+    /* 多选标签容器 */
+}
+
+.el-select-dropdown {
+    /* 下拉面板（body 下）：背景、边框、圆角 */
+}
+
+.el-select-dropdown__item {
+    /* 下拉选项 */
+}
+
+.el-select-dropdown__item.is-hovering {
+    /* 悬停选项 */
+}
+
+.el-select-dropdown__item.is-selected {
+    /* 选中选项 */
+}
+
+.el-select-dropdown__empty {
+    /* 空数据 */
+}
+
+/* ===== 日期选择 ===== */
+.el-date-editor {
+    /* 日期输入框整体（复用 .el-input__wrapper） */
+}
+
+.el-picker-panel {
+    /* 面板通用（body 下） */
+}
+
+.el-date-picker,
+.el-date-range-picker {
+    /* 日期 / 范围面板 */
+}
+
+.el-date-picker__header {
+    /* 面板头部 */
+}
+
+.el-date-picker__prev-btn,
+.el-date-picker__next-btn {
+    /* 上/下月按钮 */
+}
+
+.el-date-picker__header-label {
+    /* 年月切换标签 */
+}
+
+.el-date-table th {
+    /* 星期表头 */
+}
+
+.el-date-table td {
+    /* 日期格 */
+}
+
+.el-date-table td .el-date-table-cell__text {
+    /* 日期文字 */
+}
+
+.el-date-table td.today .el-date-table-cell__text {
+    /* 今天 */
+}
+
+.el-date-table td.current .el-date-table-cell__text {
+    /* 选中日期 */
+}
+
+.el-date-table td.in-range {
+    /* 范围中间日期 */
+}
+
+.el-date-table td.start-date,
+.el-date-table td.end-date {
+    /* 范围起止日期 */
+}
+
+.el-date-table td.disabled {
+    /* 禁用日期 */
+}
+
+.el-picker-panel__shortcut {
+    /* 快捷选项 */
+}
+
+.el-picker-panel__footer {
+    /* 面板底部（确定/清除） */
+}
+
+/* ===== 数字输入 ===== */
+.el-input-number {
+    /* 整体 */
+}
+
+.el-input-number__increase,
+.el-input-number__decrease {
+    /* 增减按钮 */
+}
+
+.el-input-number.is-controls-right {
+    /* 按钮在右侧模式 */
+}
+
+/* ===== 开关 ===== */
+.el-switch {
+    /* 整体 */
+}
+
+.el-switch__core {
+    /* 轨道 */
+}
+
+.el-switch__core .el-switch__action {
+    /* 滑块 */
+}
+
+.el-switch.is-checked .el-switch__core {
+    /* 选中轨道 */
+}
+
+/* ===== 单选 ===== */
+.el-radio {
+    /* 整体 */
+}
+
+.el-radio__inner {
+    /* 圆点 */
+}
+
+.el-radio.is-checked .el-radio__inner {
+    /* 选中圆点 */
+}
+
+.el-radio__label {
+    /* 文字 */
+}
+
+.el-radio-button__inner {
+    /* 按钮模式 */
+}
+
+.el-radio-button.is-active .el-radio-button__inner {
+    /* 按钮模式激活 */
+}
+
+/* ===== 复选 ===== */
+.el-checkbox {
+    /* 整体 */
+}
+
+.el-checkbox__inner {
+    /* 方框 */
+}
+
+.el-checkbox.is-checked .el-checkbox__inner {
+    /* 选中方框 */
+}
+
+.el-checkbox.is-indeterminate .el-checkbox__inner {
+    /* 半选方框 */
+}
+
+.el-checkbox__label {
+    /* 文字 */
+}
+
+.el-checkbox-button__inner {
+    /* 按钮模式 */
+}

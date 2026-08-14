@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BaseCesium: typeof import('./../components/map/BaseCesium.vue')['default']
     BaseChart: typeof import('./../components/charts/BaseChart.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScreenFooter: typeof import('./../components/screen/ScreenFooter.vue')['default']
