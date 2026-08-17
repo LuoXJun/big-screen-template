@@ -43,6 +43,7 @@ onBeforeUnmount(() => window.clearInterval(timer));
 .screen-header {
     height: base(80px);
     flex-shrink: 0;
+    pointer-events: auto; /* 穿透的 UI 层中恢复事件：标题可选中 */
     display: flex;
     align-items: center;
     justify-content: space-between;

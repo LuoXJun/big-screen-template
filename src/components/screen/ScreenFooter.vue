@@ -16,6 +16,7 @@ withDefaults(defineProps<{ text?: string; status?: string }>(), {
 .screen-footer {
     height: base(56px);
     flex-shrink: 0;
+    pointer-events: auto; /* 穿透的 UI 层中恢复事件：文字可选中 */
     display: flex;
     align-items: center;
     justify-content: center;

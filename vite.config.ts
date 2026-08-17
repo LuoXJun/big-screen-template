@@ -14,11 +14,12 @@ export default defineConfig({
         cesium(),
         AutoImport({
             imports: ['vue'],
-            resolvers: [ElementPlusResolver()],
+            // 关闭组件样式自动注入，改为手动全局引入，方便手动覆盖样式
+            resolvers: [ElementPlusResolver({ importStyle: false })],
             dts: 'src/types/autoImport.d.ts'
         }),
         Components({
-            resolvers: [ElementPlusResolver()],
+            resolvers: [ElementPlusResolver({ importStyle: false })],
             dts: 'src/types/components.d.ts'
         })
     ],
