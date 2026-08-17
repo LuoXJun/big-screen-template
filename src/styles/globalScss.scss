@@ -32,3 +32,7 @@ $warn: #ffc64a; /* 警示色（琥珀） */
 @function font($design-px, $min-px: $design-px * 0.5 + 4px, $max-px: $design-px * 1.1) {
     @return clamp($min-px, calc(var(--screen-base) * #{math.div($design-px, 1920px)}), $max-px);
 }
+
+$base-panel-header-height: 48px;
+$base-panel-footer-height: 64px;
+$base-panel-bg-color: $screen-bg;

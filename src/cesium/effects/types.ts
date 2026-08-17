@@ -1,7 +1,5 @@
 import * as Cesium from 'cesium';
 
-export type { Feature, FeatureCollection, Geometry } from 'geojson';
-
 /** GeoJSON 渲染样式配置 */
 export interface RenderOptions {
     fillColor: Cesium.Color;

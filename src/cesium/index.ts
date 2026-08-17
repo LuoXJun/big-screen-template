@@ -37,6 +37,7 @@ export {
 } from './core/providers';
 export { addEntity, getEntity, hasEntity, removeEntity, removeAllEntities } from './core/entity';
 export { createHandler, clearHandler, clearHandlers } from './core/event';
+export { MapPopup } from './core/popup';
 export { toCartesian3, toCartesian3List, toLonLat, distanceInMeters } from './core/utils/coordinate';
 
 // 效果工具层
