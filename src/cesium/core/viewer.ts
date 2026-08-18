@@ -1,8 +1,7 @@
 import * as Cesium from 'cesium';
 
-/** Cesium Ion 默认访问令牌（https://ion.cesium.com 申请） */
-const DEFAULT_ION_TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1OGZiOGI5Yi0wN2E0LTRlMTgtOTMwYi04NDdhNDg4MTIyNjUiLCJpZCI6MTM1MTU0LCJpYXQiOjE2ODIyNDM3Mjh9.32mOaQTRHc_l41eaI-sTVx4tVODDsrAoAG6Vo_DTL-U';
+/** Cesium Ion 默认访问令牌（https://ion.cesium.com 申请，通过 VITE_CESIUM_ION_TOKEN 配置） */
+const DEFAULT_ION_TOKEN = import.meta.env.VITE_CESIUM_ION_TOKEN ?? '';
 
 const DEFAULT_VIEWER_OPTIONS: Cesium.Viewer.ConstructorOptions = {
     animation: false,

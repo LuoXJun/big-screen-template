@@ -2,6 +2,7 @@ import * as Cesium from 'cesium';
 import type { Feature, FeatureCollection } from 'geojson';
 import { getViewer } from '@/cesium/core/viewer';
 import { toCartesian3List } from '@/cesium/core/utils/coordinate';
+import { forEachFeature, type LeafGeometry } from '@/cesium/core/utils/geo';
 
 export interface LineEffectOptions {
     /** 着色器 uniform 变量 */
@@ -28,8 +29,7 @@ export class LineEffect {
 
     /** 渲染 GeoJSON（支持 LineString / MultiLineString / GeometryCollection） */
     renderGeoJSON(geoJson: FeatureCollection | Feature): void {
-        const features = geoJson.type === 'FeatureCollection' ? geoJson.features : [geoJson];
-        features.forEach((feature) => this.renderFeature(feature));
+        forEachFeature(geoJson, (_, geometry) => this.renderGeometry(geometry));
     }
 
     /** 用笛卡尔坐标点数组创建流动线并挂载到场景 */
@@ -60,20 +60,13 @@ export class LineEffect {
         this.lines.length = 0;
     }
 
-    private renderFeature(feature: Feature): void {
-        const geometry = feature.geometry;
-        if (!geometry) return;
+    private renderGeometry(geometry: LeafGeometry): void {
         switch (geometry.type) {
             case 'LineString':
                 this.createLine(toCartesian3List(geometry.coordinates));
                 break;
             case 'MultiLineString':
                 geometry.coordinates.forEach((line) => this.createLine(toCartesian3List(line)));
-                break;
-            case 'GeometryCollection':
-                geometry.geometries.forEach((geom) =>
-                    this.renderFeature({ type: 'Feature', geometry: geom, properties: null })
-                );
                 break;
             default:
                 console.warn(`[cesiumTools] 不支持的要素类型: ${geometry.type}`);

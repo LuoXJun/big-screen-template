@@ -20,12 +20,17 @@ export {
 } from './core/camera';
 export {
     addImageryLayer,
-    setBaseImagery,
+    getImageryLayer,
+    hasImageryLayer,
     removeImageryLayer,
     removeAllImageryLayers,
+    setBaseImagery,
     loadGeoJson,
     loadCzml,
     loadKml,
+    addDataSource,
+    getDataSource,
+    hasDataSource,
     removeDataSource,
     removeAllDataSources
 } from './core/layer';
@@ -35,23 +40,37 @@ export {
     createArcGisImagery,
     createTianDiTuImagery
 } from './core/providers';
-export { addEntity, getEntity, hasEntity, removeEntity, removeAllEntities } from './core/entity';
-export { createHandler, clearHandler, clearHandlers } from './core/event';
-export { MapPopup } from './core/popup';
-export { toCartesian3, toCartesian3List, toLonLat, distanceInMeters } from './core/utils/coordinate';
-
-// 效果工具层
 export {
+    addEntity,
+    getEntity,
+    hasEntity,
+    removeEntity,
+    removeAllEntities,
     createLine,
     createPoint,
     createLabel,
     createBillboard,
     createPolygon,
-    createCircle
-} from './effects/createEntity';
+    createCircle,
+    type LineStyle
+} from './core/entity';
+export { createHandler, clearHandler, clearHandlers } from './core/event';
+export { MapPopup } from './core/popup';
+export {
+    toCartesian3,
+    toCartesian3List,
+    toLonLat,
+    distanceInMeters,
+    forEachFeature,
+    type LeafGeometry
+} from './core/utils';
+
+// 效果工具层
+export {
+    GroundMaterialEffect,
+    type GroundMaterialEffectOptions
+} from './effects/GroundMaterialEffect';
+export { createCircleGeometry, createSquareGeometry } from './effects/groundGeometry';
 export { LineEffect, type LineEffectOptions } from './effects/LineEffect';
-export { CircleEffect, type CircleEffectOptions } from './effects/CircleEffect';
 export { PostProcessStageEffect, type PostProcessStageEffectOptions } from './effects/PostProcessStageEffect';
-export { SquareEffect, type SquareEffectOptions } from './effects/SquareEffect';
 export { RenderGeoJsonByGround } from './effects/RenderGeoJsonByGround';
-export { DEFAULT_RENDER_OPTIONS, type RenderOptions } from './effects/types';

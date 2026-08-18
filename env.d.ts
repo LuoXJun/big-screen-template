@@ -11,6 +11,7 @@ interface ImportMetaEnv {
     readonly VITE_TIME_OUT: number;
     readonly VITE_API_URL: string;
     readonly VITE_SC_CODE: Array<number | string>;
+    readonly VITE_CESIUM_ION_TOKEN?: string;
 }
 
 interface ImportMeta {
