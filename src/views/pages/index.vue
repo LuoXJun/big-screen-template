@@ -38,7 +38,7 @@ import ScreenFooter from '@/components/screen/ScreenFooter.vue';
 import ScreenHeader from '@/components/screen/ScreenHeader.vue';
 import ScreenLayout from '@/components/screen/ScreenLayout.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
-import BaseCesium from '@/components/map/BaseCesium.vue';
+import BaseCesium from '@/components/baseCesium/BaseCesium.vue';
 </script>
 
 <style scoped lang="scss">
