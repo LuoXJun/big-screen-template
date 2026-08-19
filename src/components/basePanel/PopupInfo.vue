@@ -9,24 +9,12 @@
 <script setup lang="ts">
 /** 弹窗内容演示组件：由 showMapPopup 以 h(PopupInfo, { lonlat }) 形式传入 */
 defineProps<{ lonlat: { lng: number; lat: number; height: number } }>();
-
-/**
- * showMapPopup({
-    position: lonlat,
-    title: '点位详情',
-    width: '420px',
-    height: '240px',
-    content: h(PopupInfo, { lonlat }),
-    onConfirm: () => console.log('确认', lonlat)
-});
- * 
- * */ 
 </script>
 
 <style scoped lang="scss">
 .popup-info {
     font-size: font(16px);
-    color: $text-primary;
+    color: #000;
     line-height: 2;
 
     p {

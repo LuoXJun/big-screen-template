@@ -31,7 +31,7 @@ export class MapPopup {
             inset: '0',
             overflow: 'hidden',
             pointerEvents: 'none',
-            zIndex: '10'
+            zIndex: '30'
         });
         this.host = document.createElement('div');
         Object.assign(this.host.style, {

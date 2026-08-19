@@ -67,6 +67,9 @@ export abstract class EntityLayerBase<T, C extends LayerConfig<T> = LayerConfig<
             this.itemVisible.set(itemId, true);
             const options = this.createEntity(item);
             options.id = buildEntityId(this.name, itemId);
+            // 注入实体元数据：name（设备名）+ type（图层类型），供点击弹窗等交互读取
+            options.name = (item as { label?: string }).label ?? itemId;
+            options.properties = { type: this.type };
             this.entities.set(itemId, getViewer().entities.add(options));
         });
         this.applyVisibility();

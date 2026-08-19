@@ -21,8 +21,8 @@
         </div>
         <div class="base-panel-footer">
             <slot name="footer">
-                <el-button style="background: #e5e7eb" @click="onCancel">取消</el-button>
-                <el-button class="confirmBtn" @click="emits('onConfirm')">保存</el-button>
+                <el-button type="danger" @click="onCancel">取消</el-button>
+                <el-button type="danger" @click="emits('onConfirm')">保存</el-button>
             </slot>
         </div>
     </div>

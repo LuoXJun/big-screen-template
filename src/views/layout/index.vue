@@ -22,17 +22,41 @@
 </template>
 
 <script setup lang="ts">
+import { h, onMounted } from 'vue';
+import * as Cesium from 'cesium';
 import BaseCesium from '@/components/baseCesium/BaseCesium.vue';
 import BaseMenu from '@/components/baseUi/BaseMenu.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
 import LayerControlPanel from '@/components/layerControl/LayerControlPanel.vue';
-import { flyToLonLat } from '@/cesium';
+import { showMapPopup } from '@/components/basePanel/mapPopup';
+import { createHandler, flyToLonLat, getViewer, toLonLat } from '@/cesium';
 import { layerControlConfig, initialView } from './config/layerControl';
+import PopupInfo from '@/components/basePanel/PopupInfo.vue';
 
 /** 图层就绪后的全局行为：视角定位到设备区域 */
 function onLayersReady(): void {
     flyToLonLat(initialView.lng, initialView.lat, initialView.height);
 }
+
+// 点击实体 → 弹窗显示名称与类型（viewer 就绪后注册；handler 由 BaseCesium 卸载时统一清理）
+onMounted(() => {
+    const pickHandler = createHandler();
+    pickHandler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.PositionedEvent) => {
+        const picked = getViewer().scene.pick(movement.position);
+        if (!Cesium.defined(picked)) return;
+        const entity = picked.id instanceof Cesium.Entity ? picked.id : undefined;
+        if (!entity) return;
+        const position = entity.position?.getValue(getViewer().clock.currentTime);
+        if (!position) return;
+        showMapPopup({
+            position,
+            title: '实体信息',
+            width: '20vw',
+            height: '15vw',
+            content: h(PopupInfo, { lonlat: toLonLat(position) })
+        });
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+});
 </script>
 
 <style scoped lang="scss">
