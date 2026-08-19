@@ -4,7 +4,14 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { clearHandlers, destroyViewer, initViewer, removeAllDataSources, removeAllEntities } from '@/cesium';
+import {
+    clearHandlers,
+    destroyViewer,
+    initViewer,
+    removeAllDataSources,
+    removeAllEntities,
+    removeAllLayers
+} from '@/cesium';
 
 const containerEl = ref<HTMLDivElement | null>(null);
 
@@ -16,6 +23,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
     // 清理顺序：先解除事件与数据，再销毁 Viewer，防止内存泄漏
     clearHandlers();
+    removeAllLayers();
     removeAllDataSources();
     removeAllEntities();
     destroyViewer();

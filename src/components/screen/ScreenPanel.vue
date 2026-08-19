@@ -51,6 +51,7 @@ defineProps<{ title: string }>();
     .panel-body {
         flex: 1;
         min-height: 0;
+        overflow-y: auto; /* 内容溢出时滚动（滚动条样式由全局统一） */
     }
 }
 </style>

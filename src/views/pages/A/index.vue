@@ -2,22 +2,18 @@
     <ScreenLayout>
         <template #left>
             <div class="side-column">
-                <ScreenPanel class="side-panel-item" title="面板标题" />
-                <ScreenPanel class="side-panel-item" title="面板标题" />
+                <ScreenPanel class="side-panel-item" title="A-左侧面板" />
             </div>
         </template>
 
-        <!-- 右侧面板 -->
         <template #right>
             <div class="side-column">
-                <ScreenPanel class="side-panel-item" title="面板标题" />
-                <ScreenPanel class="side-panel-item" title="面板标题" />
+                <ScreenPanel class="side-panel-item" title="A-右侧面板" />
             </div>
         </template>
 
-        <!-- 底部：恒定 100% 宽 -->
         <template #footer>
-            <ScreenFooter text="底部文字" status="状态" />
+            <ScreenFooter text="页面A底部" status="状态" />
         </template>
     </ScreenLayout>
 </template>
@@ -29,7 +25,6 @@ import ScreenPanel from '@/components/screen/ScreenPanel.vue';
 </script>
 
 <style scoped lang="scss">
-/* 左右面板：base 等比宽度（340/1920 = 17.71%，与高度同基准 → 宽高等比） */
 .side-column {
     width: base(340px);
     flex-shrink: 0;

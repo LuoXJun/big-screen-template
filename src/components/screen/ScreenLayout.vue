@@ -1,7 +1,7 @@
 <template>
     <div class="screen-layout">
-        <!-- 地图层：真实尺寸 100% 弹性填充，独立自适应 -->
-        <div class="map-layer">
+        <!-- 地图层：真实尺寸 100% 弹性填充，独立自适应（页面不传 #map 时不渲染，避免空容器拦截全局地图交互） -->
+        <div v-if="$slots.map" class="map-layer">
             <slot name="map" />
         </div>
 
@@ -38,8 +38,9 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%), $screen-bg;
+    /* 背景由全局壳（App.vue）提供，页面自身透明，露出全局地图；
+       整层事件穿透，地图交互不受页面容器遮挡（面板自身恢复 auto） */
+    pointer-events: none;
 }
 
 .map-layer {
@@ -52,6 +53,8 @@
     inset: 0;
     display: flex;
     flex-direction: column;
+    /* 内容区从全局顶栏下方开始；底部内容贴底（底部栏高度由 ScreenFooter 自身决定） */
+    padding-top: var(--header-height);
     font-size: var(--font-body); /* 基础字号随视口自适应 */
     pointer-events: none; /* 整层穿透：地图交互不受 UI 层遮挡 */
 }

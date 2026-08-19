@@ -104,12 +104,12 @@ export function createLabel(
     };
 }
 
-/** 生成图片图标实体配置 */
+/** 生成图片图标实体配置（image 支持 URL / dataURL / Canvas） */
 export function createBillboard(
     lng: number,
     lat: number,
     height: number,
-    image: string,
+    image: string | HTMLCanvasElement,
     options: Cesium.BillboardGraphics.ConstructorOptions = {}
 ): Cesium.Entity.ConstructorOptions {
     return {

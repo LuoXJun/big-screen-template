@@ -65,6 +65,31 @@ export {
     type LeafGeometry
 } from './core/utils';
 
+// 图层管理架子
+export {
+    registerLayerFactory,
+    createLayer,
+    addLayer,
+    getLayer,
+    hasLayer,
+    removeLayer,
+    removeAllLayers,
+    setLayerVisible,
+    getLayers,
+    isItemLayer,
+    createIconLayer,
+    createImageryLayer,
+    type LayerFactory,
+    type LayerType,
+    type MapLayer,
+    type ItemLayer,
+    type LayerConfig,
+    type LayerItemBrief,
+    type IconItem,
+    type IconLayerConfig,
+    type ImageryLayerConfig
+} from './layers';
+
 // 效果工具层
 export {
     GroundMaterialEffect,
