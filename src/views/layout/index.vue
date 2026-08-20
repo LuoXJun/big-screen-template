@@ -18,6 +18,9 @@
 
         <!-- 页面出口：子页面自行组织 ScreenLayout 布局，叠加在全局地图之上 -->
         <RouterView />
+
+        <!-- 全局底部栏：贴底浮层，页面内容区通过 padding-bottom 留白避开 -->
+        <ScreenFooter class="layout-footer" text="大屏可视化平台" status="运行正常" />
     </div>
 </template>
 
@@ -27,6 +30,7 @@ import * as Cesium from 'cesium';
 import BaseCesium from '@/components/baseCesium/BaseCesium.vue';
 import BaseMenu from '@/components/baseUi/BaseMenu.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
+import ScreenFooter from '@/components/screen/ScreenFooter.vue';
 import LayerControlPanel from '@/components/layerControl/LayerControlPanel.vue';
 import { showMapPopup } from '@/components/basePanel/mapPopup';
 import { createHandler, flyToLonLat, getViewer, toLonLat } from '@/cesium';
@@ -96,6 +100,15 @@ onMounted(() => {
 .layout-map {
     position: absolute;
     inset: 0;
+}
+
+/* 全局底部栏：贴底浮层，页面内容区通过 padding-bottom 留白避开 */
+.layout-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
 }
 
 /* 全局图层控制：右侧固定浮层，以顶部导航高度为偏移基准，不随页面布局变化 */

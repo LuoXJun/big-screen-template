@@ -14,7 +14,6 @@
                 <div class="main-gap" />
                 <slot name="right" />
             </div>
-            <slot name="footer" />
         </div>
     </div>
 </template>
@@ -26,6 +25,7 @@
  * - UI 层：流式排布（顶底 100% 宽、左右面板、中央空隙），
  *   组件尺寸与字号由 clamp() 限幅自适应（1920×1080 为设计基准），
  *   不整体缩放——小屏保可读性下限，大屏/超宽屏不臃肿
+ * - 底部栏由全局 layout 提供（贴底浮层），内容区 padding-bottom 留白避开
  *
  * 事件穿透：ui-layer / layout-body / main-gap 均 pointer-events: none，
  * 只有具体 UI 组件（ScreenPanel 等）自身 auto——地图交互不受遮挡。
@@ -53,8 +53,9 @@
     inset: 0;
     display: flex;
     flex-direction: column;
-    /* 内容区从全局顶栏下方开始；底部内容贴底（底部栏高度由 ScreenFooter 自身决定） */
+    /* 内容区从全局顶栏下方开始；底部留出全局底部栏高度（--footer-height） */
     padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
     font-size: var(--font-body); /* 基础字号随视口自适应 */
     pointer-events: none; /* 整层穿透：地图交互不受 UI 层遮挡 */
 }

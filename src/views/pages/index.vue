@@ -14,16 +14,10 @@
                 <ScreenPanel class="side-panel-item" title="面板标题" />
             </div>
         </template>
-
-        <!-- 底部：恒定 100% 宽 -->
-        <template #footer>
-            <ScreenFooter text="底部文字" status="状态" />
-        </template>
     </ScreenLayout>
 </template>
 
 <script setup lang="ts">
-import ScreenFooter from '@/components/screen/ScreenFooter.vue';
 import ScreenLayout from '@/components/screen/ScreenLayout.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
 </script>
