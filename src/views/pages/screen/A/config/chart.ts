@@ -1,6 +1,9 @@
 import type { EChartsCoreOption } from '@/components/charts/echarts';
 
-/** 大屏科技蓝色板（与 globalScss 设计变量一致） */
+/**
+ * 大屏科技蓝色板（JS 侧常量：ECharts 配置需实际色值，CSS 变量不可用；
+ * 与 tokens/_screen.scss 色板保持一致，修改时两端同步）
+ */
 const ACCENT = '#00d4ff';
 const TEXT_SECONDARY = '#8fb4dd';
 const PALETTE = [ACCENT, '#ffc64a', '#7fd4ff', '#4f7cff', '#4ae3c1', '#ff8a5c'];

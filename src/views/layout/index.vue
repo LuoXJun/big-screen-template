@@ -81,7 +81,7 @@ onMounted(() => {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%), $screen-bg;
+        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%), var(--bg-page);
 }
 
 .layout-navbar {
@@ -102,7 +102,7 @@ onMounted(() => {
         font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
         font-size: var(--font-hero);
         letter-spacing: var(--letter-spacing-hero);
-        color: $text-primary;
+        color: var(--color-main);
         text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
         margin: 0;
     }
@@ -119,7 +119,7 @@ onMounted(() => {
         box-sizing: border-box;
         font-size: var(--font-panel);
         letter-spacing: 1px;
-        color: $text-primary;
+        color: var(--color-main);
         background: rgba(0, 168, 255, 0.12);
         border: 1px solid rgba(0, 168, 255, 0.45);
         border-radius: base(4px);

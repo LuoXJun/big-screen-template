@@ -37,13 +37,13 @@ function enterScreen(project: { id: string; name: string }): void {
         .project-name {
             font-size: var(--font-panel);
             font-weight: var(--font-weight-panel);
-            color: var(--text-main);
+            color: var(--color-main);
         }
 
         .project-desc {
             margin-top: var(--space-2);
             font-size: var(--font-desc);
-            color: var(--text-desc);
+            color: var(--color-desc);
         }
     }
 }

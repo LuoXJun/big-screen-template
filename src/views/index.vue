@@ -52,12 +52,12 @@ const sideMenu = computed(() => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(180deg, $admin-bg 0%, $admin-bg-deep 100%);
+    background: linear-gradient(180deg, var(--bg-sidebar) 0%, var(--bg-page) 100%);
 }
 
 .admin-aside {
-    background: rgba(8, 25, 64, 0.94);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-on-dark);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -70,8 +70,8 @@ const sideMenu = computed(() => {
         font-weight: var(--font-weight-title);
         font-size: var(--font-panel);
         letter-spacing: var(--letter-spacing-title);
-        color: $admin-title;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--color-title);
+        border-bottom: 1px solid var(--border-on-dark);
         flex-shrink: 0;
     }
 
@@ -82,12 +82,12 @@ const sideMenu = computed(() => {
         background: transparent;
         --el-menu-item-height: 46px;
         --el-menu-bg-color: transparent;
-        --el-menu-text-color: rgba(255, 255, 255, 0.72);
-        --el-menu-active-color: var(--brand);
-        --el-menu-hover-bg-color: rgba(255, 255, 255, 0.06);
+        --el-menu-text-color: var(--color-on-dark-sub);
+        --el-menu-active-color: var(--color-brand);
+        --el-menu-hover-bg-color: var(--hover-bg);
 
         :deep(.el-menu-item.is-active) {
-            background: rgba(255, 120, 58, 0.14);
+            background: var(--active-bg);
         }
     }
 }
@@ -98,15 +98,15 @@ const sideMenu = computed(() => {
 }
 
 .admin-header {
-    background: rgba(8, 25, 64, 0.96);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border-on-dark);
     padding: 0;
 }
 
 .admin-main {
     flex: 1;
     overflow: auto;
-    padding: 16px;
-    background: rgba(7, 20, 49, 0.6);
+    padding: var(--space-4);
+    background: var(--bg-content);
 }
 </style>

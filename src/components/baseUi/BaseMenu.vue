@@ -46,7 +46,7 @@ function onSelect(path: string): void {
     flex-shrink: 0;
     --el-menu-bg-color: transparent;
     --el-menu-text-color: rgba(255, 255, 255, 0.72);
-    --el-menu-active-color: $text-primary;
+    --el-menu-active-color: var(--color-main);
     --el-menu-hover-bg-color: transparent;
     border-bottom: none;
 

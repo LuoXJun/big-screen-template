@@ -55,7 +55,7 @@ onBeforeUnmount(() => window.clearInterval(timer));
         font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
         font-size: var(--font-hero);
         letter-spacing: var(--letter-spacing-hero);
-        color: $text-primary;
+        color: var(--color-main);
         text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
         margin: 0;
     }
@@ -64,7 +64,7 @@ onBeforeUnmount(() => window.clearInterval(timer));
         display: flex;
         align-items: center;
         gap: 12px;
-        color: $text-secondary;
+        color: var(--color-sub);
         font-size: var(--font-desc);
 
         .wing-line {

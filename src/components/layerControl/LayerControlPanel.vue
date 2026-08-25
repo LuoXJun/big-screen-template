@@ -126,16 +126,16 @@ function applyLayerVisible(node: LayerTreeNode, visible: boolean): void {
 .row-group {
     font-weight: 600;
     letter-spacing: 1px;
-    color: $panel-title;
+    color: var(--color-title);
 }
 
 .row-layer {
     font-size: var(--font-panel);
-    color: $panel-title;
+    color: var(--color-title);
 }
 
 .row-item {
     font-size: calc(var(--font-panel) * 0.9);
-    color: rgba($panel-title, 0.85);
+    color: color-mix(in srgb, var(--color-title) 85%, transparent);
 }
 </style>

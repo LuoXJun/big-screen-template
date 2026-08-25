@@ -4,10 +4,13 @@
    【使用规范 - 重要】
    1. 组件中一律使用 var(--xxx) 语义变量，不感知主题：
       大屏（:root 默认）与管理端（.admin-shell 覆盖）自动切换
-   2. SCSS 色板变量（$screen-* / $admin-*）仅用于编译期场景：
+   2. 前缀域约定（与 CSS 属性一一对应，见名知意）：
+      --color-* 文字颜色  --bg-* 背景  --border-* 边框
+      --font-* 字号/字重  --space-* 间距  --radius-* 圆角  --shadow-* 阴影
+   3. SCSS 色板变量（$screen-* / $admin-*）仅用于编译期场景：
       EP 覆盖层、语义层赋值、函数参数 —— 组件禁止直接引用主题色
-   3. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
-   4. 新增颜色/尺寸时：先在语义层补充令牌，再在组件中使用
+   4. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
+   5. 新增颜色/尺寸时：先在语义层补充令牌，再在组件中使用
    ============================================================ */
 @use './functions' as *;
 @use './screen' as *;
@@ -26,17 +29,18 @@
     --header-height: #{base(64px)}; /* 顶部导航栏 */
     --footer-height: #{base(56px)}; /* 底部栏 */
 
-    /* 文本层级 */
-    --text-main: #{$text-primary}; /* 一级标题 / 主文字 */
-    --text-sub: #{$text-secondary}; /* 二级标题 / 次文字 */
-    --text-desc: #{$text-desc}; /* 描述 / 辅助 */
+    /* 文字颜色层级 */
+    --color-main: #{$text-primary}; /* 一级标题 / 主文字 */
+    --color-sub: #{$text-secondary}; /* 二级标题 / 次文字 */
+    --color-desc: #{$text-desc}; /* 描述 / 辅助 */
+    --color-title: #{$panel-title}; /* 深底标题高亮（面板标题/品牌标题） */
 
     /* 功能色 */
-    --brand: #{$accent}; /* 主色（强调青蓝） */
-    --success: #00e396;
-    --warning: #{$warn};
-    --danger: #ff5b6e;
-    --info: #{$text-secondary};
+    --color-brand: #{$accent}; /* 主色（强调青蓝） */
+    --color-success: #00e396;
+    --color-warning: #{$warn};
+    --color-danger: #ff5b6e;
+    --color-info: #{$text-secondary};
 
     /* 背景 / 边框 */
     --bg-page: #{$screen-bg};
@@ -82,19 +86,27 @@
 
 /* ===== 管理端主题（.admin-shell 作用域覆盖）===== */
 .admin-shell {
-    --text-main: #{$admin-text};
-    --text-sub: #{$admin-text-secondary};
-    --text-desc: #{$admin-desc};
+    --color-main: #{$admin-text};
+    --color-sub: #{$admin-text-secondary};
+    --color-desc: #{$admin-desc};
+    --color-on-dark: rgba(255, 255, 255, 0.85); /* 深蓝底上的主文字 */
+    --color-on-dark-sub: rgba(255, 255, 255, 0.72); /* 深蓝底上的次文字/菜单 */
+    --color-title: #{$admin-title}; /* 品牌标题（深蓝底浅蓝白） */
 
-    --brand: #{$primary};
-    --success: #67c23a;
-    --warning: #e6a23c;
-    --danger: #f56c6c;
-    --info: #909399;
+    --color-brand: #{$primary};
+    --color-success: #67c23a;
+    --color-warning: #e6a23c;
+    --color-danger: #f56c6c;
+    --color-info: #909399;
 
     --bg-page: #{$admin-bg-deep};
     --bg-panel: #ffffff;
+    --bg-sidebar: rgba(8, 25, 64, 0.94); /* 侧边栏 */
+    --bg-header: rgba(8, 25, 64, 0.96); /* 顶栏 */
+    --bg-content: rgba(7, 20, 49, 0.6); /* 内容区 */
     --border-panel: #dcdfe6;
+    --border-on-dark: rgba(255, 255, 255, 0.08); /* 深蓝底分隔线 */
+    --border-on-dark-strong: rgba(255, 255, 255, 0.25); /* 深蓝底描边 */
 
     /* 字号层级（固定像素） */
     --font-title: 20px;

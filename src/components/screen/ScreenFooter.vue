@@ -22,7 +22,7 @@ withDefaults(defineProps<{ text?: string; status?: string }>(), {
     justify-content: center;
     gap: 24px;
     font-size: var(--font-body);
-    color: $text-secondary;
+    color: var(--color-sub);
     background: linear-gradient(0deg, rgba(0, 84, 168, 0.35), rgba(0, 84, 168, 0.05));
     border-top: 1px solid rgba(0, 168, 255, 0.35);
 
@@ -31,7 +31,7 @@ withDefaults(defineProps<{ text?: string; status?: string }>(), {
     }
 
     .footer-status {
-        color: $accent;
+        color: var(--color-brand);
     }
 }
 </style>

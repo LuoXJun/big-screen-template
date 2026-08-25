@@ -15,13 +15,13 @@ defineProps<{ title: string }>();
         margin: 0;
         font-size: var(--font-title);
         font-weight: var(--font-weight-title);
-        color: var(--text-main);
+        color: var(--color-main);
     }
 
     .ap-desc {
         margin: var(--space-3) 0 0;
         font-size: var(--font-desc);
-        color: var(--text-desc);
+        color: var(--color-desc);
     }
 }
 </style>

@@ -70,6 +70,9 @@ const onCancel = () => {
 </script>
 
 <style lang="scss" scoped>
+/* 面板结构尺寸（组件专属，规范允许结构尺寸组件内定义） */
+$panel-header-height: 48px;
+$panel-footer-height: 64px;
 .base-panel {
     position: fixed;
     padding: 0;
@@ -83,8 +86,8 @@ const onCancel = () => {
     background-color: #fff;
 
     .base-panel-header {
-        height: $base-panel-header-height;
-        background: $base-panel-bg-color;
+        height: $panel-header-height;
+        background: var(--bg-page);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -103,15 +106,15 @@ const onCancel = () => {
         }
     }
     .base-panel-content {
-        height: calc(100% - #{$base-panel-header-height} - #{$base-panel-footer-height});
+        height: calc(100% - #{$panel-header-height} - #{$panel-footer-height});
         border-bottom: 1px solid #e5e7eb;
         padding: 40px 32px;
         box-sizing: border-box;
         overflow: auto;
     }
     .base-panel-footer {
-        height: $base-panel-footer-height;
-        line-height: $base-panel-footer-height;
+        height: $panel-footer-height;
+        line-height: $panel-footer-height;
         padding: 0 32px;
         width: 100%;
         text-align: right;

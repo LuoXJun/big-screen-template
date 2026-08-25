@@ -21,8 +21,8 @@ defineProps<{ title: string }>();
     min-height: 0;
     pointer-events: auto; /* 面板承载图表交互，需在穿透的 UI 层中恢复事件 */
     padding: var(--space-panel);
-    background: $panel-bg;
-    border: 1px solid $panel-border;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-panel);
     border-radius: 6px;
     box-shadow: inset 0 0 24px rgba(0, 120, 255, 0.12);
     backdrop-filter: blur(3px);
@@ -37,13 +37,13 @@ defineProps<{ title: string }>();
             width: 6px;
             height: 14px;
             border-radius: 2px;
-            background: linear-gradient(180deg, $accent, transparent);
+            background: linear-gradient(180deg, var(--color-brand), transparent);
         }
 
         .panel-title {
             font-size: var(--font-panel);
             font-weight: 500;
-            color: $panel-title;
+            color: var(--color-title);
             letter-spacing: 1px;
         }
     }
