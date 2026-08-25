@@ -1,6 +1,7 @@
 import type { LayerConfig, LayerType, MapLayer } from './types';
 import { createIconLayer } from './builtin/iconLayer';
 import { createImageryLayer } from './builtin/imageryLayer';
+import { createHeatmapLayer } from './builtin/heatmapLayer';
 
 /** 图层工厂：接收图层名与类型化配置，返回图层实例 */
 export type LayerFactory<C extends LayerConfig = LayerConfig> = (name: string, config?: C) => MapLayer<unknown>;
@@ -22,6 +23,7 @@ export function createLayer<T = unknown>(type: LayerType, name: string, config?:
     return factory(name, config as never) as MapLayer<T>;
 }
 
-// 内置图层注册：图标设备（条目级显隐）、影像底图（整层显隐）
+// 内置图层注册：图标设备（条目级显隐）、影像底图（整层显隐）、温度热力图
 registerLayerFactory('icon', createIconLayer);
 registerLayerFactory('imagery', createImageryLayer);
+registerLayerFactory('heatmap', createHeatmapLayer);

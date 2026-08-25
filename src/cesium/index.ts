@@ -79,6 +79,7 @@ export {
     isItemLayer,
     createIconLayer,
     createImageryLayer,
+    createHeatmapLayer,
     type LayerFactory,
     type LayerType,
     type MapLayer,
@@ -87,7 +88,12 @@ export {
     type LayerItemBrief,
     type IconItem,
     type IconLayerConfig,
-    type ImageryLayerConfig
+    type ImageryLayerConfig,
+    type HeatmapLayerConfig,
+    type HeatmapPoint,
+    type HeatmapBounds,
+    type HeatmapPolygon,
+    type HeatmapStyle
 } from './layers';
 
 // 效果工具层
