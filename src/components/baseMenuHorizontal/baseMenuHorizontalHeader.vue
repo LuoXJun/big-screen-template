@@ -3,11 +3,7 @@
         <div class="menu-part">
             <template v-for="menu in menus" :key="menu.name">
                 <div v-if="!menu.isHidden" class="lxj-menu-item" @click="goPath(menu)">
-                    <span
-                        :class="{
-                            'is-selected': store.currentMenu.path?.includes(menu.path)
-                        }"
-                    >
+                    <span :class="{ 'is-selected': isMenuActive(menu) }">
                         {{ menu.title }}
                     </span>
                 </div>
@@ -44,6 +40,12 @@ const goPath = (menu: RouteOptions) => {
 
     router.push(path);
 };
+
+/** 顶栏选中判断：精确路径前缀匹配，避免 '/' 永远命中 */
+const isMenuActive = (menu: RouteOptions) => {
+    const cur = store.currentMenu.path;
+    return cur === menu.path || cur.startsWith(menu.path + '/');
+};
 </script>
 
 <style scoped lang="scss">
@@ -63,15 +65,34 @@ const goPath = (menu: RouteOptions) => {
         .lxj-menu-item {
             cursor: pointer;
             > span {
-                color: #000;
+                color: rgba(255, 255, 255, 0.85);
                 margin-right: 20px;
                 border-radius: 8px;
                 display: inline-block;
                 padding: 8px 12px;
+                transition: background 0.2s;
+                &:hover {
+                    background: rgba(255, 255, 255, 0.06);
+                }
                 &.is-selected {
                     color: $primary;
+                    background: rgba(255, 120, 58, 0.14);
                 }
             }
+        }
+    }
+
+    // 退出登录按钮：深色玻璃风，适配深蓝顶栏
+    :deep(.el-button) {
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.25);
+        transition: all 0.2s;
+
+        &:hover {
+            background: rgba(255, 120, 58, 0.2);
+            border-color: $primary;
+            color: $primary;
         }
     }
 }

@@ -1,13 +1,27 @@
 import { defineStore } from 'pinia';
+import type { Component } from 'vue';
 import { type RouteRecordRaw, RouterView } from 'vue-router';
-import Layout from '@/views/index.vue';
+import { routeConfig as adminConfig } from '@/router/route-admin';
+import { routeConfig as screenConfig } from '@/router/route-screen';
+import { rebuildRoutes } from '@/router/rebuild';
 import router from '@/router';
+
 const views = import.meta.glob('@/views/pages/**/index.vue');
 const Null = import.meta.glob('@/views/Null.vue');
+
+/** 菜单模式：admin = 管理端，screen = 大屏，决定挂载哪种布局 */
+export type MenuMode = 'admin' | 'screen';
+
+export interface ProjectBrief {
+    id: string;
+    name: string;
+}
 
 interface UseMenu {
     // 没有被处理过的原始路由表
     menu: RouteOptions[];
+    /**当前模式：管理端 / 大屏*/
+    mode: MenuMode;
     /**更新路由*/
     isNeedUpdate: boolean;
     /**更新菜单,路由和显示的菜单并不总是同时更新，所以单独控制*/
@@ -15,6 +29,8 @@ interface UseMenu {
     isCollapse: boolean;
     records: { path: string; title: string }[];
     currentMenu: { name: string; path: string; length: number };
+    /**管理端选中的项目，供大屏使用*/
+    currentProject: ProjectBrief | null;
 }
 
 const getState = () => {
@@ -24,6 +40,7 @@ const getState = () => {
         storageState ||
         ({
             menu: [],
+            mode: 'admin',
             isNeedUpdate: true,
             refreshMenu: true,
             isCollapse: false,
@@ -32,7 +49,8 @@ const getState = () => {
                 name: '',
                 path: '',
                 length: 0
-            }
+            },
+            currentProject: null
         } as UseMenu);
     return state;
 };
@@ -76,21 +94,38 @@ export const useMenuStore = defineStore('menu', {
 
             return routes;
         },
-        setRoute(routes: RouteRecordRaw[]) {
-            const layout: RouteRecordRaw = {
+        /** 动态注册 / 布局路由（name 固定为 layout，注册前先移除旧路由保证切换干净） */
+        setRoute(routes: RouteRecordRaw[], layout: Component) {
+            if (router.hasRoute('layout')) router.removeRoute('layout');
+            const route: RouteRecordRaw = {
                 path: '/',
                 name: 'layout',
-                // redirect: '/horizontal',
                 meta: {
                     title: '首页'
                 },
-                component: Layout,
-                children: []
+                component: layout,
+                children: routes
             };
-            routes.forEach((route) => {
-                layout.children.push(route);
-            });
-            router.addRoute(layout);
+            router.addRoute(route);
+        },
+        /** 登录进入管理端：加载管理端菜单 */
+        async enterAdmin() {
+            this.menu = adminConfig;
+            this.mode = 'admin';
+            this.currentProject = null;
+            this.isNeedUpdate = true;
+            // 当前可能已在 '/'，直接 push 会被判定为重复导航而不触发守卫，故先重建再跳转
+            await rebuildRoutes(this);
+            router.replace('/');
+        },
+        /** 选择项目进入大屏：加载大屏菜单并记录当前项目 */
+        async enterScreen(project: ProjectBrief) {
+            this.currentProject = project;
+            this.menu = screenConfig;
+            this.mode = 'screen';
+            this.isNeedUpdate = true;
+            await rebuildRoutes(this);
+            router.replace('/');
         }
     }
 });

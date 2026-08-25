@@ -6,26 +6,13 @@
 
 <script setup lang="ts">
 import { useMenuStore } from '@/stores/useMenuStore';
-import { routeConfig } from '@/router/route-admin';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 const store = useMenuStore();
 
-const login = () => {
+const login = async () => {
     sessionStorage.setItem('token', '555');
-    store.$patch((state) => {
-        state.menu = routeConfig;
-        state.isNeedUpdate = true;
-        state.isNeedUpdate = true;
-    });
-
-    console.log(router.getRoutes());
-
-    router.push({
-        path: '/'
-    });
+    // 进入管理端：加载管理端菜单并动态注册路由
+    await store.enterAdmin();
 };
 </script>
 

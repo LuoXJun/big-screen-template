@@ -29,7 +29,8 @@ const menuItems = computed(() => {
         .filter((child) => child.meta?.title)
         .map((child) => ({
             label: String(child.meta!.title),
-            path: `/${child.path}`
+            // 动态路由的 child.path 可能为绝对路径（如 '/A'），避免拼出 '//A'
+            path: child.path.startsWith('/') ? child.path : `/${child.path}`
         }));
 });
 

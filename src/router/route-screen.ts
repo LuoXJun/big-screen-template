@@ -1,64 +1,19 @@
+/** 大屏菜单配置：管理端选择项目后加载，页面保持现有大屏逻辑 */
 export const routeConfig: RouteOptions[] = [
     {
         path: '/',
         sort: 0,
-        component: 'aa-useCase',
-        name: 'useCase',
+        component: 'screen/index',
+        name: 'home',
         type: 'link',
-        title: '组件使用案例'
+        title: '首页'
     },
     {
-        path: '/c',
-        sort: 2,
-        component: 'c',
-        name: 'C',
-        type: 'menu',
-        title: '多级菜单/C',
-        children: [
-            {
-                path: 'c1',
-                sort: 0,
-                component: 'c1',
-                name: 'C1',
-                type: 'menu',
-                title: 'c1',
-                children: [
-                    {
-                        path: 'c11',
-                        sort: 0,
-                        component: 'c11',
-                        name: 'C11',
-                        type: 'menu',
-                        title: 'c11',
-                        children: [
-                            {
-                                path: 'c111',
-                                sort: 0,
-                                component: 'c111',
-                                name: 'C111',
-                                type: 'link',
-                                title: 'c111'
-                            },
-                            {
-                                path: 'c112',
-                                sort: 0,
-                                component: 'c112',
-                                name: 'C112',
-                                type: 'link',
-                                title: 'c112'
-                            }
-                        ]
-                    },
-                    {
-                        path: 'd',
-                        sort: 0,
-                        component: 'd',
-                        name: 'd',
-                        type: 'link',
-                        title: 'd'
-                    }
-                ]
-            }
-        ]
+        path: '/A',
+        sort: 1,
+        component: 'screen/A',
+        name: 'pageA',
+        type: 'link',
+        title: '页面A'
     }
 ];

@@ -9,7 +9,7 @@
                 </template>
                 <!-- 组件自递归 -->
                 <baseMenuHorizontalAside
-                    :list="item.children"
+                    :list="item.children!"
                     :parent-path="parentPath + item.path + '/'"
                 />
             </el-sub-menu>
@@ -42,12 +42,7 @@ const props = defineProps({
 });
 
 const sortMenu = computed(() => {
-    const arr = props.list.slice();
-    return arr;
-
-    // return arr.sort((a, b) => {
-    //     return (a.meta!.sort as number) - (b.meta!.sort as number);
-    // });
+    return props.list.slice();
 });
 </script>
 

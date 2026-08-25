@@ -2,8 +2,11 @@
     <div class="layout-shell">
         <!-- 全局顶部导航：左侧标题 + 右侧菜单 -->
         <header class="layout-navbar">
-            <h1 class="navbar-title">大屏标题</h1>
-            <BaseMenu />
+            <h1 class="navbar-title">{{ menuStore.currentProject?.name ?? '大屏标题' }}</h1>
+            <div class="navbar-right">
+                <BaseMenu />
+                <button class="back-admin-btn" @click="backToAdmin">返回管理端</button>
+            </div>
         </header>
 
         <!-- 全局地图层：路由切换不销毁，图层与视角状态跨页面保留 -->
@@ -36,6 +39,14 @@ import { showMapPopup } from '@/components/basePanel/mapPopup';
 import { createHandler, flyToLonLat, getViewer, toLonLat } from '@/cesium';
 import { layerControlConfig, initialView } from './config/layerControl';
 import PopupInfo from '@/components/basePanel/PopupInfo.vue';
+import { useMenuStore } from '@/stores/useMenuStore';
+
+const menuStore = useMenuStore();
+
+/** 返回管理端：切换菜单模式并跳转 */
+function backToAdmin(): void {
+    menuStore.enterAdmin();
+}
 
 /** 图层就绪后的全局行为：视角定位到设备区域 */
 function onLayersReady(): void {
@@ -94,6 +105,30 @@ onMounted(() => {
         color: $text-primary;
         text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
         margin: 0;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: base(24px);
+    }
+
+    .back-admin-btn {
+        height: base(32px);
+        padding: 0 base(16px);
+        box-sizing: border-box;
+        font-size: var(--font-panel);
+        letter-spacing: 1px;
+        color: $text-primary;
+        background: rgba(0, 168, 255, 0.12);
+        border: 1px solid rgba(0, 168, 255, 0.45);
+        border-radius: base(4px);
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover {
+            background: rgba(0, 168, 255, 0.24);
+        }
     }
 }
 

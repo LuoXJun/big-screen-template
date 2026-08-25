@@ -7,7 +7,7 @@
         :default-expand-all="defaultExpandAll"
         :show-checkbox="showCheckbox"
         :default-checked-keys="defaultCheckedKeys"
-        @check="(d, info) => emit('check', d, info)"
+        @check="(d: unknown, info: TreeCheckInfo) => emit('check', d, info)"
     >
         <template #default="{ node, data: nodeData }">
             <slot :node="node" :data="nodeData">{{ node.label }}</slot>

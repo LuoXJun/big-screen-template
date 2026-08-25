@@ -1,4 +1,5 @@
 import { useMenuStore } from '@/stores/useMenuStore';
+import { rebuildRoutes } from './rebuild';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 
@@ -27,30 +28,41 @@ const router = createRouter({
     }
 });
 
-router.beforeEach((to, _, next) => {
-    const store = useMenuStore();
-    const token = sessionStorage.getItem('token');
+/** 菜单状态持久化到 sessionStorage（getState 据此恢复），仅注册一次 */
+let persistRegistered = false;
 
-    // store.setRecord(to);
+router.beforeEach(async (to) => {
+    const store = useMenuStore();
+    if (!persistRegistered) {
+        persistRegistered = true;
+        store.$subscribe((_mutation, state) => {
+            sessionStorage.setItem('state', JSON.stringify(state));
+        });
+    }
+    const token = sessionStorage.getItem('token');
 
     if (to.path === '/login') {
         sessionStorage.clear();
         store.$reset();
-
-        return next();
+        return;
     }
 
     if (!token) {
-        return to.path !== '/login' ? next('/login') : next();
+        return to.path !== '/login' ? '/login' : undefined;
     }
 
-    // 直接使用会导致本地报警告，打包报错
-    // store.currentMenu = to.matched
+    // 大屏模式依赖当前项目：项目缺失（如状态损坏）时回退管理端，避免空状态大屏
+    if (store.mode === 'screen' && !store.currentProject) {
+        await store.enterAdmin();
+        return;
+    }
+
     if (to.matched.length >= 2) {
         store.currentMenu = {
             length: to.matched.length,
             name: to.matched[1]?.name as string,
-            path: to.matched[1]?.path
+            // 使用完整路径，供顶栏菜单 is-selected 的 includes 判断使用
+            path: to.path
         };
     }
 
@@ -59,13 +71,10 @@ router.beforeEach((to, _, next) => {
      * hasRoue用来防止路由没有注册成功的情况，即便这种情况不应该会发生
      * */
     if (store.isNeedUpdate || !router.hasRoute('layout')) {
-        store.setRoute(store.getRoutes(store.menu));
-        store.$patch((state) => {
-            state.isNeedUpdate = false;
-        });
-        return next(to.fullPath);
+        await rebuildRoutes(store);
+        return to.fullPath;
     }
-    return next();
+    return undefined;
 });
 
 export default router;
