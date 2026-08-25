@@ -9,7 +9,7 @@
         故基础变量覆盖用 :not 排除类型变体与 text/link 形态，只作用于默认按钮
    ============================================================ */
 @use 'sass:color';
-@use '@/styles/globalScss.scss' as *;
+@use '@/styles/tokens' as *;
 
 /* 排版统一作用于所有形态 */
 .el-button {

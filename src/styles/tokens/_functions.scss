@@ -1,0 +1,19 @@
+/* sass:math 必须位于文件顶部（Sass 模块规则约束） */
+@use 'sass:math';
+
+/* ===== 设计稿尺寸换算函数：写设计稿像素，编译期自动转 base 等比 =====
+   用法：
+     width: base(340px);                → calc(var(--screen-base) * 0.17708)
+     font-size: font(14px);             → clamp(11px, calc(... * 0.00729), 15.4px)
+     font-size: font(36px, 20px, 48px); → 自定义 clamp 区间（min / max 可省略其一）
+   默认区间（自动随字号自适应）：
+     下限 = 设计稿 × 0.5 + 4px（大字号可缩多、小字号保可读）
+     上限 = 设计稿 × 1.1（大屏封顶）
+   注意：仅用于布局性尺寸；装饰性固定值（圆角、阴影、1px 边框）直接写 px */
+@function base($design-px) {
+    @return calc(var(--screen-base) * #{math.div($design-px, 1920px)});
+}
+
+@function font($design-px, $min-px: $design-px * 0.5 + 4px, $max-px: $design-px * 1.1) {
+    @return clamp($min-px, calc(var(--screen-base) * #{math.div($design-px, 1920px)}), $max-px);
+}

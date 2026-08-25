@@ -35,15 +35,15 @@ function enterScreen(project: { id: string; name: string }): void {
         cursor: pointer;
 
         .project-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: #303133;
+            font-size: var(--font-panel);
+            font-weight: var(--font-weight-panel);
+            color: var(--text-main);
         }
 
         .project-desc {
-            margin-top: 8px;
-            font-size: 13px;
-            color: #909399;
+            margin-top: var(--space-2);
+            font-size: var(--font-desc);
+            color: var(--text-desc);
         }
     }
 }

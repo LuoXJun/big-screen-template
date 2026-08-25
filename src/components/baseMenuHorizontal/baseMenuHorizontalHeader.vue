@@ -60,7 +60,6 @@ const isMenuActive = (menu: RouteOptions) => {
         height: 100%;
         display: flex;
         align-items: center;
-        flex: 50% 0 0;
 
         .lxj-menu-item {
             cursor: pointer;
@@ -75,8 +74,8 @@ const isMenuActive = (menu: RouteOptions) => {
                     background: rgba(255, 255, 255, 0.06);
                 }
                 &.is-selected {
-                    color: $primary;
-                    background: rgba(255, 120, 58, 0.14);
+                    color: var(--brand);
+                    background: var(--active-bg);
                 }
             }
         }
@@ -90,9 +89,9 @@ const isMenuActive = (menu: RouteOptions) => {
         transition: all 0.2s;
 
         &:hover {
-            background: rgba(255, 120, 58, 0.2);
-            border-color: $primary;
-            color: $primary;
+            background: var(--hover-bg);
+            border-color: var(--brand);
+            color: var(--brand);
         }
     }
 }

@@ -47,23 +47,12 @@ const sideMenu = computed(() => {
 </script>
 
 <style scoped lang="scss">
-/* 管理端作用域内还原 EP 浅色变量（全局样式为大屏深色主题覆盖过） */
+/* EP 浅色变量还原见 element-plus/_admin.scss（.admin-shell 作用域） */
 .admin-shell {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     background: linear-gradient(180deg, $admin-bg 0%, $admin-bg-deep 100%);
-
-    --el-color-primary: #{$primary};
-    --el-bg-color: #ffffff;
-    --el-bg-color-overlay: #ffffff;
-    --el-fill-color-blank: #ffffff;
-    --el-text-color-primary: #303133;
-    --el-text-color-regular: #606266;
-    --el-text-color-secondary: #909399;
-    --el-border-color: #dcdfe6;
-    --el-border-color-light: #e4e7ed;
-    --el-border-color-lighter: #ebeef5;
 }
 
 .admin-aside {
@@ -78,9 +67,9 @@ const sideMenu = computed(() => {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 600;
-        font-size: 16px;
-        letter-spacing: 2px;
+        font-weight: var(--font-weight-title);
+        font-size: var(--font-panel);
+        letter-spacing: var(--letter-spacing-title);
         color: $admin-title;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         flex-shrink: 0;
@@ -94,7 +83,7 @@ const sideMenu = computed(() => {
         --el-menu-item-height: 46px;
         --el-menu-bg-color: transparent;
         --el-menu-text-color: rgba(255, 255, 255, 0.72);
-        --el-menu-active-color: #{$primary};
+        --el-menu-active-color: var(--brand);
         --el-menu-hover-bg-color: rgba(255, 255, 255, 0.06);
 
         :deep(.el-menu-item.is-active) {

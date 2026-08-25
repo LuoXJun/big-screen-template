@@ -101,7 +101,7 @@ onMounted(() => {
     .navbar-title {
         font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
         font-size: var(--font-hero);
-        letter-spacing: 6px;
+        letter-spacing: var(--letter-spacing-hero);
         color: $text-primary;
         text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
         margin: 0;

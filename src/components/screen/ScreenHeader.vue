@@ -54,7 +54,7 @@ onBeforeUnmount(() => window.clearInterval(timer));
     .header-title {
         font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
         font-size: var(--font-hero);
-        letter-spacing: 6px;
+        letter-spacing: var(--letter-spacing-hero);
         color: $text-primary;
         text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
         margin: 0;
@@ -65,7 +65,7 @@ onBeforeUnmount(() => window.clearInterval(timer));
         align-items: center;
         gap: 12px;
         color: $text-secondary;
-        font-size: var(--font-sub);
+        font-size: var(--font-desc);
 
         .wing-line {
             width: 140px;

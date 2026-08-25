@@ -1,0 +1,22 @@
+/* ============================================================
+   管理端（admin）主题令牌（取自 docs/管理端样式.png）
+   分类：
+   - 背景：$admin-bg(主) / $admin-bg-deep(内容区)
+   - 文字层级：$admin-title(顶栏标题) / $admin-text(正文) /
+              $admin-text-secondary(次文字) / $admin-desc(描述)
+   - 功能色：$primary(主色橙红)
+   字号层级见 element-plus/_admin.scss（--admin-font-title/panel/body/desc）
+   ============================================================ */
+
+/* 功能色 */
+$primary: #ff783a; /* 管理端主色（橙红高亮） */
+
+/* 背景 */
+$admin-bg: #081940; /* 主背景（深藏蓝） */
+$admin-bg-deep: #071431; /* 内容区背景（深蓝黑） */
+
+/* 文字层级（管理端浅色内容区） */
+$admin-title: #cfeef5; /* 顶栏 / 品牌标题（浅蓝白） */
+$admin-text: #303133; /* 正文 */
+$admin-text-secondary: #606266; /* 次文字 */
+$admin-desc: #909399; /* 描述 / 辅助 */

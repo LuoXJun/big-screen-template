@@ -13,14 +13,15 @@ defineProps<{ title: string }>();
 .admin-placeholder {
     .ap-title {
         margin: 0;
-        font-size: 18px;
-        color: var(--el-text-color-primary);
+        font-size: var(--font-title);
+        font-weight: var(--font-weight-title);
+        color: var(--text-main);
     }
 
     .ap-desc {
-        margin: 12px 0 0;
-        font-size: 13px;
-        color: var(--el-text-color-secondary);
+        margin: var(--space-3) 0 0;
+        font-size: var(--font-desc);
+        color: var(--text-desc);
     }
 }
 </style>

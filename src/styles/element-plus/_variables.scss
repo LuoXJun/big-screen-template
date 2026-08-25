@@ -1,5 +1,5 @@
 @use 'sass:color';
-@use '@/styles/globalScss.scss' as *;
+@use '@/styles/tokens' as *;
 
 /* ============================================================
    EP 主题变量覆盖：只在 :root 输出 CSS 变量（不产生组件规则）

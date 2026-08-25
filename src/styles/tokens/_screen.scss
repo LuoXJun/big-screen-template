@@ -1,0 +1,28 @@
+/* ============================================================
+   大屏（screen）主题令牌
+   分类：
+   - 背景/面板：$screen-bg / $panel-*
+   - 文字层级：$text-primary(主) / $text-secondary(次) / $text-desc(描述)
+   - 功能色：$accent(强调) / $warn(警示)
+   字号层级见 index.scss :root（--font-hero/title/panel/body/desc/small）
+   ============================================================ */
+
+/* 背景 / 面板 */
+$screen-bg: #0a0f2a; /* 全屏背景 */
+$panel-bg: rgba(9, 25, 54, 0.72); /* 面板底色 */
+$panel-border: rgba(0, 168, 255, 0.35); /* 面板描边 */
+$panel-title: #7fd4ff; /* 面板标题 */
+
+/* 文字层级（大屏深色底） */
+$text-primary: #e8f4ff; /* 一级标题 / 主文字 */
+$text-secondary: #8fb4dd; /* 二级标题 / 次文字 */
+$text-desc: rgba(143, 180, 221, 0.6); /* 描述 / 辅助文字 */
+
+/* 功能色 */
+$accent: #00d4ff; /* 强调色（青蓝） */
+$warn: #ffc64a; /* 警示色（琥珀） */
+
+/* 面板结构尺寸（大屏设计稿） */
+$base-panel-header-height: 48px;
+$base-panel-footer-height: 64px;
+$base-panel-bg-color: $screen-bg;

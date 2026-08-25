@@ -6,6 +6,7 @@
      新增组件时按领域归位，每层超过 8 个文件继续下沉子层
    ============================================================ */
 @use './variables';
+@use './admin';
 @use './controls/button';
 @use './controls/form';
 @use './data-display/table';

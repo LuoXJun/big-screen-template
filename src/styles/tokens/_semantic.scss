@@ -1,0 +1,129 @@
+/* ============================================================
+   语义令牌层（运行时 CSS 变量，双主题赋值）
+
+   【使用规范 - 重要】
+   1. 组件中一律使用 var(--xxx) 语义变量，不感知主题：
+      大屏（:root 默认）与管理端（.admin-shell 覆盖）自动切换
+   2. SCSS 色板变量（$screen-* / $admin-*）仅用于编译期场景：
+      EP 覆盖层、语义层赋值、函数参数 —— 组件禁止直接引用主题色
+   3. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
+   4. 新增颜色/尺寸时：先在语义层补充令牌，再在组件中使用
+   ============================================================ */
+@use './functions' as *;
+@use './screen' as *;
+@use './admin' as *;
+
+/* ===== 大屏主题（默认 :root）===== */
+:root {
+    /* 自适应基准（等效 16:9 视口宽度：16:9 系屏 = 100vw（等比放大）；
+       窄屏/超宽屏按高度折算（100vh×16/9），UI 等比居中、留白露出地图。
+       所有尺寸 = base × 设计稿占比，宽高同基准 → 任意尺寸下 UI 等比不变形） */
+    --screen-base: min(100vw, calc(100vh * 1.7778));
+
+    /* 布局结构（大屏专属） */
+    --space-screen: #{base(14px)}; /* 布局间距 */
+    --space-panel: #{base(12px)}; /* 面板内边距 */
+    --header-height: #{base(64px)}; /* 顶部导航栏 */
+    --footer-height: #{base(56px)}; /* 底部栏 */
+
+    /* 文本层级 */
+    --text-main: #{$text-primary}; /* 一级标题 / 主文字 */
+    --text-sub: #{$text-secondary}; /* 二级标题 / 次文字 */
+    --text-desc: #{$text-desc}; /* 描述 / 辅助 */
+
+    /* 功能色 */
+    --brand: #{$accent}; /* 主色（强调青蓝） */
+    --success: #00e396;
+    --warning: #{$warn};
+    --danger: #ff5b6e;
+    --info: #{$text-secondary};
+
+    /* 背景 / 边框 */
+    --bg-page: #{$screen-bg};
+    --bg-panel: #{$panel-bg};
+    --border-panel: #{$panel-border};
+
+    /* 字号层级（自适应，见 index.scss --screen-base） */
+    --font-hero: #{font(36px)}; /* 一级标题 */
+    --font-title: #{font(22px)}; /* 二级标题 */
+    --font-panel: #{font(16px)}; /* 面板标题 */
+    --font-body: #{font(13px)}; /* 正文 */
+    --font-desc: #{font(12px)}; /* 描述 */
+    --font-small: #{font(11px)}; /* 小字 */
+
+    /* 字重 / 行高 / 字距 */
+    --font-weight-hero: 600;
+    --font-weight-title: 600;
+    --font-weight-panel: 500;
+    --font-weight-body: 400;
+    --line-height-body: 1.5;
+    --letter-spacing-hero: 6px;
+    --letter-spacing-title: 2px;
+
+    /* 间距刻度 */
+    --space-1: #{base(4px)};
+    --space-2: #{base(8px)};
+    --space-3: #{base(12px)};
+    --space-4: #{base(16px)};
+    --space-5: #{base(24px)};
+    --space-6: #{base(32px)};
+
+    /* 圆角 / 阴影 */
+    --radius-1: #{base(2px)};
+    --radius-2: #{base(4px)};
+    --radius-3: #{base(8px)};
+    --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    /* 交互状态 */
+    --hover-bg: rgba(0, 168, 255, 0.08);
+    --active-bg: rgba(0, 168, 255, 0.14);
+}
+
+/* ===== 管理端主题（.admin-shell 作用域覆盖）===== */
+.admin-shell {
+    --text-main: #{$admin-text};
+    --text-sub: #{$admin-text-secondary};
+    --text-desc: #{$admin-desc};
+
+    --brand: #{$primary};
+    --success: #67c23a;
+    --warning: #e6a23c;
+    --danger: #f56c6c;
+    --info: #909399;
+
+    --bg-page: #{$admin-bg-deep};
+    --bg-panel: #ffffff;
+    --border-panel: #dcdfe6;
+
+    /* 字号层级（固定像素） */
+    --font-title: 20px;
+    --font-panel: 16px;
+    --font-body: 14px;
+    --font-desc: 12px;
+    --font-small: 11px;
+
+    --font-weight-hero: 600;
+    --font-weight-title: 600;
+    --font-weight-panel: 600;
+    --font-weight-body: 400;
+    --line-height-body: 1.5;
+    --letter-spacing-title: 1px;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+
+    --radius-1: 2px;
+    --radius-2: 4px;
+    --radius-3: 8px;
+    --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+    /* 管理端 UI 以深蓝侧栏/顶栏为主，hover 用浅色透明；选中态保留品牌橙 */
+    --hover-bg: rgba(255, 255, 255, 0.06);
+    --active-bg: rgba(255, 120, 58, 0.14);
+}

@@ -32,7 +32,7 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@use '@/styles/globalScss.scss' as *;`
+                additionalData: `@use '@/styles/tokens' as *;`
             }
         }
     },
