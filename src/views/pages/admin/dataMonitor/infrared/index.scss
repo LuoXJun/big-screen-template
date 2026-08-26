@@ -1,0 +1,52 @@
+.infrared {
+    height: 100%;
+    .el-container {
+        margin-top: 10px;
+        height: calc(100% - 170px);
+        .el-aside {
+            flex: 65% 0 0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            .chart-box {
+                margin-top: 10px;
+                border-radius: var(--radius-2);
+                flex: 300px 0 0;
+                .chart {
+                    height: calc(100% - 32px);
+                }
+            }
+            .table-part {
+                margin-top: 10px;
+                :deep(.el-table) {
+                    --el-table-bg-color: transparent; // 表体背景（行背景默认继承它）
+                    --el-table-header-bg-color: var(--bg-title); // 表头背景
+                    --el-table-tr-bg-color: transparent; // 行背景（兜底，双保险）
+                    --el-table-border-color: transparent; // 单元格分隔线
+                    --el-table-row-hover-bg-color: transparent;
+
+                    .cell {
+                        color: #fff;
+                    }
+                }
+            }
+            .panel {
+                .title {
+                    color: #fff;
+                    .el-col:last-child {
+                        color: #bcbcbc;
+                        text-align: right;
+                        font-size: var(--font-desc);
+                    }
+                }
+            }
+        }
+        .el-main {
+            padding: 0;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

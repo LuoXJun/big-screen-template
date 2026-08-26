@@ -21,7 +21,7 @@ const timeText = dayjs().format('YYYY-MM-DD HH:mm:ss');
     color: #fff;
     border-top: 1px solid #666;
     border-bottom: 1px solid #666;
-    padding: 20px 0;
+    padding: 12px 0;
     box-sizing: border-box;
     .infraredHeader-title {
         font-size: var(--font-title);

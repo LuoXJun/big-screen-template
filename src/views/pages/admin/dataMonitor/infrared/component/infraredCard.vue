@@ -65,7 +65,7 @@ const list = [
     .infraredCard-item {
         flex: 19% 0 0;
         border-radius: var(--radius-2);
-        padding: base(12px) 0;
+        padding: 12px 0;
         background: #235e48;
         display: flex;
         justify-content: space-evenly;
@@ -82,7 +82,8 @@ const list = [
                 }
                 > span:last-child {
                     position: absolute;
-                    right: -15px;
+                    transform: translateX(100%);
+                    right: -5px;
                     top: 0;
                 }
             }

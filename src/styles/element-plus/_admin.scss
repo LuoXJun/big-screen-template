@@ -9,22 +9,5 @@
    统一在 tokens/_semantic.scss 的 .admin-shell 中定义。
    ============================================================ */
 .admin-shell {
-    --el-color-primary: #{$primary};
-    --el-color-primary-light-3: #{color.mix(#ffffff, $primary, 30%)};
-    --el-color-primary-light-5: #{color.mix(#ffffff, $primary, 50%)};
-    --el-color-primary-light-7: #{color.mix(#ffffff, $primary, 70%)};
-    --el-color-primary-light-8: #{color.mix(#ffffff, $primary, 80%)};
-    --el-color-primary-light-9: #{color.mix(#ffffff, $primary, 90%)};
-    --el-color-primary-dark-2: #{color.mix(#000000, $primary, 20%)};
-
-    /* EP 组件浅色还原 */
-    --el-bg-color: #ffffff;
-    --el-bg-color-overlay: #ffffff;
-    --el-fill-color-blank: #ffffff;
-    --el-text-color-primary: #{$admin-text};
-    --el-text-color-regular: #{$admin-text-secondary};
-    --el-text-color-secondary: #{$admin-desc};
-    --el-border-color: #dcdfe6;
-    --el-border-color-light: #e4e7ed;
-    --el-border-color-lighter: #ebeef5;
+     
 }

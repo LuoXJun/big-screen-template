@@ -105,6 +105,7 @@ const sideMenu = computed(() => {
 
 .admin-main {
     flex: 1;
+    min-height: 0;
     overflow: auto;
     padding: var(--space-4);
     // background: var(--bg-content);

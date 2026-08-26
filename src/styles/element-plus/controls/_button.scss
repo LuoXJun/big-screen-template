@@ -13,34 +13,10 @@
 
 /* 排版统一作用于所有形态 */
 .el-button {
-    font-weight: 400;
-    letter-spacing: base(1px);
 }
 
 .el-button:not([class*='el-button--']):not(.is-text):not(.is-link) {
-    --el-button-bg-color: rgba(0, 168, 255, 0.06);
-    --el-button-border-color: rgba(0, 168, 255, 0.35);
-    --el-button-text-color: #{$text-primary};
-
-    --el-button-hover-bg-color: rgba(0, 168, 255, 0.16);
-    --el-button-hover-border-color: #{$accent};
-    --el-button-hover-text-color: #{$accent};
-
-    --el-button-active-bg-color: rgba(0, 168, 255, 0.22);
-    --el-button-active-border-color: #{$accent};
-    --el-button-active-text-color: #{$accent};
 }
 
 .el-button--primary {
-    --el-button-bg-color: #{$accent};
-    --el-button-border-color: #{$accent};
-    --el-button-text-color: #06203a;
-
-    --el-button-hover-bg-color: #{color.mix(#ffffff, $accent, 15%)};
-    --el-button-hover-border-color: #{color.mix(#ffffff, $accent, 15%)};
-    --el-button-hover-text-color: #06203a;
-
-    --el-button-active-bg-color: #{color.mix(#000000, $accent, 15%)};
-    --el-button-active-border-color: #{color.mix(#000000, $accent, 15%)};
-    --el-button-active-text-color: #06203a;
 }
