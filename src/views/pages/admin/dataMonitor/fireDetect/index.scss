@@ -1,0 +1,50 @@
+.fireDetect {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #fff;
+    .el-container {
+        height: 100%;
+        margin-top: 16px;
+        .el-aside {
+            flex: 22% 0 0;
+            display: flex;
+            flex-direction: column;
+            .status {
+                .status-item {
+                    background: var(--bg-content);
+                    border-top: 1px solid #bab9b9;
+                    padding: var(--space-3) 0;
+                }
+                .desc {
+                    margin-top: var(--space-2);
+                    display: flex;
+                    > span {
+                        margin-right: 12px;
+                        font-size: var(--font-desc);
+                    }
+                }
+            }
+            .records {
+                background: var(--bg-content);
+                .records-item {
+                    font-size: var(--font-desc);
+                    color: #bab9b9;
+                    border-top: 1px solid #bab9b9;
+                    padding: 10px 0;
+                }
+            }
+            .validate {
+                .validate-item {
+                    font-size: var(--font-desc);
+                    color: #bab9b9;
+                    padding: 4px 0;
+                }
+            }
+        }
+        .el-main {
+            padding: 0;
+            margin: 0 12px;
+        }
+    }
+}
