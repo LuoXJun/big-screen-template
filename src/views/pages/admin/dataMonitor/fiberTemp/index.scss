@@ -1,0 +1,93 @@
+.fiberTemp {
+    height: 100%;
+    .el-container {
+        height: calc(100% - 110px);
+        .el-aside {
+            flex: 25% 0 0;
+            background: #071431;
+            margin-top: 10px;
+            border-radius: var(--radius-2);
+        }
+        .el-main {
+            padding: 10px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .main-chart {
+                flex: 300px 0 0;
+                :deep(.el-radio-button__inner) {
+                    padding: 10px 15px;
+                }
+                .chart {
+                    height: calc(100% - var(--height-title1));
+                }
+            }
+
+            .table-list {
+                flex: 1 1 0;
+                min-height: 0;
+                margin-top: 10px;
+
+                > .left {
+                    min-height: 0;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    > .base-title {
+                        flex-shrink: 0;
+                    }
+                }
+
+                .warn-list {
+                    flex: 1;
+                    min-height: 0;
+                    background: #071431;
+                    overflow: auto;
+                    color: #fff;
+                    padding: 8px;
+                    .warn-list-item {
+                        border-bottom: 2px solid #ffffff38;
+                        padding: 10px 0;
+                        .el-col {
+                            padding-bottom: 10px;
+                        }
+                        .time {
+                            font-size: var(--font-desc);
+                            text-align: right;
+                        }
+                        .desc {
+                            font-size: var(--font-desc);
+                            color: #666;
+                        }
+                    }
+                }
+                .info {
+                    margin-left: 20px;
+                    flex: 1;
+                    height: 100%;
+                    .info-item {
+                        background: #071431;
+                        overflow: auto;
+                        color: #fff;
+                        padding: 8px;
+                        height: calc(100% - var(--height-title1));
+                        font-size: var(--font-body);
+
+                        .info-header {
+                            margin-bottom: 8px;
+                        }
+
+                        .info-desc {
+                            border-radius: var(--radius-2);
+                            background: #f5ad478a;
+                            padding: 8px;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

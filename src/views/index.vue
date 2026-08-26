@@ -107,6 +107,7 @@ const sideMenu = computed(() => {
     flex: 1;
     overflow: auto;
     padding: var(--space-4);
-    background: var(--bg-content);
+    // background: var(--bg-content);
+    background: var(--bg-sidebar);
 }
 </style>

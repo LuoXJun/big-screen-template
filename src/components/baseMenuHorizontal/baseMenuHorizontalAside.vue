@@ -49,5 +49,8 @@ const sortMenu = computed(() => {
 <style lang="scss" scoped>
 .base-menu-horizontal-aside {
     height: 100%;
+    :deep(.el-menu-item) {
+        justify-content: center;
+    }
 }
 </style>

@@ -1,0 +1,58 @@
+/* ============================================================
+   基础元素重置层（normalize.css 之后加载）
+   normalize 只统一浏览器差异、保留默认值；本层负责清零默认间距、
+   统一盒模型与表单/链接/列表的浏览器默认样式（参考 Tailwind preflight 精简）。
+   ============================================================ */
+
+/* 统一盒模型：border + padding 计入宽高，避免组件布局偏差 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 清零默认外边距/内边距（组件样式自带，不再依赖浏览器默认） */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 媒体元素块级化，避免基线空隙 */
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+/* 表单控件继承字体与颜色，避免浏览器默认样式割裂 */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+/* 链接去下划线、继承文字色（链接语义由组件自行表现） */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 列表去默认圆点/编号（列表语义由组件自行表现） */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 标题字号/字重归零，由语义令牌（--font-* / --font-weight-*）统一驱动 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}

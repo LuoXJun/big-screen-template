@@ -98,12 +98,16 @@
     --color-warning: #e6a23c;
     --color-danger: #f56c6c;
     --color-info: #909399;
+    --color-desc1: #3d67b4;
 
     --bg-page: #{$admin-bg-deep};
     --bg-panel: #ffffff;
     --bg-sidebar: rgba(8, 25, 64, 0.94); /* 侧边栏 */
     --bg-header: rgba(8, 25, 64, 0.96); /* 顶栏 */
     --bg-content: rgba(7, 20, 49, 0.6); /* 内容区 */
+
+    --bg-title: #11275b;
+
     --border-panel: #dcdfe6;
     --border-on-dark: rgba(255, 255, 255, 0.08); /* 深蓝底分隔线 */
     --border-on-dark-strong: rgba(255, 255, 255, 0.25); /* 深蓝底描边 */
@@ -128,6 +132,7 @@
     --space-4: 16px;
     --space-5: 24px;
     --space-6: 32px;
+    --height-title1: 48px;
 
     --radius-1: 2px;
     --radius-2: 4px;

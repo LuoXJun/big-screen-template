@@ -1,5 +1,6 @@
 @use '@/styles/tokens' as *;
 @use './tokens/semantic';
+@use './base';
 @use './element-plus';
 
 /* ===== 字体定义 ===== */
@@ -67,7 +68,7 @@ body,
 }
 
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
     /* 竖向滚动条宽度 */
     height: 2px;
     /* 横向滚动条高度 */
