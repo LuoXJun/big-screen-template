@@ -31,7 +31,7 @@
                     </el-row>
                 </div>
                 <div class="validate">
-                    <baseTitle title="多信号交叉验证" style="margin-bottom: 10px;" />
+                    <baseTitle title="多信号交叉验证" style="margin-bottom: 10px" />
                     <el-row v-for="it in 4" :key="it" class="validate-item">
                         <el-col :span="12">光伏区Axxxxxxxxxxxx</el-col>
                         <el-col :span="12" style="text-align: right">
@@ -41,15 +41,28 @@
                 </div>
             </el-aside>
             <el-main>
-                <baseTitle title="防火区域监测地图">
-                    <el-button type="danger" size="small">火情告警</el-button>
-                    <el-button type="danger" size="small">全部区域</el-button>
-                </baseTitle>
+                <mapList />
             </el-main>
             <el-aside>
-                <baseTitle title="活跃告警事件">
-                    <el-button type="danger" size="small">3条</el-button>
-                </baseTitle>
+                <div class="eq-status">
+                    <baseTitle title="联动设备状态" style="margin-bottom: 10px">
+                        <el-button type="success" size="small">就绪</el-button>
+                    </baseTitle>
+                    <el-row justify="space-between">
+                        <el-col v-for="it in 4" :key="it" :span="12" class="eq-status-item">
+                            <el-row class="eq-status-self">
+                                <el-col :span="24">
+                                    <img src="@/assets/vue.svg" alt="" />
+                                </el-col>
+                                <el-col :span="24">XXXXXXXX</el-col>
+                                <el-col :span="24">xxxxxxx</el-col>
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="alarmEvent">
+                    <alarmEvent />
+                </div>
             </el-aside>
         </el-container>
     </div>
@@ -58,6 +71,8 @@
 <script setup lang="ts">
 import fireDetectHeader from './component/fireDetectHeader.vue';
 import baseTitle from '@/components/admin/baseTitle.vue';
+import mapList from './component/mapList.vue';
+import alarmEvent from './component/alarmEvent.vue';
 </script>
 <style lang="scss" scoped>
 @use './index.scss';

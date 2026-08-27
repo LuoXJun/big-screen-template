@@ -1,15 +1,14 @@
 .fireDetect {
-    display: flex;
-    flex-direction: column;
     height: 100%;
     color: #fff;
     .el-container {
-        height: 100%;
+        height: calc(100% - 110px);
         margin-top: 16px;
         .el-aside {
             flex: 22% 0 0;
             display: flex;
             flex-direction: column;
+            height: 100%;
             .status {
                 .status-item {
                     background: var(--bg-content);
@@ -41,10 +40,37 @@
                     padding: 4px 0;
                 }
             }
+            .eq-status {
+                .eq-status-item {
+                    flex: 49% 0 0;
+                    background: var(--bg-content);
+                    margin-bottom: 8px;
+                    border-radius: var(--radius-3);
+                    padding: 8px;
+                    .eq-status-self {
+                        img {
+                            width: 16px;
+                        }
+                        .el-col {
+                            margin-top: 8px;
+                        }
+                        .el-col:last-of-type {
+                            font-size: var(--font-desc);
+                            color: #f5ad47;
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+            }
+            .alarmEvent {
+                flex: 1;
+                min-height: 0;
+            }
         }
         .el-main {
             padding: 0;
             margin: 0 12px;
+            height: 100%;
         }
     }
 }
