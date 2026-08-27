@@ -1,0 +1,19 @@
+.nestStatus {
+    height: 100%;
+    .el-header {
+        height: unset;
+    }
+    .el-main {
+        flex: 400px 0 0;
+        > .el-row {
+            height: 100%;
+            .el-col {
+                height: 100%;
+            }
+        }
+    }
+    .el-footer {
+        flex: 1;
+        min-height: 0;
+    }
+}
