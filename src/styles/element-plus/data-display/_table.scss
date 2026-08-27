@@ -8,6 +8,11 @@
 /* ===== 表格整体 ===== */
 .el-table {
     /* 整体：背景透明化、边框、圆角 */
+    --el-table-bg-color: transparent; // 表体背景（行背景默认继承它）
+    --el-table-header-bg-color: var(--bg-title); // 表头背景
+    --el-table-tr-bg-color: transparent; // 行背景（兜底，双保险）
+    --el-table-border-color: transparent; // 单元格分隔线
+    --el-table-row-hover-bg-color: transparent;
 }
 
 .el-table--border {

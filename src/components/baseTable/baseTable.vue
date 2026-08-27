@@ -307,10 +307,10 @@ defineExpose({ toggleRowSelection, callBackInstance });
         }
 
         thead .cell {
-            color: #757f96;
+            color: #fff;
         }
         tbody .cell {
-            color: #141313;
+            color: #fff;
         }
     }
 }
