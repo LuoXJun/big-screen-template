@@ -1,230 +1,243 @@
 /* ============================================================
    表单控件覆盖层
    大屏筛选区：输入框 / 下拉 / 日期 / 数字 / 开关 / 单选 / 复选
-   以下仅列出需要覆写的类名，具体样式请按设计稿填写
-   如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
+   控件背景统一引用 --bg-form-item，选中态引用 --bg-selected-form-item
+   （双主题：:root 大屏 / .admin-shell 管理端自动切换）
    注意：Select / DatePicker 的下拉面板渲染在 body 下（teleport），
          面板类名（.el-select-dropdown / .el-picker-panel）必须写在此全局文件中
    ============================================================ */
 
 /* ===== 输入框 ===== */
 .el-input__wrapper {
-    /* 输入框主体：背景、边框、阴影 */
+    background-color: var(--bg-form-item);
+    box-shadow: 0 0 0 1px var(--border-control) inset;
 }
 
 .el-input__wrapper:hover {
-    /* 悬停态 */
+    box-shadow: 0 0 0 1px var(--el-input-border-color-hover) inset;
 }
 
 .el-input__wrapper.is-focus {
-    /* 聚焦态 */
+    box-shadow: 0 0 0 1px var(--el-color-brand) inset;
 }
 
 .el-input__wrapper.is-disabled {
-    /* 禁用态 */
+    background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
 }
 
 .el-input__inner {
-    /* 输入内容 */
-}
-
-.el-input__prefix,
-.el-input__suffix {
-    /* 前/后缀容器 */
-}
-
-.el-input.is-disabled {
-    /* 整个输入框禁用 */
+    /* 文字色已由 --el-text-color-regular 映射（--color-main），无需覆写 */
 }
 
 .el-textarea__inner {
-    /* 文本域 */
+    background-color: var(--bg-form-item);
+    border-color: var(--border-control);
+}
+
+.el-textarea__inner.is-disabled {
+    background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
 }
 
 /* ===== 下拉选择 ===== */
 .el-select__wrapper {
-    /* 选择器主体 */
+    background-color: var(--bg-form-item);
+    box-shadow: none; /* 无边框风格 */
 }
 
-.el-select__wrapper.is-hovering,
+.el-select__wrapper.is-hovering:not(.is-focused),
 .el-select__wrapper.is-focused {
-    /* 悬停 / 聚焦态 */
+    box-shadow: none;
 }
 
-.el-select__selection,
-.el-select__selected-item {
-    /* 已选内容 */
+.el-select__caret {
+    color: var(--color-sub);
 }
 
-.el-select__tags {
-    /* 多选标签容器 */
+.el-select.is-disabled .el-select__wrapper {
+    background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
 }
 
-.el-select-dropdown {
-    /* 下拉面板（body 下）：背景、边框、圆角 */
+.el-select__popper.el-popper {
+    /* 下拉面板外层（body 下，popper 浮层），背景与下拉框一致 */
+    background-color: var(--bg-form-item);
+    color: var(--color-info);
+    border: none;
+}
+
+.el-select__popper.el-popper .el-popper__arrow:before {
+    /* 箭头本体跟随面板背景，清除 EP 默认白底与亮边框 */
+    background-color: var(--bg-form-item);
+    border: none;
 }
 
 .el-select-dropdown__item {
-    /* 下拉选项 */
+    color: var(--color-info);
 }
 
 .el-select-dropdown__item.is-hovering {
-    /* 悬停选项 */
+    background-color: var(--bg-selected-form-item);
 }
 
 .el-select-dropdown__item.is-selected {
-    /* 选中选项 */
+    background-color: var(--bg-selected-form-item);
+    color: var(--color-button);
 }
 
 .el-select-dropdown__empty {
-    /* 空数据 */
+    color: var(--color-info);
 }
 
 /* ===== 日期选择 ===== */
-.el-date-editor {
-    /* 日期输入框整体（复用 .el-input__wrapper） */
+.el-date-editor.el-input {
+    /* 覆盖 EP 固定宽度（--el-date-editor-width），随父容器自适应 */
+    width: 100%;
 }
 
-.el-picker-panel {
-    /* 面板通用（body 下） */
+.el-date-editor .el-icon {
+    color: var(--color-sub);
 }
 
-.el-date-picker,
-.el-date-range-picker {
-    /* 日期 / 范围面板 */
+.el-picker__popper.el-popper {
+    /* 日期面板外层（body 下，popper 浮层） */
+    background-color: var(--bg-panel);
+    border: none;
+    box-shadow: var(--shadow-2);
 }
 
-.el-date-picker__header {
-    /* 面板头部 */
+.el-picker__popper.el-popper .el-popper__arrow:before {
+    /* 箭头本体跟随面板背景 */
+    background-color: var(--bg-panel);
+    border: none;
+}
+
+.el-date-picker__header-label {
+    color: var(--color-main);
 }
 
 .el-date-picker__prev-btn,
 .el-date-picker__next-btn {
-    /* 上/下月按钮 */
-}
-
-.el-date-picker__header-label {
-    /* 年月切换标签 */
+    color: var(--color-sub);
 }
 
 .el-date-table th {
-    /* 星期表头 */
-}
-
-.el-date-table td {
-    /* 日期格 */
+    color: var(--color-sub);
 }
 
 .el-date-table td .el-date-table-cell__text {
-    /* 日期文字 */
+    color: var(--color-main);
 }
 
 .el-date-table td.today .el-date-table-cell__text {
-    /* 今天 */
+    color: var(--color-brand);
 }
 
 .el-date-table td.current .el-date-table-cell__text {
-    /* 选中日期 */
+    background-color: var(--bg-selected-form-item);
 }
 
 .el-date-table td.in-range {
-    /* 范围中间日期 */
+    background-color: color-mix(in srgb, var(--bg-selected-form-item) 45%, transparent);
 }
 
-.el-date-table td.start-date,
-.el-date-table td.end-date {
-    /* 范围起止日期 */
+.el-date-table td.start-date .el-date-table-cell__text,
+.el-date-table td.end-date .el-date-table-cell__text {
+    background-color: var(--bg-selected-form-item);
 }
 
-.el-date-table td.disabled {
-    /* 禁用日期 */
+.el-date-table td:hover .el-date-table-cell__text {
+    background-color: var(--hover-bg);
 }
 
-.el-picker-panel__shortcut {
-    /* 快捷选项 */
+.el-date-table td.disabled .el-date-table-cell__text {
+    color: var(--color-desc);
 }
 
 .el-picker-panel__footer {
-    /* 面板底部（确定/清除） */
+    background-color: var(--bg-panel);
 }
 
 /* ===== 数字输入 ===== */
-.el-input-number {
-    /* 整体 */
-}
-
 .el-input-number__increase,
 .el-input-number__decrease {
-    /* 增减按钮 */
-}
-
-.el-input-number.is-controls-right {
-    /* 按钮在右侧模式 */
+    background-color: var(--bg-form-item);
 }
 
 /* ===== 开关 ===== */
-.el-switch {
-    /* 整体 */
-}
-
-.el-switch__core {
-    /* 轨道 */
-}
-
-.el-switch__core .el-switch__action {
-    /* 滑块 */
-}
-
 .el-switch.is-checked .el-switch__core {
-    /* 选中轨道 */
+    background-color: var(--bg-selected-form-item);
+    border-color: var(--bg-selected-form-item);
 }
 
 /* ===== 单选 ===== */
-.el-radio {
-    /* 整体 */
-}
-
 .el-radio__inner {
-    /* 圆点 */
+    background-color: var(--bg-form-item);
+    border-color: var(--color-info);
 }
 
-.el-radio.is-checked .el-radio__inner {
-    /* 选中圆点 */
+.el-radio__input.is-checked .el-radio__inner {
+    background-color: var(--bg-form-item); /* 防止 EP 选中态把背景重置为品牌色 */
+    border-color: var(--color-main);
+}
+
+.el-radio__input.is-checked .el-radio__inner:after {
+    background-color: var(--color-main);
 }
 
 .el-radio__label {
-    /* 文字 */
+    color: var(--color-info);
 }
 
-.el-radio-button__inner {
-    /* 按钮模式 */
+.el-radio:hover .el-radio__inner {
+    border-color: var(--color-main);
 }
 
-.el-radio-button.is-active .el-radio-button__inner {
-    /* 按钮模式激活 */
+.el-radio:hover .el-radio__label {
+    color: var(--color-info);
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+    color: var(--color-main);
 }
 
 /* ===== 复选 ===== */
-.el-checkbox {
-    /* 整体 */
-}
-
 .el-checkbox__inner {
-    /* 方框 */
+    background-color: var(--bg-form-item);
+    border-color: var(--color-info);
 }
 
-.el-checkbox.is-checked .el-checkbox__inner {
-    /* 选中方框 */
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    background-color: var(--bg-selected-form-item);
+    border-color: var(--bg-selected-form-item);
 }
 
-.el-checkbox.is-indeterminate .el-checkbox__inner {
-    /* 半选方框 */
+/* ===== 单选按钮组 ===== */
+.el-radio-button__inner {
+    background-color: var(--bg-form-item);
+    color: var(--color-info);
+    outline: none; /* 消除 EP 默认 outline 边框 */
 }
 
-.el-checkbox__label {
-    /* 文字 */
+.el-radio-button__inner:hover {
+    background-color: var(--bg-selected-form-item);
+    color: var(--color-main);
 }
 
+.el-radio-button.is-active
+    .el-radio-button__original-radio:not(:disabled)
+    + .el-radio-button__inner {
+    background-color: var(--bg-selected-form-item);
+    color: var(--color-main);
+    box-shadow: -1px 0 0 0 var(--bg-selected-form-item);
+}
+
+/* ===== 复选按钮组 ===== */
 .el-checkbox-button__inner {
-    /* 按钮模式 */
+    background-color: var(--bg-form-item);
+    outline: none; /* 消除 EP 默认 outline 边框 */
+}
+
+.el-checkbox-button.is-checked .el-checkbox-button__inner {
+    background-color: var(--bg-selected-form-item);
+    box-shadow: -1px 0 0 0 var(--bg-selected-form-item);
 }

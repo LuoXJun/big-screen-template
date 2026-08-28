@@ -1,0 +1,35 @@
+/* ============================================================
+   分页覆盖层（搭配深色表格）
+   文字 --color-info，hover/激活 --color-main，
+   背景模式（is-background）页码 --bg-form-item，激活 --bg-selected-form-item
+   sizes 下拉与 jump 输入框复用表单控件覆盖（_form.scss）
+   ============================================================ */
+
+.el-pagination {
+    /* 文字与交互色（驱动页码 hover/激活内部状态） */
+    --el-pagination-text-color: var(--color-button);
+    --el-pagination-hover-color: var(--color-main);
+    --el-pagination-disabled-text-color: var(--color-desc);
+    /* 背景模式（is-background）页码/按钮底色 */
+    --el-pagination-bg-color: var(--bg-form-item);
+    --el-pagination-button-bg-color: var(--bg-form-item);
+    --el-pagination-button-color: var(--color-button);
+    --el-pagination-button-disabled-bg-color: color-mix(in srgb, var(--bg-form-item) 60%, #00000056);
+}
+
+.el-pagination__total,
+.el-select__selected-item {
+    color: var(--color-button);
+}
+
+.el-pagination .btn-prev,
+.el-pagination__jump,
+.el-input__inner,
+.el-pagination .btn-next {
+    color: var(--color-button);
+}
+
+/* 背景模式：激活页码用选中色 */
+.el-pagination.is-background .el-pager li.is-active {
+    background-color: var(--bg-selected-form-item);
+}

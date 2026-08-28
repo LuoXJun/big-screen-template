@@ -51,7 +51,7 @@ const list = [
     .fiberTempCard-item {
         flex: 19% 0 0;
         border-radius: var(--radius-2);
-        padding: base(12px) 0;
+        padding: var(--space-3) 0;
         background: #235e48;
         display: flex;
         justify-content: space-evenly;

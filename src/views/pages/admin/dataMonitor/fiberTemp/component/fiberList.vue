@@ -1,9 +1,7 @@
 <template>
     <div class="fiberList">
-        <baseTitle title="光钎通道列表">
-            <el-button type="danger" size="small">4通道</el-button>
-        </baseTitle>
-        <div class="aside-body">
+        <baseTitle2Panel title="光钎通道列表">
+            <template #right><el-button type="danger" size="small">4通道</el-button></template>
             <div v-for="item in list" :key="item.title" class="aside-item">
                 <el-row>
                     <el-col :span="16" class="aside-item-title">{{ item.title }}</el-col>
@@ -20,12 +18,12 @@
                     <el-col :span="16" :style="{ background: item.color }"></el-col>
                 </el-row>
             </div>
-        </div>
+        </baseTitle2Panel>
     </div>
 </template>
 
 <script setup lang="ts">
-import baseTitle from '@/components/admin/baseTitle.vue';
+import baseTitle2Panel from '@/components/admin/baseTitle2Panel.vue';
 const list = new Array(10).fill(0).map((_, index) => {
     return {
         title: 'CH1 光伏整列电缆' + (index + 1),
@@ -42,23 +40,22 @@ const list = new Array(10).fill(0).map((_, index) => {
 <style scoped lang="scss">
 .fiberList {
     height: 100%;
-    .aside-body {
+
+    .aside-item {
+        padding: 8px;
+        border-bottom: 2px solid #ffffff38;
+        width: 100%;
         color: #fff;
         font-size: var(--font-desc);
-        height: calc(100% - 40px);
-        overflow: auto;
-        .aside-item {
-            padding: 8px;
-            border-bottom: 2px solid #ffffff38;
-            .aside-item-title {
-                font-size: var(--font-body);
-            }
-            .progress {
-                background: #1b2845;
-                border-radius: var(--radius-3);
-                height: 3px;
-                margin-top: 10px;
-            }
+        .aside-item-title {
+            font-size: var(--font-body);
+            width: 100%;
+        }
+        .progress {
+            background: #1b2845;
+            border-radius: var(--radius-3);
+            height: 3px;
+            margin-top: 10px;
         }
     }
 }

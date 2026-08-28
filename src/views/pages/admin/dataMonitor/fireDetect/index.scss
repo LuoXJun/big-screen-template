@@ -10,34 +10,35 @@
             flex-direction: column;
             height: 100%;
             .status {
+                background: var(--bg-panel-content);
                 .status-item {
-                    background: var(--bg-content);
                     border-top: 1px solid #bab9b9;
-                    padding: var(--space-3) 0;
-                }
-                .desc {
-                    margin-top: var(--space-2);
-                    display: flex;
-                    > span {
-                        margin-right: 12px;
-                        font-size: var(--font-desc);
+                    padding: var(--space-3) 8px;
+                    .desc {
+                        margin-top: var(--space-2);
+                        display: flex;
+                        > span {
+                            margin-right: 12px;
+                            font-size: var(--font-desc);
+                        }
                     }
                 }
             }
+
             .records {
                 background: var(--bg-content);
                 .records-item {
                     font-size: var(--font-desc);
                     color: #bab9b9;
                     border-top: 1px solid #bab9b9;
-                    padding: 10px 0;
+                    padding: 10px 8px;
                 }
             }
             .validate {
                 .validate-item {
                     font-size: var(--font-desc);
                     color: #bab9b9;
-                    padding: 4px 0;
+                    padding: 4px 8px;
                 }
             }
             .eq-status {

@@ -1,19 +1,28 @@
 <template>
-    <el-container class="deviceStatus">
-        <el-header></el-header>
-        <el-main></el-main>
-        <el-footer>
-            <baseTitle2Panel title="设备运行日志">
-                <template #right>
-                    <el-link type="info" size="small">最近24小时</el-link>
-                </template>
-            </baseTitle2Panel>
-        </el-footer>
-    </el-container>
+    <div class="deviceStatus">
+        <baseTabs v-model="activeName" :labels="labels">
+            <template #设备在线状态>
+                <onlineStatus />
+            </template>
+        </baseTabs>
+    </div>
 </template>
 
 <script setup lang="ts">
-import baseTitle2Panel from '@/components/admin/baseTitle2Panel.vue';
+import baseTabs from './component/baseTabs.vue';
+import onlineStatus from './component/onlineStatus.vue';
+
+const labels = [
+    {
+        icon: '',
+        label: '设备在线状态'
+    },
+    {
+        icon: '',
+        label: '故障状态'
+    }
+];
+const activeName = ref(labels[0].label);
 </script>
 <style lang="scss" scoped>
 @use './index.scss';

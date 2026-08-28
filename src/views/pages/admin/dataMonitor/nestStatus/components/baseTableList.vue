@@ -1,10 +1,10 @@
 <template>
     <div class="baseTableList">
-        <el-row v-for="it in tableData" :key="it.time">
-            <el-col :span="8">{{ it.time }}</el-col>
-            <el-col :span="8">{{ it.status }}</el-col>
-            <el-col :span="8">{{ it.test }}</el-col>
-        </el-row>
+        <div v-for="it in tableData" :key="it.time" class="baseTableList-item">
+            <span>{{ it.time }}</span>
+            <span>{{ it.status }}</span>
+            <span>{{ it.test }}</span>
+        </div>
     </div>
 </template>
 
@@ -32,11 +32,14 @@ const tableData = ref([
     width: 100%;
     color: #fff;
     font-size: var(--font-desc);
-    .el-col {
-        flex: 1;
-        border-bottom: 1px solid var(--border-on-dark);
-        padding: var(--space-3);
-        text-align: left;
+    .baseTableList-item {
+        display: flex;
+        > span {
+            flex: 1 0 1;
+            border-bottom: 1px solid var(--border-on-dark);
+            padding: var(--space-3);
+            text-align: left;
+        }
     }
 }
 </style>

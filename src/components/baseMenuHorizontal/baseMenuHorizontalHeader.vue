@@ -66,16 +66,14 @@ const isMenuActive = (menu: RouteOptions) => {
             > span {
                 color: var(--color-on-dark);
                 margin-right: 20px;
-                border-radius: 8px;
                 display: inline-block;
-                padding: 8px 12px;
+                padding: 8px 20px;
                 transition: background 0.2s;
                 &:hover {
-                    background: var(--hover-bg);
+                    background: var(--bg-selected);
                 }
                 &.is-selected {
-                    color: var(--color-brand);
-                    background: var(--active-bg);
+                    background: color-mix(in srgb, var(--bg-selected) 80%, transparent);
                 }
             }
         }
@@ -84,12 +82,12 @@ const isMenuActive = (menu: RouteOptions) => {
     // 退出登录按钮：深色玻璃风，适配深蓝顶栏
     :deep(.el-button) {
         color: var(--color-on-dark);
-        background: var(--hover-bg);
+        background: var(--bg-selected);
         border-color: var(--border-on-dark-strong);
         transition: all 0.2s;
 
         &:hover {
-            background: var(--hover-bg);
+            background: var(--bg-selected);
             border-color: var(--color-brand);
             color: var(--color-brand);
         }

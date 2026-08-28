@@ -5,12 +5,8 @@
 
    暴露：
    - functions：base() / font() 尺寸换算函数
-   - screen：大屏主题 SCSS 令牌（$screen-* / $panel-* / $text-* / $accent / $warn）
-   - admin：管理端主题 SCSS 令牌（$primary / $admin-*）
 
-   运行时语义变量（--text-* / --brand / --font-* 等）见 _semantic.scss，
-   由 index.scss 全局加载一次，不注入组件。
+   色板与语义运行时变量（--text-* / --brand / --font-* 等）统一见
+   _semantic.scss，由 index.scss 全局加载一次，不注入组件。
    ============================================================ */
 @forward './functions';
-@forward './screen';
-@forward './admin';

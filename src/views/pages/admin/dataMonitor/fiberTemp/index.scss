@@ -16,11 +16,11 @@
 
             .main-chart {
                 flex: 300px 0 0;
-                :deep(.el-radio-button__inner) {
-                    padding: 10px 15px;
-                }
-                .chart {
-                    height: calc(100% - var(--height-title1));
+                .btns {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 10px;
                 }
             }
 
@@ -30,26 +30,12 @@
                 margin-top: 10px;
 
                 > .left {
-                    min-height: 0;
                     height: 100%;
-                    display: flex;
-                    flex-direction: column;
-
-                    > .base-title {
-                        flex-shrink: 0;
-                    }
-                }
-
-                .warn-list {
-                    flex: 1;
-                    min-height: 0;
-                    background: #071431;
-                    overflow: auto;
                     color: #fff;
-                    padding: 8px;
+
                     .warn-list-item {
                         border-bottom: 2px solid #ffffff38;
-                        padding: 10px 0;
+                        padding: 10px var(--space-2);
                         .el-col {
                             padding-bottom: 10px;
                         }
@@ -63,6 +49,7 @@
                         }
                     }
                 }
+
                 .info {
                     margin-left: 20px;
                     flex: 1;
@@ -72,7 +59,6 @@
                         overflow: auto;
                         color: #fff;
                         padding: 8px;
-                        height: calc(100% - var(--height-title1));
                         font-size: var(--font-body);
 
                         .info-header {

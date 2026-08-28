@@ -1,15 +1,22 @@
 /* ============================================================
-   EP 主题变量覆盖层（:root 全局）
+   EP 主题变量覆盖层（:root 全局 + .admin-shell 管理端覆盖）
    值一律引用语义令牌（--color-* / --bg-* / --border-* …）：
-   - 语义令牌自带大屏/管理端双主题（.admin-shell 覆盖），EP 变量
-     惰性解析自动跟随，无需为 admin 另写一套
+   - 语义令牌自带大屏/管理端双主题，EP 变量在各主题作用域内
+     重新定义映射，管理端不依赖 :root 继承（自定义属性继承的
+     是已解析值，.admin-shell 的 --color-* 不会回流）
    - 色阶用 color-mix() 运行时混色，避免按主题写死
    注意：EP 部分变量定义在组件类上（如 .el-table），:root 覆盖会被
    遮蔽，此类变量须在对应覆盖文件用组件作用域覆盖（见 data-display/_table.scss）
    ============================================================ */
 
 /* 功能色循环：生成 --el-color-{...} 及 9 档色阶（主色令牌为 --color-brand） */
-$el-colors: ((primary, brand), (success, success), (warning, warning), (danger, danger), (info, info));
+$el-colors: (
+    (primary, brand),
+    (success, success),
+    (warning, warning),
+    (danger, danger),
+    (info, info)
+);
 
 :root {
     @each $c, $token in $el-colors {
@@ -21,43 +28,17 @@ $el-colors: ((primary, brand), (success, success), (warning, warning), (danger, 
         --el-color-#{$c}-light-9: color-mix(in srgb, var(--color-#{$token}) 10%, #fff);
         --el-color-#{$c}-dark-2: color-mix(in srgb, var(--color-#{$token}) 80%, #000);
     }
+}
 
-    /* 文字 */
-    --el-text-color-primary: var(--color-main);
-    --el-text-color-regular: var(--color-main);
-    --el-text-color-secondary: var(--color-sub);
-    --el-text-color-placeholder: var(--color-desc);
-    --el-text-color-disabled: var(--color-desc);
-
-    /* 背景 */
-    --el-bg-color: var(--bg-panel);
-    --el-bg-color-page: var(--bg-page);
-    --el-bg-color-overlay: var(--bg-panel);
-    /* 大屏主题缺省 --bg-title（语义层仅 admin 定义），补默认值 */
-    --bg-title: var(--bg-panel);
-
-    /* 填充（hover/选中底，双主题跟随 --hover-bg / --active-bg） */
-    --el-fill-color-blank: transparent;
-    --el-fill-color: var(--hover-bg);
-    --el-fill-color-light: var(--hover-bg);
-    --el-fill-color-lighter: var(--hover-bg);
-    --el-fill-color-extra-light: var(--hover-bg);
-    --el-fill-color-dark: var(--active-bg);
-    --el-fill-color-darker: var(--active-bg);
-
-    /* 边框 */
-    --el-border-color: var(--border-panel);
-    --el-border-color-light: var(--border-panel);
-    --el-border-color-lighter: var(--border-panel);
-    --el-border-color-extra-light: var(--border-panel);
-    --el-border-color-dark: color-mix(in srgb, var(--border-panel) 60%, #000);
-    --el-border-color-darker: color-mix(in srgb, var(--border-panel) 30%, #000);
-
-    /* 圆角 / 阴影 */
-    --el-border-radius-base: var(--radius-2);
-    --el-border-radius-small: var(--radius-1);
-    --el-border-radius-round: 999px;
-    --el-box-shadow-light: var(--shadow-1);
-    --el-box-shadow: var(--shadow-2);
-    --el-box-shadow-dark: var(--shadow-2);
+/* 管理端作用域：EP 变量重新映射到 admin 语义令牌，覆盖 :root 继承值 */
+.admin-shell {
+    @each $c, $token in $el-colors {
+        --el-color-#{$c}: var(--color-#{$token});
+        --el-color-#{$c}-light-3: color-mix(in srgb, var(--color-#{$token}) 70%, #fff);
+        --el-color-#{$c}-light-5: color-mix(in srgb, var(--color-#{$token}) 50%, #fff);
+        --el-color-#{$c}-light-7: color-mix(in srgb, var(--color-#{$token}) 30%, #fff);
+        --el-color-#{$c}-light-8: color-mix(in srgb, var(--color-#{$token}) 20%, #fff);
+        --el-color-#{$c}-light-9: color-mix(in srgb, var(--color-#{$token}) 10%, #ffffff17);
+        --el-color-#{$c}-dark-2: color-mix(in srgb, var(--color-#{$token}) 80%, #000);
+    }
 }

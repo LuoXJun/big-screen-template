@@ -11,12 +11,22 @@
 @use 'sass:color';
 @use '@/styles/tokens' as *;
 
-/* 排版统一作用于所有形态 */
-.el-button {
-}
-
 .el-button:not([class*='el-button--']):not(.is-text):not(.is-link) {
 }
 
 .el-button--primary {
+}
+
+/* plain 类型按钮：半透明底 + 边框向内渐隐的阴影（深色页面适配） */
+$plain-types: (primary, success, warning, danger, info);
+
+@each $t in $plain-types {
+    .el-button--#{$t}.is-plain {
+        --el-button-bg-color: color-mix(in srgb, var(--el-color-#{$t}) 12%, transparent);
+        --el-button-border-color: color-mix(in srgb, var(--el-color-#{$t}) 45%, transparent);
+        --el-button-text-color: var(--el-color-#{$t});
+        box-shadow:
+            inset 0 0 16px color-mix(in srgb, var(--el-color-#{$t}) 25%, transparent),
+            inset 0 0 6px color-mix(in srgb, var(--el-color-#{$t}) 35%, transparent);
+    }
 }

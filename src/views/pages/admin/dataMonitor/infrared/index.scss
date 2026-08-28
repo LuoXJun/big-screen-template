@@ -5,37 +5,28 @@
         height: calc(100% - 170px);
         .el-aside {
             flex: 65% 0 0;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
 
-            .chart-box {
-                margin-top: 10px;
-                border-radius: var(--radius-2);
-                flex: 300px 0 0;
-                .chart {
-                    height: calc(100% - 32px);
-                }
-            }
-            .table-part {
-                margin-top: 10px;
-            }
-            .panel {
-                .title {
-                    color: #fff;
-                    .el-col:last-child {
-                        color: #bcbcbc;
-                        text-align: right;
-                        font-size: var(--font-desc);
+            height: 100%;
+            .box {
+                display: flex;
+                flex-direction: column;
+
+                .chart-box {
+                    margin-top: 10px;
+                    border-radius: var(--radius-2);
+                    flex: 300px 0 0;
+                    .chart {
+                        height: 100%;
                     }
+                }
+                .table-part {
+                    margin-top: 10px;
                 }
             }
         }
         .el-main {
             padding: 0;
             padding-left: 10px;
-            display: flex;
-            flex-direction: column;
         }
     }
 }

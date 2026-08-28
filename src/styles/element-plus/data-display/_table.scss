@@ -1,6 +1,6 @@
 /* ============================================================
-   表格 + 分页覆盖层
-   大屏数据展示核心：透明底表格、表头强化、斑马纹、空态、分页
+   表格覆盖层（分页见 _pagination.scss）
+   大屏数据展示核心：透明底表格、表头强化、斑马纹、空态
    以下仅列出需要覆写的类名，具体样式请按设计稿填写
    如需主题变量/尺寸函数：@use '@/styles/globalScss.scss' as *;
    ============================================================ */
@@ -92,46 +92,4 @@ td.el-table__cell {
 
 .el-table__indent {
     /* 树形缩进 */
-}
-
-/* ===== 分页 ===== */
-.el-pagination {
-    /* 整体：字号、间距 */
-}
-
-.el-pagination__total {
-    /* 总数文字 */
-}
-
-.el-pagination__sizes {
-    /* 每页条数（select） */
-}
-
-.el-pagination .btn-prev,
-.el-pagination .btn-next {
-    /* 上/下一页按钮 */
-}
-
-.el-pagination .el-pager li {
-    /* 页码按钮 */
-}
-
-.el-pagination .el-pager li.is-active {
-    /* 激活页码 */
-}
-
-.el-pagination.is-background .el-pager li {
-    /* 背景模式页码 */
-}
-
-.el-pagination.is-background .el-pager li.is-active {
-    /* 背景模式激活页码 */
-}
-
-.el-pagination__jump {
-    /* 跳转 */
-}
-
-.el-pagination__editor.el-input {
-    /* 跳转输入框 */
 }

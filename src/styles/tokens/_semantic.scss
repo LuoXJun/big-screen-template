@@ -7,14 +7,11 @@
    2. 前缀域约定（与 CSS 属性一一对应，见名知意）：
       --color-* 文字颜色  --bg-* 背景  --border-* 边框
       --font-* 字号/字重  --space-* 间距  --radius-* 圆角  --shadow-* 阴影
-   3. SCSS 色板变量（$screen-* / $admin-*）仅用于编译期场景：
-      EP 覆盖层、语义层赋值、函数参数 —— 组件禁止直接引用主题色
+   3. 颜色/尺寸值直接定义在各主题块中；新增时先在语义层补充令牌，
+      再在组件中使用（组件禁止直接引用主题色）
    4. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
-   5. 新增颜色/尺寸时：先在语义层补充令牌，再在组件中使用
    ============================================================ */
 @use './functions' as *;
-@use './screen' as *;
-@use './admin' as *;
 
 /* ===== 大屏主题（默认 :root）===== */
 :root {
@@ -30,22 +27,29 @@
     --footer-height: #{base(56px)}; /* 底部栏 */
 
     /* 文字颜色层级 */
-    --color-main: #{$text-primary}; /* 一级标题 / 主文字 */
-    --color-sub: #{$text-secondary}; /* 二级标题 / 次文字 */
-    --color-desc: #{$text-desc}; /* 描述 / 辅助 */
-    --color-title: #{$panel-title}; /* 深底标题高亮（面板标题/品牌标题） */
+    --color-main: #e8f4ff; /* 一级标题 / 主文字 */
+    --color-sub: #8fb4dd; /* 二级标题 / 次文字 */
+    --color-desc: rgba(143, 180, 221, 0.6); /* 描述 / 辅助 */
+    --color-title: #7fd4ff; /* 深底标题高亮（面板标题/品牌标题） */
 
     /* 功能色 */
-    --color-brand: #{$accent}; /* 主色（强调青蓝） */
+    --color-brand: #00d4ff; /* 主色（强调青蓝） */
     --color-success: #00e396;
-    --color-warning: #{$warn};
+    --color-warning: #ffc64a;
     --color-danger: #ff5b6e;
-    --color-info: #{$text-secondary};
+    --color-info: #8fb4dd;
+    --color-tabs: #00d4ff; /* tabs 选中高亮 */
+    --color-button: #cfeef5; /* tabs 选中高亮 */
 
     /* 背景 / 边框 */
-    --bg-page: #{$screen-bg};
-    --bg-panel: #{$panel-bg};
-    --border-panel: #{$panel-border};
+    --bg-list: #0a0f2a;
+    --bg-panel: rgba(9, 25, 54, 0.72);
+    --border-panel: rgba(0, 168, 255, 0.35);
+
+    /* 表单元素 */
+    --bg-form-item: rgba(7, 20, 49, 0.8); /* 输入框/下拉等控件背景 */
+    --bg-selected-form-item: rgba(0, 168, 255, 0.2); /* 控件选中态背景 */
+    --border-control: rgba(0, 168, 255, 0.35); /* 控件描边 */
 
     /* 字号层级（自适应，见 index.scss --screen-base） */
     --font-hero: #{font(36px)}; /* 一级标题 */
@@ -84,40 +88,55 @@
     --active-bg: rgba(0, 168, 255, 0.14);
 }
 
-/* ===== 管理端主题（.admin-shell 作用域覆盖）===== */
+/* ===== 管理端主题（.admin-shell 作用域覆盖，取自 docs/管理端样式.png）===== */
 .admin-shell {
-    --color-main: #{$admin-text};
-    --color-sub: #{$admin-text-secondary};
-    --color-desc: #{$admin-desc};
+    --color-main: #33a5ea;
+    --color-sub: #606266;
+    --color-desc: #303030;
+    --color-desc1: #3d67b4;
+    --color-desc2: #9e9fa0;
     --color-on-dark: rgba(255, 255, 255, 0.85); /* 深蓝底上的主文字 */
     --color-on-dark-sub: rgba(255, 255, 255, 0.72); /* 深蓝底上的次文字/菜单 */
-    --color-title: #{$admin-title}; /* 品牌标题（深蓝底浅蓝白） */
+    --color-title: #cfeef5; /* 品牌标题（深蓝底浅蓝白） */
+    --color-panel-title: #fff;
+    --color-tabs: #009be5;
 
-    --color-brand: #{$primary};
-    --color-success: #67c23a;
-    --color-warning: #e6a23c;
-    --color-danger: #f56c6c;
-    --color-info: #909399;
-    --color-desc1: #3d67b4;
+    --color-brand: #081940;
+    --color-success: #00ff88;
+    --color-warning: #e67b00;
+    --color-danger: #fe4444;
+    --color-info: #a8abb2;
+    --color-tabs: #33a5ea; /* tabs 选中高亮 */
+    --color-button: #cfeef5; /* tabs 选中高亮 */
 
-    --bg-page: #{$admin-bg-deep};
-    --bg-panel: #ffffff;
-    --bg-sidebar: rgba(8, 25, 64, 0.94); /* 侧边栏 */
+    --bg-list: #071431;
+    --bg-panel: #0a0a0a;
+    --bg-panel-title: #11275b;
+    --bg-panel-content: #071431;
+
+    --bg-sidebar: #081940; /* 侧边栏 */
     --bg-header: rgba(8, 25, 64, 0.96); /* 顶栏 */
     --bg-content: rgba(7, 20, 49, 0.6); /* 内容区 */
 
     --bg-title: #11275b;
 
+    --bg-form-item: #293556;
+    --bg-selected: #112b67;
+    --bg-selected-form-item: #24496b;
+    --bg-form-item-blue: #11275b;
+
     --border-panel: #dcdfe6;
     --border-on-dark: rgba(255, 255, 255, 0.08); /* 深蓝底分隔线 */
     --border-on-dark-strong: rgba(255, 255, 255, 0.25); /* 深蓝底描边 */
+    --border-control: rgba(255, 255, 255, 0.25); /* 控件描边（深底低调描边） */
+    --border-light: rgba(255, 255, 255, 0.1); /* 控件描边（深底低调描边） */
 
     /* 字号层级（固定像素） */
     --font-title: 20px;
     --font-panel: 16px;
     --font-body: 14px;
     --font-desc: 12px;
-    --font-small: 11px;
+    --font-small: 10px;
 
     --font-weight-hero: 600;
     --font-weight-title: 600;

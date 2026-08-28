@@ -4,9 +4,9 @@
             <el-col :span="12">{{ title }}</el-col>
             <el-col :span="12" style="text-align: right"><slot name="right"></slot></el-col>
         </el-row>
-        <el-row class="body">
+        <div class="body">
             <slot></slot>
-        </el-row>
+        </div>
     </div>
 </template>
 
@@ -30,7 +30,7 @@ withDefaults(
         padding: var(--space-2);
         align-items: center;
         .el-col {
-            color: #fff;
+            color: var(--color-panel-title);
             font-size: var(--font-body);
             border-radius: var(--radius-2);
         }

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import baseMenuHorizontalAside from '@/components/baseMenuHorizontal/baseMenuHorizontalAside.vue';
 import baseMenuHorizontalHeader from '@/components/baseMenuHorizontal/baseMenuHorizontalHeader.vue';
@@ -28,6 +28,11 @@ const store = useMenuStore();
 const route = useRoute();
 
 const activePath = computed(() => route.path);
+
+/* 管理端主题作用域同步到 body：Select/DatePicker 等浮层 teleport 到 body 下，
+   脱离 .admin-shell 布局作用域，需在 body 上也挂 .admin-shell 才能解析到管理端语义令牌 */
+onMounted(() => document.body.classList.add('admin-shell'));
+onUnmounted(() => document.body.classList.remove('admin-shell'));
 
 /**
  * 侧边菜单跟随顶栏选中项：取其一二级子菜单渲染（转换后带 meta 字段）；
@@ -52,7 +57,7 @@ const sideMenu = computed(() => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--bg-sidebar) 0%, var(--bg-page) 100%);
+    background: linear-gradient(180deg, var(--bg-sidebar) 0%, var(--bg-list) 100%);
 }
 
 .admin-aside {
@@ -83,11 +88,11 @@ const sideMenu = computed(() => {
         --el-menu-item-height: 46px;
         --el-menu-bg-color: transparent;
         --el-menu-text-color: var(--color-on-dark-sub);
-        --el-menu-active-color: var(--color-brand);
-        --el-menu-hover-bg-color: var(--hover-bg);
+        // --el-menu-active-color: var(--color-info);
+        --el-menu-hover-bg-color: var(--bg-selected);
 
         :deep(.el-menu-item.is-active) {
-            background: var(--active-bg);
+            background: var(--bg-selected);
         }
     }
 }

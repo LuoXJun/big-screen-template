@@ -87,7 +87,7 @@ $panel-footer-height: 64px;
 
     .base-panel-header {
         height: $panel-header-height;
-        background: var(--bg-page);
+        background: var(--bg-list);
         display: flex;
         align-items: center;
         justify-content: space-between;
