@@ -62,15 +62,7 @@ export const routeConfig: RouteOptions[] = [
                 component: 'admin/dataMonitor/deviceStatus',
                 name: 'deviceStatus',
                 type: 'link',
-                title: '设备在线状态'
-            },
-            {
-                path: 'deviceFault',
-                sort: 6,
-                component: 'admin/dataMonitor/deviceFault',
-                name: 'deviceFault',
-                type: 'link',
-                title: '设备故障状态'
+                title: '设备状态'
             },
             {
                 path: 'historyQuery',

@@ -1,0 +1,63 @@
+.alarmRecord {
+    height: 100%;
+    .el-header {
+        height: unset;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0;
+        .desc {
+            color: #fff;
+            .el-col {
+                > p {
+                    font-size: var(--font-title);
+                }
+                > p:last-child {
+                    margin-top: 12px;
+                    font-size: var(--font-desc);
+                    color: var(--color-desc1);
+                }
+            }
+        }
+        :deep(.alarmRecordCard-item) {
+            background: var(--bg-content);
+        }
+        .form {
+            flex: 1;
+            min-height: 0;
+            border: 1px solid var(--border-light);
+            background: var(--bg-content);
+            padding: 20px 12px 20px 0;
+            :deep(.el-form) {
+                height: 100%;
+                .el-row {
+                    height: 100%;
+                    align-items: center;
+                    .el-form-item {
+                        margin: unset !important;
+                    }
+                }
+            }
+        }
+    }
+    .el-main {
+        flex: 1;
+        min-height: 0;
+        background: var(--bg-content);
+        border: 1px solid var(--border-light);
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        :deep(.base-table) {
+            flex: 1;
+            min-height: 0;
+        }
+        :deep(.el-table) {
+            height: 100%;
+            border: 1px solid var(--border-light);
+            --el-table-border-color: var(--border-light);
+            --el-table-bg-color: var(--bg-content);
+            --el-table-header-bg-color: var(--bg-light);
+        }
+    }
+}

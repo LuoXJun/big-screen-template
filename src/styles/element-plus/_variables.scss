@@ -11,7 +11,7 @@
 
 /* 功能色循环：生成 --el-color-{...} 及 9 档色阶（主色令牌为 --color-brand） */
 $el-colors: (
-    (primary, brand),
+    (primary, main),
     (success, success),
     (warning, warning),
     (danger, danger),

@@ -10,15 +10,12 @@
 /* ===== 输入框 ===== */
 .el-input__wrapper {
     background-color: var(--bg-form-item);
-    box-shadow: 0 0 0 1px var(--border-control) inset;
+    box-shadow: none; /* 无边框风格，与 select 一致 */
 }
 
-.el-input__wrapper:hover {
-    box-shadow: 0 0 0 1px var(--el-input-border-color-hover) inset;
-}
-
+.el-input__wrapper:hover,
 .el-input__wrapper.is-focus {
-    box-shadow: 0 0 0 1px var(--el-color-brand) inset;
+    box-shadow: none;
 }
 
 .el-input__wrapper.is-disabled {
@@ -57,14 +54,16 @@
     background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
 }
 
-.el-select__popper.el-popper {
-    /* 下拉面板外层（body 下，popper 浮层），背景与下拉框一致 */
+.el-select__popper.el-popper,
+.el-picker__popper.el-popper {
+    /* 下拉/日期面板外层（body 下，popper 浮层），背景与控件一致 */
     background-color: var(--bg-form-item);
     color: var(--color-info);
     border: none;
 }
 
-.el-select__popper.el-popper .el-popper__arrow:before {
+.el-select__popper.el-popper .el-popper__arrow:before,
+.el-picker__popper.el-popper .el-popper__arrow:before {
     /* 箭头本体跟随面板背景，清除 EP 默认白底与亮边框 */
     background-color: var(--bg-form-item);
     border: none;
@@ -97,17 +96,22 @@
     color: var(--color-sub);
 }
 
-.el-picker__popper.el-popper {
-    /* 日期面板外层（body 下，popper 浮层） */
-    background-color: var(--bg-panel);
-    border: none;
-    box-shadow: var(--shadow-2);
+.el-date-editor.el-input__wrapper,
+.el-date-editor.el-input__wrapper:hover,
+.el-date-editor.el-input__wrapper.is-focus,
+.el-range-editor.el-input__wrapper,
+.el-range-editor.is-active,
+.el-range-editor.is-active:hover {
+    /* EP 日期编辑器特异性更高（.el-date-editor.el-input__wrapper），需单独去边框 */
+    box-shadow: none;
 }
 
-.el-picker__popper.el-popper .el-popper__arrow:before {
-    /* 箭头本体跟随面板背景 */
-    background-color: var(--bg-panel);
-    border: none;
+.el-picker__popper.el-popper .el-date-picker,
+.el-picker__popper.el-popper .el-date-range-picker {
+    /* 面板自身重定义了 --el-datepicker-bg-color（EP 默认白底），
+       需在此层级置透明以跟随 popper 背景，与 select 下拉面板一致 */
+    --el-datepicker-bg-color: transparent;
+    --el-fill-color-blank: transparent;
 }
 
 .el-date-picker__header-label {
@@ -150,10 +154,6 @@
 
 .el-date-table td.disabled .el-date-table-cell__text {
     color: var(--color-desc);
-}
-
-.el-picker-panel__footer {
-    background-color: var(--bg-panel);
 }
 
 /* ===== 数字输入 ===== */
