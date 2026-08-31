@@ -19,6 +19,7 @@
                 :options="{
                     border: true
                 }"
+                variant="lxj-table--grid"
             />
             <basePagination v-model="pageInfo" />
         </el-main>
@@ -76,10 +77,10 @@ const { pageInfo, tableData } = usePageTable(async () => {
             align-items: center;
             justify-content: space-between;
             margin-top: 10px;
-            /* 本页表单控件背景统一用 --bg-form-item-blue */
+            /* 本页表单控件背景统一用 --bg-form-item-deep */
             :deep(.el-input__wrapper),
             :deep(.el-select__wrapper) {
-                background-color: var(--bg-form-item-blue);
+                background-color: var(--bg-form-item-deep);
                 box-shadow: 0 0 0 1px var(--border-light) inset;
                 border-radius: 0;
             }
@@ -104,28 +105,15 @@ const { pageInfo, tableData } = usePageTable(async () => {
             flex: 1;
             min-height: 0;
         }
-        /* 本页表格边框：覆盖全局 --el-table-border-color: transparent */
+        /* 表格皮肤（边框/表头/补左线）由 variant="lxj-table--grid" 承担 */
         :deep(.el-table) {
             height: 100%;
-            --el-table-border-color: var(--border-light);
-        }
-        /* 去掉表格自身外框线（上下左右 + left-patch），仅保留 cell 边框 */
-        :deep(.el-table--border)::before,
-        :deep(.el-table--border)::after,
-        :deep(.el-table--border .el-table__inner-wrapper)::before,
-        :deep(.el-table--border .el-table__inner-wrapper)::after,
-        :deep(.el-table__border-left-patch) {
-            display: none;
-        }
-        /* 第一列 cell 补左边框，网格完整闭合 */
-        :deep(.el-table--border .el-table__cell:first-child) {
-            border-left: var(--el-table-border);
         }
     }
     .el-footer {
         flex: 100px 0 0;
         border: 1px solid var(--border-light);
-        background: var(--bg-panel-content);
+        background: var(--panel-body-bg);
         color: #fff;
         display: flex;
         flex-direction: column;
@@ -144,7 +132,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
                 }
             }
             .el-row:first-of-type {
-                color: var(--color-desc2);
+                color: var(--color-desc-on-dark);
                 .el-col {
                     font-size: var(--font-desc);
                 }

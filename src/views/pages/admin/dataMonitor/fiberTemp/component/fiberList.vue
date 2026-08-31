@@ -1,7 +1,7 @@
 <template>
     <div class="fiberList">
         <baseTitle2Panel title="光钎通道列表">
-            <template #right><el-button type="danger" size="small">4通道</el-button></template>
+            <template #right><el-button type="danger" size="small" plain>4通道</el-button></template>
             <div v-for="item in list" :key="item.title" class="aside-item">
                 <el-row>
                     <el-col :span="16" class="aside-item-title">{{ item.title }}</el-col>

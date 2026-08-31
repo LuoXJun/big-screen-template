@@ -2,8 +2,9 @@
    EP 主题变量覆盖层（:root 全局 + .admin-shell 管理端覆盖）
    值一律引用语义令牌（--color-* / --bg-* / --border-* …）：
    - 语义令牌自带大屏/管理端双主题，EP 变量在各主题作用域内
-     重新定义映射，管理端不依赖 :root 继承（自定义属性继承的
-     是已解析值，.admin-shell 的 --color-* 不会回流）
+     重新定义映射；:root 中的 var() 引用为延迟解析，管理端内
+     使用时自动取 .admin-shell 的令牌值，故两端映射由同一份
+     @mixin 生成，仅差异参数（light-9 混色目标）不同
    - 色阶用 color-mix() 运行时混色，避免按主题写死
    注意：EP 部分变量定义在组件类上（如 .el-table），:root 覆盖会被
    遮蔽，此类变量须在对应覆盖文件用组件作用域覆盖（见 data-display/_table.scss）
@@ -18,27 +19,35 @@ $el-colors: (
     (info, info)
 );
 
-:root {
+/* 文字/空白底色映射：EP 默认浅色系（#606266 等）在深色 UI 上不可读，
+   统一桥接到语义令牌（管理端取次文字/信息色，视觉与 EP 默认一致） */
+@mixin el-theme-map($light9-mix: #fff) {
     @each $c, $token in $el-colors {
         --el-color-#{$c}: var(--color-#{$token});
         --el-color-#{$c}-light-3: color-mix(in srgb, var(--color-#{$token}) 70%, #fff);
         --el-color-#{$c}-light-5: color-mix(in srgb, var(--color-#{$token}) 50%, #fff);
         --el-color-#{$c}-light-7: color-mix(in srgb, var(--color-#{$token}) 30%, #fff);
         --el-color-#{$c}-light-8: color-mix(in srgb, var(--color-#{$token}) 20%, #fff);
-        --el-color-#{$c}-light-9: color-mix(in srgb, var(--color-#{$token}) 10%, #fff);
+        --el-color-#{$c}-light-9: color-mix(in srgb, var(--color-#{$token}) 10%, $light9-mix);
         --el-color-#{$c}-dark-2: color-mix(in srgb, var(--color-#{$token}) 80%, #000);
     }
+
+    /* 文字层级 */
+    --el-text-color-primary: var(--color-main);
+    --el-text-color-regular: var(--color-main);
+    --el-text-color-secondary: var(--color-sub);
+    --el-text-color-placeholder: var(--color-info);
+    --el-text-color-disabled: var(--color-desc);
+
+    /* 空白填充底色（按钮/输入框等组件默认底色 fallback） */
+    --el-fill-color-blank: var(--bg-form-item);
 }
 
-/* 管理端作用域：EP 变量重新映射到 admin 语义令牌，覆盖 :root 继承值 */
+:root {
+    @include el-theme-map;
+}
+
+/* 管理端作用域：仅差异参数不同（light-9 混色目标为带透明度的白） */
 .admin-shell {
-    @each $c, $token in $el-colors {
-        --el-color-#{$c}: var(--color-#{$token});
-        --el-color-#{$c}-light-3: color-mix(in srgb, var(--color-#{$token}) 70%, #fff);
-        --el-color-#{$c}-light-5: color-mix(in srgb, var(--color-#{$token}) 50%, #fff);
-        --el-color-#{$c}-light-7: color-mix(in srgb, var(--color-#{$token}) 30%, #fff);
-        --el-color-#{$c}-light-8: color-mix(in srgb, var(--color-#{$token}) 20%, #fff);
-        --el-color-#{$c}-light-9: color-mix(in srgb, var(--color-#{$token}) 10%, #ffffff17);
-        --el-color-#{$c}-dark-2: color-mix(in srgb, var(--color-#{$token}) 80%, #000);
-    }
+    @include el-theme-map(#ffffff17);
 }

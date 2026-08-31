@@ -70,10 +70,10 @@ const isMenuActive = (menu: RouteOptions) => {
                 padding: 8px 20px;
                 transition: background 0.2s;
                 &:hover {
-                    background: var(--bg-selected);
+                    background: var(--menu-hover-bg);
                 }
                 &.is-selected {
-                    background: color-mix(in srgb, var(--bg-selected) 80%, transparent);
+                    background: color-mix(in srgb, var(--menu-active-bg) 80%, transparent);
                 }
             }
         }

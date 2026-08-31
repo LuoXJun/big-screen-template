@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { h, onMounted } from 'vue';
+import { h, onMounted, onUnmounted } from 'vue';
 import * as Cesium from 'cesium';
 import BaseCesium from '@/components/baseCesium/BaseCesium.vue';
 import BaseMenu from '@/components/baseUi/BaseMenu.vue';
@@ -52,6 +52,11 @@ function backToAdmin(): void {
 function onLayersReady(): void {
     flyToLonLat(initialView.lng, initialView.lat, initialView.height);
 }
+
+/* 大屏主题作用域同步到 body：与大屏相关的 EP 浮层（Select/DatePicker 等 teleport 到 body 下）
+   通过 .layout-shell 解析到大屏语义令牌，与 .admin-shell 管理端作用域互不干扰 */
+onMounted(() => document.body.classList.add('layout-shell'));
+onUnmounted(() => document.body.classList.remove('layout-shell'));
 
 // 点击实体 → 弹窗显示名称与类型（viewer 就绪后注册；handler 由 BaseCesium 卸载时统一清理）
 onMounted(() => {

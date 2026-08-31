@@ -32,7 +32,12 @@
                         <el-button type="primary" size="small">通知设置</el-button>
                     </div>
                 </template>
-                <baseTable v-model="tableData" :table-column="tableColumnConfig" />
+                <baseTable
+                    v-model="tableData"
+                    :table-column="tableColumnConfig"
+                    :options="{ border: true }"
+                    variant="lxj-table--grid"
+                />
                 <basePagination v-model="pageInfo" />
             </baseTitle2Panel>
         </el-main>
@@ -89,11 +94,11 @@ const { pageInfo, tableData } = usePageTable(async () => {
             align-items: center;
             justify-content: space-between;
             margin-top: 10px;
-            color: var(--color-desc2);
-            /* 本页表单控件背景统一用 --bg-form-item-blue */
+            color: var(--color-desc-on-dark);
+            /* 本页表单控件背景统一用 --bg-form-item-deep */
             :deep(.el-input__wrapper),
             :deep(.el-select__wrapper) {
-                background-color: var(--bg-form-item-blue);
+                background-color: var(--bg-form-item-deep);
                 box-shadow: 0 0 0 1px var(--border-light) inset;
                 border-radius: 0;
             }
@@ -140,24 +145,9 @@ const { pageInfo, tableData } = usePageTable(async () => {
             flex: 1;
             min-height: 0;
         }
-        /* 本页表格边框：覆盖全局 --el-table-border-color: transparent */
+        /* 表格皮肤（边框/表头/补左线）由 variant="lxj-table--grid" 承担 */
         :deep(.el-table) {
             height: 100%;
-            --el-table-border-color: var(--border-light);
-            --el-table-bg-color: var(--bg-content);
-            --el-table-header-bg-color: var(--bg-content);
-        }
-        /* 去掉表格自身外框线（上下左右 + left-patch），仅保留 cell 边框 */
-        :deep(.el-table--border)::before,
-        :deep(.el-table--border)::after,
-        :deep(.el-table--border .el-table__inner-wrapper)::before,
-        :deep(.el-table--border .el-table__inner-wrapper)::after,
-        :deep(.el-table__border-left-patch) {
-            display: none;
-        }
-        /* 第一列 cell 补左边框，网格完整闭合 */
-        :deep(.el-table--border .el-table__cell:first-child) {
-            border-left: var(--el-table-border);
         }
         :deep(.basePagination) {
             margin-top: 0;
@@ -170,7 +160,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        color: var(--color-desc2);
+        color: var(--color-desc-on-dark);
         font-size: var(--font-desc);
     }
 }

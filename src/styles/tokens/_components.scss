@@ -1,0 +1,45 @@
+/* ============================================================
+   组件变量层（第 2 层，管理端优先，双主题赋值）
+
+   【与主题决策层的关系 - 重要】
+   1. 组件变量 = 组件内部部件的「皮肤接口」（--table-header-bg 等），
+      值一律引用主题决策层（--color-* / --bg-* / --border-*）；
+      页面与覆盖层引用组件变量，调整某组件时只改本层对应条目
+   2. 跨组件共享的设计决策（--bg-title 同时服务面板标题与表头）
+      仍定义在决策层，组件变量只是其「别名 + 调整点」——
+      想全局联动改决策层，想单独调某组件改组件变量
+   3. 变体类（.lxj-table--xxx）通过覆盖组件变量实现皮肤切换，
+      覆盖层规则绑定组件变量后无需感知变体
+   4. 前缀约定：--{组件}-{部件}-{属性}（table-header-bg / form-item-bg）
+   ============================================================ */
+
+/* ===== 大屏兜底（覆盖层双端共享，暂无对应组件时引用决策层默认值）===== */
+:root {
+    /* 表格 */
+    --table-bg: var(--bg-panel); /* 表体背景 */
+    --table-header-bg: var(--bg-title); /* 表头背景 */
+    --table-header-text: var(--color-on-dark); /* 表头文字 */
+    --table-text: var(--color-on-dark); /* 表体文字 */
+    --table-border: var(--border-panel); /* 表格边框 */
+}
+
+/* ===== 管理端 ===== */
+.admin-shell {
+    /* ===== 表格 ===== */
+    --table-bg: var(--bg-content); /* 表体背景 */
+    --table-header-bg: var(--bg-title); /* 表头背景（深底） */
+    --table-header-text: var(--color-on-dark); /* 表头文字 */
+    --table-text: var(--color-on-dark); /* 表体文字 */
+    --table-border: var(--border-light); /* 表格边框 */
+
+    /* ===== 面板 ===== */
+    --panel-bg: var(--bg-panel-content); /* 面板整体背景 */
+    --panel-title-bg: var(--bg-title); /* 面板标题条 */
+    --panel-body-bg: var(--bg-panel-content); /* 面板内容区 */
+    --panel-border: var(--border-light); /* 面板边框 */
+
+    /* ===== 菜单 ===== */
+    --menu-text: var(--color-on-dark-sub); /* 菜单文字 */
+    --menu-hover-bg: var(--bg-selected); /* 菜单悬停 */
+    --menu-active-bg: var(--bg-selected); /* 菜单选中 */
+}

@@ -1,20 +1,43 @@
 /* ============================================================
-   按钮覆盖层
+   按钮覆盖层（双主题令牌驱动，无作用域限定）
    背景：默认按钮 fallback 到 --el-fill-color-blank（被主题覆盖为深蓝），
         导致按钮与页面背景融为一体。此处为按钮定义专属变量，恢复组件感：
-   - 默认按钮：深色玻璃卡 + 青蓝描边（区别于原生 div）
-   - primary：青蓝渐变 + 深色文字，hover 发光
+   - 默认按钮：深色玻璃卡 + 描边（区别于原生 div）
+   - primary：品牌色渐变 + 深浅主题适配文字，hover 发光
    注意：EP 2.14 将 success/warning 等类型变量定义在 .el-button--xxx 上，
         与本层 .el-button 同权重（0,1,0），而本层加载在后会反杀类型映射。
         故基础变量覆盖用 :not 排除类型变体与 text/link 形态，只作用于默认按钮
    ============================================================ */
-@use 'sass:color';
-@use '@/styles/tokens' as *;
 
-.el-button:not([class*='el-button--']):not(.is-text):not(.is-link) {
+/* 默认按钮：控件底色 + 描边，hover 提亮、激活加深
+   排除条件只针对类型变体（primary/success/...）与 text/link 形态；
+   size 变体（el-button--small 等）生成的类名同样以 el-button-- 开头，
+   不能一并排除，否则带 size 的默认按钮会掉回 EP 默认样式 */
+.el-button:not(
+    :is(
+        .is-text,
+        .is-link,
+        [class*='el-button--primary'],
+        [class*='el-button--success'],
+        [class*='el-button--warning'],
+        [class*='el-button--danger'],
+        [class*='el-button--info']
+    )
+) {
+    --el-button-bg-color: color-mix(in srgb, var(--bg-form-item) 80%, transparent);
+    --el-button-border-color: var(--border-control);
+    --el-button-text-color: var(--color-main);
+    --el-button-hover-bg-color: color-mix(in srgb, var(--bg-form-item) 80%, #fff);
+    --el-button-hover-border-color: color-mix(in srgb, var(--color-brand) 60%, transparent);
+    --el-button-active-bg-color: color-mix(in srgb, var(--bg-form-item) 60%, #fff);
+    --el-button-active-border-color: var(--color-brand);
+    --el-button-disabled-bg-color: color-mix(in srgb, var(--bg-form-item) 45%, #000);
+    --el-button-disabled-border-color: var(--border-control);
+    --el-button-disabled-text-color: var(--color-desc);
 }
 
-.el-button--primary {
+.el-button--primary:not(.is-disabled):hover {
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-brand) 35%, transparent);
 }
 
 /* plain 类型按钮：半透明底 + 边框向内渐隐的阴影（深色页面适配） */

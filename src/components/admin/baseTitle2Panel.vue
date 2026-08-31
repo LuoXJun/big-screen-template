@@ -25,8 +25,8 @@ withDefaults(
 .baseTitle2Panel {
     height: 100%;
     .title {
-        height: var(--height-title1);
-        background: var(--bg-title);
+        height: var(--title-height);
+        background: var(--panel-title-bg);
         padding: var(--space-2);
         align-items: center;
         .el-col {
@@ -36,7 +36,7 @@ withDefaults(
         }
     }
     .body {
-        height: calc(100% - var(--height-title1));
+        height: calc(100% - var(--title-height));
         overflow: auto;
     }
 }

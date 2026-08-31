@@ -1,29 +1,31 @@
 /* ============================================================
-   表单控件覆盖层
-   大屏筛选区：输入框 / 下拉 / 日期 / 数字 / 开关 / 单选 / 复选
-   控件背景统一引用 --bg-form-item，选中态引用 --bg-selected-form-item
-   （双主题：:root 大屏 / .admin-shell 管理端自动切换）
+   表单控件覆盖层（双主题令牌驱动，无作用域限定）
+   大屏筛选区与管理端表单共用一份规则：
+   - 控件背景统一引用 --bg-form-item，选中态引用 --bg-selected-form-item
+   - 输入框描边有无由主题差异令牌 --form-item-border-shadow-* 承担
+     （大屏 1px 描边，管理端无边框）
+   - 浮层面板（Select/DatePicker 下拉）背景由 --bg-floating 承担
+     （大屏跟随面板 --bg-panel，管理端跟随控件 --bg-form-item）
    注意：Select / DatePicker 的下拉面板渲染在 body 下（teleport），
-         面板类名（.el-select-dropdown / .el-picker-panel）必须写在此全局文件中
+         双主题作用域（:root / .admin-shell）在 body 上依然成立
    ============================================================ */
 
 /* ===== 输入框 ===== */
 .el-input__wrapper {
     background-color: var(--bg-form-item);
-    box-shadow: none; /* 无边框风格，与 select 一致 */
+    box-shadow: var(--form-item-border-shadow);
 }
 
-.el-input__wrapper:hover,
+.el-input__wrapper:hover {
+    box-shadow: var(--form-item-border-shadow-hover);
+}
+
 .el-input__wrapper.is-focus {
-    box-shadow: none;
+    box-shadow: var(--form-item-border-shadow-focus);
 }
 
 .el-input__wrapper.is-disabled {
     background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
-}
-
-.el-input__inner {
-    /* 文字色已由 --el-text-color-regular 映射（--color-main），无需覆写 */
 }
 
 .el-textarea__inner {
@@ -33,6 +35,22 @@
 
 .el-textarea__inner.is-disabled {
     background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
+}
+
+/* 日期 / 范围编辑器：与输入框同一套边框策略（range 编辑器类名不含 el-input__wrapper） */
+.el-date-editor.el-input__wrapper,
+.el-range-editor.el-input__wrapper {
+    box-shadow: var(--form-item-border-shadow);
+}
+
+.el-date-editor.el-input__wrapper:hover,
+.el-range-editor.el-input__wrapper:hover {
+    box-shadow: var(--form-item-border-shadow-hover);
+}
+
+.el-date-editor.el-input__wrapper.is-focus,
+.el-range-editor.is-active {
+    box-shadow: var(--form-item-border-shadow-focus);
 }
 
 /* ===== 下拉选择 ===== */
@@ -54,16 +72,14 @@
     background-color: color-mix(in srgb, var(--bg-form-item) 70%, #000);
 }
 
-.el-select__popper.el-popper,
-.el-picker__popper.el-popper {
-    /* 下拉/日期面板外层（body 下，popper 浮层），背景与控件一致 */
+.el-select__popper.el-popper {
+    /* 下拉面板外层（body 下，popper 浮层），背景与下拉框一致 */
     background-color: var(--bg-form-item);
     color: var(--color-info);
     border: none;
 }
 
-.el-select__popper.el-popper .el-popper__arrow:before,
-.el-picker__popper.el-popper .el-popper__arrow:before {
+.el-select__popper.el-popper .el-popper__arrow:before {
     /* 箭头本体跟随面板背景，清除 EP 默认白底与亮边框 */
     background-color: var(--bg-form-item);
     border: none;
@@ -96,20 +112,24 @@
     color: var(--color-sub);
 }
 
-.el-date-editor.el-input__wrapper,
-.el-date-editor.el-input__wrapper:hover,
-.el-date-editor.el-input__wrapper.is-focus,
-.el-range-editor.el-input__wrapper,
-.el-range-editor.is-active,
-.el-range-editor.is-active:hover {
-    /* EP 日期编辑器特异性更高（.el-date-editor.el-input__wrapper），需单独去边框 */
-    box-shadow: none;
+.el-picker__popper.el-popper {
+    /* 日期面板外层（body 下，popper 浮层） */
+    background-color: var(--bg-floating);
+    color: var(--color-info);
+    border: none;
+    box-shadow: var(--shadow-2);
+}
+
+.el-picker__popper.el-popper .el-popper__arrow:before {
+    /* 箭头本体跟随面板背景 */
+    background-color: var(--bg-floating);
+    border: none;
 }
 
 .el-picker__popper.el-popper .el-date-picker,
 .el-picker__popper.el-popper .el-date-range-picker {
     /* 面板自身重定义了 --el-datepicker-bg-color（EP 默认白底），
-       需在此层级置透明以跟随 popper 背景，与 select 下拉面板一致 */
+       需在此层级置透明以跟随 popper 背景 */
     --el-datepicker-bg-color: transparent;
     --el-fill-color-blank: transparent;
 }
@@ -154,6 +174,10 @@
 
 .el-date-table td.disabled .el-date-table-cell__text {
     color: var(--color-desc);
+}
+
+.el-picker-panel__footer {
+    background-color: var(--bg-floating);
 }
 
 /* ===== 数字输入 ===== */

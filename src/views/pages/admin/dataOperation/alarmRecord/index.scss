@@ -15,7 +15,7 @@
                 > p:last-child {
                     margin-top: 12px;
                     font-size: var(--font-desc);
-                    color: var(--color-desc1);
+                    color: var(--color-accent);
                 }
             }
         }
@@ -52,12 +52,9 @@
             flex: 1;
             min-height: 0;
         }
+        /* 表格皮肤由 variant="lxj-table--light-header" 承担 */
         :deep(.el-table) {
             height: 100%;
-            border: 1px solid var(--border-light);
-            --el-table-border-color: var(--border-light);
-            --el-table-bg-color: var(--bg-content);
-            --el-table-header-bg-color: var(--bg-light);
         }
     }
 }

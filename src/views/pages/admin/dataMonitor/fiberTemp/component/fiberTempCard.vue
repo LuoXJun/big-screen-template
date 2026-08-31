@@ -52,13 +52,14 @@ const list = [
         flex: 19% 0 0;
         border-radius: var(--radius-2);
         padding: var(--space-3) 0;
-        background: #235e48;
+        background: var(--bg-content);
+        border: 1px solid var(--border-light);
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         color: #fff;
         > div:first-child {
-            background: #1a5540;
+            background: var(--bg-content);
             border-radius: var(--radius-2);
             width: 40px;
             height: 40px;
@@ -77,7 +78,7 @@ const list = [
             align-items: center;
             > p:first-child {
                 margin-bottom: 8px;
-                color: #3eca99;
+                color: var(--el-color-success-light-3);
                 font-size: var(--font-title);
             }
         }

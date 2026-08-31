@@ -32,7 +32,12 @@
             </div>
         </el-header>
         <el-main>
-            <baseTable v-model="tableData" :table-column="tableColumnConfig" selection />
+            <baseTable
+                v-model="tableData"
+                :table-column="tableColumnConfig"
+                selection
+                variant="lxj-table--light-header"
+            />
             <basePagination v-model="pageInfo" />
         </el-main>
     </el-container>

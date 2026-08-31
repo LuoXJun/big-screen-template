@@ -34,7 +34,7 @@
                     color: #fff;
 
                     .warn-list-item {
-                        border-bottom: 2px solid #ffffff38;
+                        border-bottom: 2px solid var(--border-light);
                         padding: 10px var(--space-2);
                         .el-col {
                             padding-bottom: 10px;
@@ -45,7 +45,7 @@
                         }
                         .desc {
                             font-size: var(--font-desc);
-                            color: #666;
+                            color: var(--color-info);
                         }
                     }
                 }
@@ -67,7 +67,8 @@
 
                         .info-desc {
                             border-radius: var(--radius-2);
-                            background: #f5ad478a;
+                            background: var(--bg-back);
+                            border: 1px solid var(--border-control);
                             padding: 8px;
                             margin-bottom: 10px;
                         }

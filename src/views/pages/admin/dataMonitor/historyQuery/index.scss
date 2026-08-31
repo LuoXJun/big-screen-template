@@ -36,12 +36,9 @@
             flex: 1;
             min-height: 0;
         }
+        /* 表格皮肤（外框/内容底/深表头）为覆盖层默认形态 */
         :deep(.el-table) {
             height: 100%;
-            border: 1px solid var(--border-light);
-            --el-table-border-color: var(--border-light);
-            --el-table-bg-color: var(--bg-content);
-            --el-table-header-bg-color: var(--bg-light);
         }
     }
 }

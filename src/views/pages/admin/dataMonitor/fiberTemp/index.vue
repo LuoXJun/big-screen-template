@@ -32,7 +32,7 @@
                     <el-col :span="16" class="left">
                         <baseTitle2Panel title="告警时间记录">
                             <template #right>
-                                <el-button type="warning">3条警告</el-button>
+                                <el-button type="warning" plain>3条警告</el-button>
                             </template>
                             <el-row v-for="it in list" :key="it.title" class="warn-list-item">
                                 <el-col :span="20" :style="{ color: it.color }">

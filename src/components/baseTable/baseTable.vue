@@ -4,6 +4,7 @@
             ref="multipleTableRef"
             :data="tableData"
             v-bind="options"
+            :class="variant"
             :row-key="rowKey"
             :highlight-current-row="highlightCurrentRow"
             @selection-change="handleSelectionChange"
@@ -202,6 +203,11 @@ defineProps({
     highlightCurrentRow: {
         type: Boolean,
         default: false
+    },
+    /** 表格变体类（.lxj-table--grid 等），定义见 styles/element-plus/data-display/_table.scss */
+    variant: {
+        type: String,
+        default: ''
     }
 });
 
@@ -296,22 +302,7 @@ defineExpose({ toggleRowSelection, callBackInstance });
     //     z-index: 1;
     //     left: 35px;
     // }
-    :deep(.el-table) {
-        .cell,
-        .el-button {
-            font-family: 'PingFang SC';
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px; /* 171.429% */
-        }
 
-        thead .cell {
-            color: #fff;
-        }
-        tbody .cell {
-            color: #fff;
-        }
-    }
+    /* 表头/表体文字色由覆盖层 --el-table-header-text-color / --el-table-text-color 接管 */
 }
 </style>

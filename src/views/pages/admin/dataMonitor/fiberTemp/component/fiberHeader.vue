@@ -6,8 +6,8 @@
                 <p class="fiberHeader-desc">分布式光钎测温系统 | 24小时不间断监测 | 米级精准定位</p>
             </el-col>
             <el-col :span="12" style="text-align: right">
-                <el-button>导出报告</el-button>
-                <el-button>阈值设置</el-button>
+                <el-button type="primary" plain>导出报告</el-button>
+                <el-button type="primary" plain>阈值设置</el-button>
             </el-col>
         </el-row>
     </div>
@@ -23,7 +23,7 @@
     }
     .fiberHeader-desc {
         font-size: var(--font-desc);
-        color: var(--color-desc1);
+        color: var(--color-accent);
         padding: var(--space-2) 0;
     }
 }

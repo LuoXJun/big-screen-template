@@ -1,15 +1,17 @@
 /* ============================================================
-   语义令牌层（运行时 CSS 变量，双主题赋值）
+   语义令牌层（第 1 层，运行时 CSS 变量，双主题赋值）
 
    【使用规范 - 重要】
    1. 组件中一律使用 var(--xxx) 语义变量，不感知主题：
       大屏（:root 默认）与管理端（.admin-shell 覆盖）自动切换
-   2. 前缀域约定（与 CSS 属性一一对应，见名知意）：
+   2. 语义值只引用色板层（_palette.scss 的 --c-*），不写裸色值；
+      透明度变体用 color-mix() 生成，保证色板全为纯色
+   3. 前缀域约定（与 CSS 属性一一对应，见名知意）：
       --color-* 文字颜色  --bg-* 背景  --border-* 边框
       --font-* 字号/字重  --space-* 间距  --radius-* 圆角  --shadow-* 阴影
-   3. 颜色/尺寸值直接定义在各主题块中；新增时先在语义层补充令牌，
-      再在组件中使用（组件禁止直接引用主题色）
-   4. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
+   4. 主题差异令牌（两端值不同的 UI 属性，如 --form-item-border-*）
+      也定义在本层，组件一份规则、两端自动适配
+   5. 结构尺寸（侧边栏宽 / 顶栏高等）属主题结构，保留组件内定义
    ============================================================ */
 @use './functions' as *;
 
@@ -27,29 +29,38 @@
     --footer-height: #{base(56px)}; /* 底部栏 */
 
     /* 文字颜色层级 */
-    --color-main: #e8f4ff; /* 一级标题 / 主文字 */
-    --color-sub: #8fb4dd; /* 二级标题 / 次文字 */
-    --color-desc: rgba(143, 180, 221, 0.6); /* 描述 / 辅助 */
-    --color-title: #7fd4ff; /* 深底标题高亮（面板标题/品牌标题） */
+    --color-main: var(--c-blue-50); /* 一级标题 / 主文字 */
+    --color-sub: var(--c-blue-200); /* 二级标题 / 次文字 */
+    --color-desc: color-mix(in srgb, var(--c-blue-200) 60%, transparent); /* 描述 / 辅助 */
+    --color-title: var(--c-blue-100); /* 深底标题高亮（面板标题/品牌标题） */
+    --color-on-dark: var(--c-blue-50); /* 深底上的主文字（表头/表体等） */
 
     /* 功能色 */
-    --color-brand: #00d4ff; /* 主色（强调青蓝） */
-    --color-success: #00e396;
-    --color-warning: #ffc64a;
-    --color-danger: #ff5b6e;
-    --color-info: #8fb4dd;
-    --color-tabs: #00d4ff; /* tabs 选中高亮 */
-    --color-button: #cfeef5; /* tabs 选中高亮 */
+    --color-brand: var(--c-cyan-400); /* 主色（强调青蓝） */
+    --color-success: var(--c-green-400);
+    --color-warning: var(--c-amber-300);
+    --color-danger: var(--c-red-300);
+    --color-info: var(--c-blue-200);
+    --color-tabs: var(--c-cyan-400); /* tabs 选中高亮 */
+    --color-button: var(--c-cyan-100); /* 按钮文字 */
 
     /* 背景 / 边框 */
-    --bg-list: #0a0f2a;
-    --bg-panel: rgba(9, 25, 54, 0.72);
-    --border-panel: rgba(0, 168, 255, 0.35);
+    --bg-list: var(--c-navy-950);
+    --bg-panel: color-mix(in srgb, var(--c-navy-700) 72%, transparent);
+    --bg-title: var(--c-blue-800); /* 标题/表头底色（管理端同义，供共享表格规则） */
+    --border-panel: color-mix(in srgb, var(--c-blue-400) 35%, transparent);
 
     /* 表单元素 */
-    --bg-form-item: rgba(7, 20, 49, 0.8); /* 输入框/下拉等控件背景 */
-    --bg-selected-form-item: rgba(0, 168, 255, 0.2); /* 控件选中态背景 */
-    --border-control: rgba(0, 168, 255, 0.35); /* 控件描边 */
+    --bg-form-item: color-mix(in srgb, var(--c-navy-900) 80%, transparent); /* 输入框/下拉等控件背景 */
+    --bg-selected-form-item: color-mix(in srgb, var(--c-blue-400) 20%, transparent); /* 控件选中态背景 */
+    --border-control: color-mix(in srgb, var(--c-blue-400) 35%, transparent); /* 控件描边 */
+
+    /* 主题差异令牌（组件覆盖层两端共用一份规则，差异在此收敛） */
+    --form-item-border-shadow: 0 0 0 1px var(--border-control) inset; /* 输入框描边 */
+    --form-item-border-shadow-hover: 0 0 0 1px var(--el-input-border-color-hover) inset;
+    --form-item-border-shadow-focus: 0 0 0 1px var(--color-brand) inset;
+    --bg-floating: var(--bg-panel); /* 浮层面板背景（日期/弹层等） */
+    --button-primary-text: var(--c-navy-800); /* primary 按钮文字（大屏深字配亮底） */
 
     /* 字号层级（自适应，见 index.scss --screen-base） */
     --font-hero: #{font(36px)}; /* 一级标题 */
@@ -84,52 +95,60 @@
     --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.4);
 
     /* 交互状态 */
-    --hover-bg: rgba(0, 168, 255, 0.08);
-    --active-bg: rgba(0, 168, 255, 0.14);
+    --hover-bg: color-mix(in srgb, var(--c-blue-400) 8%, transparent);
+    --active-bg: color-mix(in srgb, var(--c-blue-400) 14%, transparent);
 }
 
 /* ===== 管理端主题（.admin-shell 作用域覆盖，取自 docs/管理端样式.png）===== */
 .admin-shell {
-    --color-main: #33a5ea;
-    --color-sub: #606266;
-    --color-desc: #303030;
-    --color-desc1: #3d67b4;
-    --color-desc2: #9e9fa0;
-    --color-on-dark: rgba(255, 255, 255, 0.85); /* 深蓝底上的主文字 */
-    --color-on-dark-sub: rgba(255, 255, 255, 0.72); /* 深蓝底上的次文字/菜单 */
-    --color-title: #cfeef5; /* 品牌标题（深蓝底浅蓝白） */
-    --color-panel-title: #fff;
-    --color-tabs: #009be5;
+    /* 文字颜色层级 */
+    --color-main: var(--c-blue-300);
+    --color-sub: var(--c-gray-400);
+    --color-desc: var(--c-gray-500); /* 浅底描述 */
+    --color-desc-on-dark: var(--c-gray-300); /* 深底弱灰文字 */
+    --color-accent: var(--c-blue-400); /* 深底强调蓝 */
+    --color-on-dark: color-mix(in srgb, var(--c-white) 85%, transparent); /* 深蓝底上的主文字 */
+    --color-on-dark-sub: color-mix(in srgb, var(--c-white) 72%, transparent); /* 深蓝底上的次文字/菜单 */
+    --color-title: var(--c-cyan-100); /* 品牌标题（深蓝底浅蓝白） */
+    --color-panel-title: var(--c-white);
 
-    --color-brand: #081940;
-    --color-success: #00ff88;
-    --color-warning: #e67b00;
-    --color-danger: #fe4444;
-    --color-info: #a8abb2;
-    --color-tabs: #33a5ea; /* tabs 选中高亮 */
-    --color-button: #cfeef5; /* tabs 选中高亮 */
+    /* 功能色 */
+    --color-brand: var(--c-navy-800);
+    --color-success: var(--c-green-300);
+    --color-warning: var(--c-orange-600);
+    --color-danger: var(--c-red-400);
+    --color-info: var(--c-gray-100);
+    --color-tabs: var(--c-blue-300); /* tabs 选中高亮 */
+    --color-button: var(--c-cyan-100); /* 按钮文字 */
 
-    --bg-list: #071431;
-    --bg-panel: #0a0a0a;
-    --bg-panel-title: #11275b;
-    --bg-panel-content: #071431;
+    /* 背景 */
+    --bg-list: var(--c-navy-900);
+    --bg-panel: var(--c-gray-900);
+    --bg-panel-content: var(--c-navy-900);
+    --bg-title: var(--c-blue-800); /* 标题/表头底色 */
+    --bg-light: var(--c-gray-200); /* 浅色表头底 */
+    --bg-sidebar: var(--c-navy-800); /* 侧边栏 */
+    --bg-header: color-mix(in srgb, var(--c-navy-800) 96%, transparent); /* 顶栏 */
+    --bg-content: color-mix(in srgb, var(--c-navy-900) 60%, transparent); /* 内容区 */
+    --bg-form-item: var(--c-blue-700);
+    --bg-selected: var(--c-blue-900);
+    --bg-selected-form-item: var(--c-blue-600);
+    --bg-form-item-deep: var(--c-blue-800); /* 表单控件深蓝变体 */
+    --bg-back: var(--c-blue-1000);
 
-    --bg-sidebar: #081940; /* 侧边栏 */
-    --bg-header: rgba(8, 25, 64, 0.96); /* 顶栏 */
-    --bg-content: rgba(7, 20, 49, 0.6); /* 内容区 */
+    /* 边框 */
+    --border-panel: var(--c-gray-200);
+    --border-on-dark: color-mix(in srgb, var(--c-white) 8%, transparent); /* 深蓝底分隔线 */
+    --border-on-dark-strong: color-mix(in srgb, var(--c-white) 25%, transparent); /* 深蓝底描边 */
+    --border-control: color-mix(in srgb, var(--c-white) 15%, transparent); /* 控件描边（深底低调描边） */
+    --border-light: color-mix(in srgb, var(--c-white) 10%, transparent); /* 控件描边（深底低调描边） */
 
-    --bg-title: #11275b;
-
-    --bg-form-item: #293556;
-    --bg-selected: #112b67;
-    --bg-selected-form-item: #24496b;
-    --bg-form-item-blue: #11275b;
-
-    --border-panel: #dcdfe6;
-    --border-on-dark: rgba(255, 255, 255, 0.08); /* 深蓝底分隔线 */
-    --border-on-dark-strong: rgba(255, 255, 255, 0.25); /* 深蓝底描边 */
-    --border-control: rgba(255, 255, 255, 0.25); /* 控件描边（深底低调描边） */
-    --border-light: rgba(255, 255, 255, 0.1); /* 控件描边（深底低调描边） */
+    /* 主题差异令牌（与 :root 对应，管理端去输入框描边、浮层跟随控件底色） */
+    --form-item-border-shadow: none;
+    --form-item-border-shadow-hover: none;
+    --form-item-border-shadow-focus: none;
+    --bg-floating: var(--bg-form-item);
+    --button-primary-text: var(--c-white); /* primary 按钮文字（管理端深蓝底白字） */
 
     /* 字号层级（固定像素） */
     --font-title: 20px;
@@ -151,7 +170,7 @@
     --space-4: 16px;
     --space-5: 24px;
     --space-6: 32px;
-    --height-title1: 48px;
+    --title-height: 48px; /* 管理端标题条高度 */
 
     --radius-1: 2px;
     --radius-2: 4px;
@@ -160,6 +179,6 @@
     --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.12);
 
     /* 管理端 UI 以深蓝侧栏/顶栏为主，hover 用浅色透明；选中态保留品牌橙 */
-    --hover-bg: rgba(255, 255, 255, 0.06);
-    --active-bg: rgba(255, 120, 58, 0.14);
+    --hover-bg: color-mix(in srgb, var(--c-white) 6%, transparent);
+    --active-bg: color-mix(in srgb, var(--c-orange-400) 14%, transparent);
 }
