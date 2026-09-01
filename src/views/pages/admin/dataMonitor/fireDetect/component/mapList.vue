@@ -38,7 +38,7 @@ import baseTitle2Panel from '@/components/admin/baseTitle2Panel.vue';
             flex-direction: column;
             padding: 12px;
             margin-bottom: 12px;
-            background: rgba(139, 45, 45, 0.427);
+            background: var(--color-danger-dark);
             > .el-row {
                 gap: 10;
             }

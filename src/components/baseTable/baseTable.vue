@@ -286,7 +286,7 @@ defineExpose({ toggleRowSelection, callBackInstance });
 <style lang="scss" scoped>
 .base-table {
     width: 100%;
-    max-height: 100%;
+    height: 100%;
     // .checkAll {
     //     position: relative;
     //     text-align: left !important;

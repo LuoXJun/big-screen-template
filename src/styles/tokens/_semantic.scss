@@ -51,8 +51,16 @@
     --border-panel: color-mix(in srgb, var(--c-blue-400) 35%, transparent);
 
     /* 表单元素 */
-    --bg-form-item: color-mix(in srgb, var(--c-navy-900) 80%, transparent); /* 输入框/下拉等控件背景 */
-    --bg-selected-form-item: color-mix(in srgb, var(--c-blue-400) 20%, transparent); /* 控件选中态背景 */
+    --bg-form-item: color-mix(
+        in srgb,
+        var(--c-navy-900) 80%,
+        transparent
+    ); /* 输入框/下拉等控件背景 */
+    --bg-selected-form-item: color-mix(
+        in srgb,
+        var(--c-blue-400) 20%,
+        transparent
+    ); /* 控件选中态背景 */
     --border-control: color-mix(in srgb, var(--c-blue-400) 35%, transparent); /* 控件描边 */
 
     /* 主题差异令牌（组件覆盖层两端共用一份规则，差异在此收敛） */
@@ -108,7 +116,11 @@
     --color-desc-on-dark: var(--c-gray-300); /* 深底弱灰文字 */
     --color-accent: var(--c-blue-400); /* 深底强调蓝 */
     --color-on-dark: color-mix(in srgb, var(--c-white) 85%, transparent); /* 深蓝底上的主文字 */
-    --color-on-dark-sub: color-mix(in srgb, var(--c-white) 72%, transparent); /* 深蓝底上的次文字/菜单 */
+    --color-on-dark-sub: color-mix(
+        in srgb,
+        var(--c-white) 72%,
+        transparent
+    ); /* 深蓝底上的次文字/菜单 */
     --color-title: var(--c-cyan-100); /* 品牌标题（深蓝底浅蓝白） */
     --color-panel-title: var(--c-white);
 
@@ -120,6 +132,9 @@
     --color-info: var(--c-gray-100);
     --color-tabs: var(--c-blue-300); /* tabs 选中高亮 */
     --color-button: var(--c-cyan-100); /* 按钮文字 */
+
+    --color-warning-dark: color-mix(in srgb, var(--color-warning) 25%, transparent);
+    --color-danger-dark: color-mix(in srgb, var(--color-danger) 25%, transparent);
 
     /* 背景 */
     --bg-list: var(--c-navy-900);
@@ -140,8 +155,16 @@
     --border-panel: var(--c-gray-200);
     --border-on-dark: color-mix(in srgb, var(--c-white) 8%, transparent); /* 深蓝底分隔线 */
     --border-on-dark-strong: color-mix(in srgb, var(--c-white) 25%, transparent); /* 深蓝底描边 */
-    --border-control: color-mix(in srgb, var(--c-white) 15%, transparent); /* 控件描边（深底低调描边） */
-    --border-light: color-mix(in srgb, var(--c-white) 10%, transparent); /* 控件描边（深底低调描边） */
+    --border-control: color-mix(
+        in srgb,
+        var(--c-white) 15%,
+        transparent
+    ); /* 控件描边（深底低调描边） */
+    --border-light: color-mix(
+        in srgb,
+        var(--c-white) 10%,
+        transparent
+    ); /* 控件描边（深底低调描边） */
 
     /* 主题差异令牌（与 :root 对应，管理端去输入框描边、浮层跟随控件底色） */
     --form-item-border-shadow: none;

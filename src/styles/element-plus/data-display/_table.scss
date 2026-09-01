@@ -2,6 +2,9 @@
    表格覆盖层（双主题令牌驱动，分页见 _pagination.scss）
    默认 = 管理端通用形态：外框 + 内容底 + 深底表头（大屏暂无表格，
    未来大屏表格通过变体或令牌区分）
+   外框与列分割线由 el-table 的 border prop 驱动（true 时挂载
+   .el-table--border，EP 自行渲染，颜色取 --el-table-border-color），
+   此处不再写死边框，保证传 { border: false } 时表格真正无边框
    变体（由 baseTable 的 variant prop 挂载，见 baseTable.vue）：
    - .lxj-table--grid        网格闭合：去外框线、第一列补左线、表头跟随内容底
    - .lxj-table--light-header 浅色表头：表头文字同步切深色保证可读
@@ -11,20 +14,24 @@
 
 /* ===== 表格整体 ===== */
 .el-table {
-    /* 整体：外框、表体内容底、深底表头（值绑定组件变量，变体通过覆盖变量换肤） */
+    height: 100%;
+    /* 整体：表体内容底、深底表头（值绑定组件变量，变体通过覆盖变量换肤） */
     --el-table-bg-color: var(--table-bg); // 表体背景（行背景默认继承它）
     --el-table-header-bg-color: var(--table-header-bg); // 表头背景
     --el-table-tr-bg-color: transparent; // 行背景（兜底，双保险）
-    --el-table-border-color: var(--table-border); // 单元格分隔线
+    --el-table-border-color: var(--table-border); // 外框与单元格分隔线
     --el-table-row-hover-bg-color: transparent;
     --el-table-text-color: var(--table-text); // 表体文字（深底浅字）
     --el-table-header-text-color: var(--table-header-text); // 表头文字
-    border: 1px solid var(--table-border);
+
+    // EP 底部线不依赖 border 类（--fit 默认挂载），去边框时一并隐藏
+    &:not(.el-table--border) .el-table__inner-wrapper::before {
+        display: none;
+    }
 }
 
 /* ===== 变体：网格闭合（去外框线、仅保留 cell 边框、第一列补左线） ===== */
 .lxj-table--grid {
-    border: none;
     --table-header-bg: var(--bg-content);
 
     &.el-table--border::before,
@@ -48,7 +55,8 @@
 
 /* ===== 默认骨架（待按设计稿填写） ===== */
 .el-table--border {
-    /* 带边框模式：列分割线 */
+    /* border prop=true 时 EP 已渲染完整外框与列分割线（色取 --el-table-border-color），
+       仅当设计稿需要调整线宽/圆角/颜色时才在此覆写 */
 }
 
 .el-table__inner-wrapper {

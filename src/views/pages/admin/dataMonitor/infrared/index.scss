@@ -1,32 +1,123 @@
 .infrared {
     height: 100%;
-    .el-container {
-        margin-top: 10px;
-        height: calc(100% - 170px);
+    .el-header {
+        height: unset;
+        padding: 0;
+        height: 170px;
+    }
+    .body {
+        flex: 1;
+        min-height: 0;
         .el-aside {
             flex: 65% 0 0;
-
             height: 100%;
-            .box {
-                display: flex;
-                flex-direction: column;
+            display: flex;
+            flex-direction: column;
+            :deep(.baseTitle2Panel) {
+                height: unset;
+            }
 
-                .chart-box {
-                    margin-top: 10px;
-                    border-radius: var(--radius-2);
-                    flex: 300px 0 0;
-                    .chart {
-                        height: 100%;
+            .chart-box {
+                margin-top: 10px;
+                height: 200px;
+                border-radius: var(--radius-2);
+                flex: 200px 0 0;
+            }
+
+            .rule {
+                justify-content: space-between;
+                align-items: center;
+                color: #fff;
+                padding: 12px 0;
+
+                .desc {
+                    font-size: var(--font-desc);
+                    color: var(--color-desc-on-dark);
+                    text-align: right;
+                }
+                .panel {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 8px;
+                    border: 1px solid var(--color-warning-dark);
+                    margin-top: 12px;
+                    flex: 49% 0 0;
+                    > p:first-child {
+                        color: var(--color-warning);
+                        font-size: var(--font-desc);
+                    }
+                    > p:nth-child(2) {
+                        font-size: var(--font-title);
+                        margin: 12px 0;
+                    }
+                    > p:last-child {
+                        font-size: var(--font-desc);
+                        color: var(--color-desc-on-dark);
                     }
                 }
-                .table-part {
-                    margin-top: 10px;
-                }
+            }
+
+            .table-part {
+                flex: 1;
+                min-height: 0;
             }
         }
         .el-main {
             padding: 0;
             padding-left: 10px;
+            .body {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                .list-card {
+                    color: #fff;
+                    padding: 12px;
+                    justify-content: space-between;
+                    .desc {
+                        font-size: var(--font-desc);
+                        color: var(--color-desc-on-dark);
+                        text-align: right;
+                    }
+                    .card {
+                        margin-top: 12px;
+                        padding: 12px;
+                        border: 1px solid var(--border-control);
+                        font-size: var(--font-body);
+                        flex: 32% 0 0;
+                        background: var(--bg-back);
+                        > p:first-child {
+                            color: var(--color-desc-on-dark);
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+                .points {
+                    flex: 1;
+                    min-height: 0;
+                    color: #fff;
+                    .title {
+                        padding: 12px 12px;
+                        align-items: center;
+                    }
+                    .point-list {
+                        height: calc(100% - 48px);
+                        overflow: auto;
+                        .point-item {
+                            font-size: var(--font-desc);
+                            border-bottom: 1px solid var(--border-light);
+                            padding: 12px;
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+                            > div:last-of-type {
+                                flex: 1;
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

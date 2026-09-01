@@ -26,9 +26,9 @@
                 <span>12</span>
                 <span>条</span>
                 <span>|</span>
-                <el-button size="small" type="primary">批量确认</el-button>
-                <el-button size="small" type="primary">批量关闭</el-button>
-                <el-button size="small" type="primary">批量派单</el-button>
+                <el-button size="small" type="primary" plain>批量确认</el-button>
+                <el-button size="small" type="primary" plain>批量关闭</el-button>
+                <el-button size="small" type="primary" plain>批量派单</el-button>
             </div>
             <baseTable v-model="tableData" :table-column="tableColumnConfig" selection />
             <basePagination v-model="pageInfo" />

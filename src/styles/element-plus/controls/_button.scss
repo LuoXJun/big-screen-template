@@ -24,8 +24,8 @@
         [class*='el-button--info']
     )
 ) {
-    --el-button-bg-color: color-mix(in srgb, var(--bg-form-item) 80%, transparent);
-    --el-button-border-color: var(--border-control);
+    --el-button-bg-color: color-mix(in srgb, var(--bg-back) 20%, transparent);
+    --el-button-border-color: var(--border-light);
     --el-button-text-color: var(--color-main);
     --el-button-hover-bg-color: color-mix(in srgb, var(--bg-form-item) 80%, #fff);
     --el-button-hover-border-color: color-mix(in srgb, var(--color-brand) 60%, transparent);

@@ -1,0 +1,180 @@
+.droneStatus {
+    height: 100%;
+    .el-header {
+        height: unset;
+    }
+    .el-main {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        > div {
+            height: 100%;
+        }
+        .body-left {
+            flex: 68% 0 0;
+            display: flex;
+            flex-direction: column;
+            > div {
+                padding: 12px;
+                border: 1px solid var(--border-control);
+                border-radius: var(--radius-3);
+                background: var(--bg-content);
+                > p {
+                    color: var(--color-desc-on-dark);
+                    margin-bottom: 12px;
+                    font-size: var(--font-body);
+                }
+            }
+            .line {
+                height: 200px;
+                margin-bottom: 16px;
+            }
+            .table-part {
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                :deep(.basePagination) {
+                    padding: 12px;
+                }
+                :deep(.base-table) {
+                    flex: 1;
+                    min-height: 0;
+                }
+            }
+        }
+        .body-right {
+            .title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 8px;
+                font-size: var(--font-body);
+                > span:nth-child(2) {
+                    font-size: var(--font-desc);
+                    color: var(--color-desc-on-dark);
+                }
+            }
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            > div {
+                padding: 12px;
+                border: 1px solid var(--border-control);
+                border-radius: var(--radius-3);
+                background: var(--bg-content);
+                flex: 33% 0 0;
+                overflow: auto;
+                color: #fff;
+            }
+            .top {
+            }
+            .middle {
+                display: flex;
+                flex-direction: column;
+
+                .list {
+                    flex: 1;
+                    min-height: 0;
+                    overflow: auto;
+                    .list-item {
+                        align-items: center;
+                        font-size: var(--font-body);
+                        padding-right: 12px;
+                        > .el-col:nth-last-of-type(2) {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            gap: 12px;
+                            font-size: var(--font-desc);
+                            color: var(--color-warning);
+                        }
+                        > .process {
+                            border-radius: var(--radius-3);
+                            background: var(--bg-form-item);
+                            height: 4px;
+                            width: 100%;
+                            display: flex;
+                            margin: 10px 0;
+                            .el-col {
+                                border-radius: var(--radius-3);
+                                flex: 39% 0 0;
+                                height: 100%;
+                                background: var(--color-warning);
+                            }
+                        }
+                    }
+                }
+            }
+            .bottom {
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                .eq-list {
+                    flex: 1;
+                    min-height: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    overflow: auto;
+                    .eq-list-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        background: var(--bg-content);
+                        border: 1px solid var(--border-light);
+                        padding: 12px;
+                        .left {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: 12px;
+                            > img {
+                                width: 24px;
+                            }
+                            > div {
+                                > span {
+                                    font-size: var(--font-desc);
+                                    color: var(--color-desc-on-dark);
+                                }
+                            }
+                        }
+                        .right {
+                            display: flex;
+                            align-items: center;
+                            font-size: var(--font-desc);
+                            color: var(--color-success);
+                            gap: 12px;
+                            .process {
+                                position: relative;
+                                width: 100px;
+                                display: flex;
+                                flex-direction: column;
+                                background: var(--bg-form-item);
+                                border-radius: var(--radius-3);
+                                > p {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    transform: translate(-100%, -150%);
+                                }
+                                // 百分比
+                                > span {
+                                    border-radius: var(--radius-3);
+                                    height: 4px;
+                                    width: 60%;
+                                    background: var(--color-success);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
