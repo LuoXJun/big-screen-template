@@ -104,10 +104,14 @@ class BaseRequest {
         return new Promise((resolve, reject) => {
             const params = config.params || {};
             if (config.method?.toUpperCase() === 'GET' && params) {
-                config.params = {};
-                const paramsStr = qs.stringify(params, { allowDots: true });
-                if (paramsStr) {
-                    config.url = config.url + '?' + paramsStr;
+                if (config.paramsStyle === 'raw') {
+                    // 原生序列化：数组按 repeat 展开、键名可含 []（如 sn[]）
+                } else {
+                    config.params = {};
+                    const paramsStr = qs.stringify(params, { allowDots: true });
+                    if (paramsStr) {
+                        config.url = config.url + '?' + paramsStr;
+                    }
                 }
             }
 

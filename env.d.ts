@@ -18,6 +18,12 @@ interface ImportMetaEnv {
     readonly VITE_API_URL: string;
     readonly VITE_SC_CODE: Array<number | string>;
     readonly VITE_CESIUM_ION_TOKEN?: string;
+    /** 司空 2 私有化平台地址 */
+    readonly VITE_FH2_API_URL?: string;
+    /** 司空 2 组织密钥（JWT），控制台「组织设置 → OpenAPI」复制 */
+    readonly VITE_FH2_USER_TOKEN?: string;
+    /** 司空 2 项目 UUID */
+    readonly VITE_FH2_PROJECT_UUID?: string;
 }
 
 interface ImportMeta {

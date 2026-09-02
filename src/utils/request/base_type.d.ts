@@ -26,6 +26,11 @@ declare global {
 
     interface IbaseInstanceConfig extends AxiosRequestConfig {
         interceptors?: (instance: AxiosInstance) => IbaseRequestConfig;
+        /**
+         * GET 参数序列化方式
+         * 'raw': 交给 axios 原生序列化（数组 repeat、键可含 []），默认走 qs 拼接
+         */
+        paramsStyle?: 'raw';
         /**是否显示全局加载框*/
         isLoading?: boolean;
         /**显示加载框时的文字*/
