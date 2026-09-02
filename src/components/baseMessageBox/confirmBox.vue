@@ -133,7 +133,8 @@ function handleClosed() {
                             margin-left: 8px;
 
                             overflow: hidden;
-                            color: var(--text-icon-font-gy-190-primary, rgba(0, 0, 0, 0.9));
+                            /* 浅色对话框标题文字（设计稿导出 token 落地为固定值） */
+                            color: rgba(0, 0, 0, 0.9);
                             text-overflow: ellipsis;
                             white-space: nowrap;
 
@@ -167,6 +168,7 @@ function handleClosed() {
                         padding: 5px 16px;
                         box-sizing: content-box;
                     }
+                    /* 浅色确认框按钮（自绘浅色对话框，独立于深色令牌体系） */
                     .confirmBtn {
                         background-color: #0052d9;
                         color: #fff;

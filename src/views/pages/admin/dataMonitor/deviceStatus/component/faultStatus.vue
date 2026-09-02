@@ -2,7 +2,7 @@
     <el-container class="faultStatus">
         <el-header>
             <deviceStatusHeader style="margin: 20px 0" />
-            <div class="search-list">
+            <div class="search-list lxj-form-deep">
                 <div>
                     <span>故障类型：</span>
                     <el-badge :value="12">
@@ -95,16 +95,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
             justify-content: space-between;
             margin-top: 10px;
             color: var(--color-desc-on-dark);
-            /* 本页表单控件背景统一用 --bg-form-item-deep */
-            :deep(.el-input__wrapper),
-            :deep(.el-select__wrapper) {
-                background-color: var(--bg-form-item-deep);
-                box-shadow: 0 0 0 1px var(--border-light) inset;
-                border-radius: 0;
-            }
-            .el-button {
-                border-radius: unset;
-            }
+            /* 深蓝控件变体（背景/描边/直角）由全局 .lxj-form-deep 承担 */
             > div:first-of-type {
                 gap: 10px;
                 flex: 60% 0 0;

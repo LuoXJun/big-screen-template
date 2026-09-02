@@ -66,11 +66,12 @@ const list = [
         flex: 19% 0 0;
         border-radius: var(--radius-2);
         padding: 12px 0;
-        background: #235e48;
+        /* 成功状态卡底：内容底上染一档成功绿（对应原 #235e48） */
+        background: color-mix(in srgb, var(--color-success) 22%, var(--bg-content));
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        color: #e2e0e0;
+        color: var(--color-on-dark);
         font-size: var(--font-desc);
         .left {
             > p {
@@ -78,7 +79,7 @@ const list = [
                 margin-top: 12px;
                 > span:first-child {
                     font-size: 32px;
-                    color: #fff;
+                    color: var(--color-panel-title);
                 }
                 > span:last-child {
                     position: absolute;
@@ -89,7 +90,8 @@ const list = [
             }
         }
         .right {
-            color: #f5ad47;
+            /* "全部在线" 状态 → 成功色（原 #f5ad47 与在线语义不符） */
+            color: var(--color-success);
             display: flex;
             flex-direction: column;
             align-items: flex-end;

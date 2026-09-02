@@ -1,6 +1,6 @@
 /* ============================================================
    轻量反馈覆盖层（双主题令牌驱动）：消息提示 / 确认框 / 通知
-   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   基础适配已完成（请求拦截器已使用 ElMessage）；细项按设计稿微调
    如需主题变量/尺寸函数：@use '@/styles/tokens' as *;
    注意：所有浮层均渲染在 body 下（teleport），
          双主题作用域（:root / .admin-shell）在 body 上依然成立
@@ -8,79 +8,80 @@
 
 /* ===== 消息提示 ===== */
 .el-message {
-    /* 提示条：背景、边框、圆角、阴影 */
+    background: color-mix(in srgb, var(--bg-floating) 92%, transparent);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-2);
 }
 
-.el-message--success {
-    /* 成功 */
+.el-message--success .el-message__icon,
+.el-message--success .el-message__content {
+    color: var(--color-success);
 }
 
-.el-message--warning {
-    /* 警告 */
+.el-message--warning .el-message__icon,
+.el-message--warning .el-message__content {
+    color: var(--color-warning);
 }
 
-.el-message--error {
-    /* 错误 */
+.el-message--error .el-message__icon,
+.el-message--error .el-message__content {
+    color: var(--color-danger);
 }
 
-.el-message--info {
-    /* 信息 */
-}
-
-.el-message__icon {
-    /* 图标 */
+.el-message--info .el-message__icon,
+.el-message--info .el-message__content {
+    color: var(--color-info);
 }
 
 .el-message__content {
-    /* 内容 */
+    color: var(--color-main);
 }
 
-.el-message__closeBtn {
-    /* 关闭按钮 */
+.el-message .el-message__closeBtn {
+    color: var(--color-sub);
+
+    &:hover {
+        color: var(--color-main);
+    }
 }
 
 /* ===== 确认框 ===== */
 .el-message-box {
-    /* 主体：背景、边框、圆角 */
-}
-
-.el-message-box__header {
-    /* 头部 */
+    --el-messagebox-bg-color: var(--bg-floating);
+    --el-messagebox-border-radius: var(--radius-3);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-2);
 }
 
 .el-message-box__title {
-    /* 标题 */
-}
-
-.el-message-box__status {
-    /* 状态图标 */
-}
-
-.el-message-box__content {
-    /* 内容区 */
+    color: var(--color-main);
 }
 
 .el-message-box__message {
-    /* 内容文字 */
-}
-
-.el-message-box__btns {
-    /* 底部按钮区 */
+    color: var(--color-info);
 }
 
 /* ===== 通知 ===== */
 .el-notification {
-    /* 通知卡片：背景、边框、圆角 */
+    --el-notification-bg-color: var(--bg-floating);
+    --el-notification-border-radius: var(--radius-3);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-2);
 }
 
 .el-notification__title {
-    /* 标题 */
+    color: var(--color-main);
 }
 
 .el-notification__content {
-    /* 内容 */
+    color: var(--color-info);
 }
 
 .el-notification__closeBtn {
-    /* 关闭按钮 */
+    color: var(--color-sub);
+
+    &:hover {
+        color: var(--color-main);
+    }
 }

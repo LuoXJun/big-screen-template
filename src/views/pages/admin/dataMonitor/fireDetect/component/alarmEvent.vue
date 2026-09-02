@@ -38,7 +38,7 @@ import baseTitle2Panel from '@/components/admin/baseTitle2Panel.vue';
         .desc,
         .time {
             font-size: var(--font-desc);
-            color: #929292;
+            color: var(--color-desc-on-dark);
         }
         .el-col {
             margin-bottom: 8px;

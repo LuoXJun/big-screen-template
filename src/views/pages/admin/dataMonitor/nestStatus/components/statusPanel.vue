@@ -24,7 +24,7 @@
         margin-bottom: var(--space-2);
         border-radius: var(--radius-3);
         padding: var(--space-2);
-        color: #fff;
+        color: var(--color-panel-title);
         .eq-status-self {
             img {
                 width: 16px;
@@ -37,7 +37,7 @@
             }
             .el-col:last-of-type {
                 font-size: var(--font-desc);
-                color: #f5ad47;
+                color: var(--color-warning-bright);
                 margin-bottom: var(--space-2);
             }
         }

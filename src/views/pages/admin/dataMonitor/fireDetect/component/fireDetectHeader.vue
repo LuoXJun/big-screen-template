@@ -26,7 +26,7 @@
         background: var(--bg-content);
 
         > span {
-            color: #b8b7b7;
+            color: var(--color-on-dark-sub);
             font-size: var(--font-desc);
             padding-left: 12px;
         }

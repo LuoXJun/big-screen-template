@@ -14,6 +14,7 @@ defineProps<{ lonlat: { lng: number; lat: number; height: number } }>();
 <style scoped lang="scss">
 .popup-info {
     font-size: font(16px);
+    /* 浅色卡内文字：与 basePanel 白底配套，独立于深色令牌体系 */
     color: #000;
     line-height: 2;
 

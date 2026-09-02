@@ -65,7 +65,7 @@ const list = [
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: #e2e0e0;
+        color: var(--color-on-dark);
         font-size: var(--font-desc);
         border: 1px solid var(--border-light);
         .left {
@@ -74,7 +74,7 @@ const list = [
                 margin-top: 12px;
                 > span:first-child {
                     font-size: 32px;
-                    color: #fff;
+                    color: var(--color-panel-title);
                 }
                 > span:last-child {
                     position: absolute;

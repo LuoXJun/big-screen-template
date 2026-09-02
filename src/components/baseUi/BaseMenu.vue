@@ -45,8 +45,9 @@ function onSelect(path: string): void {
 .base-menu {
     flex-shrink: 0;
     --el-menu-bg-color: transparent;
-    --el-menu-text-color: rgba(255, 255, 255, 0.72);
-    --el-menu-active-color: var(--color-main);
+    --el-menu-text-color: var(--color-on-dark-sub);
+    /* 选中色走 EP 变量机制（内部规则取值），避免逐条覆盖 + !important */
+    --el-menu-active-color: var(--menu-active-text);
     --el-menu-hover-bg-color: transparent;
     border-bottom: none;
 
@@ -56,13 +57,12 @@ function onSelect(path: string): void {
         border-bottom: 2px solid transparent;
 
         &.is-active {
-            color: #ff783a !important;
-            border-bottom-color: #ff783a;
-            text-shadow: 0 0 10px rgba(255, 120, 58, 0.6);
+            border-bottom-color: var(--menu-active-text);
+            text-shadow: 0 0 10px color-mix(in srgb, var(--menu-active-text) 60%, transparent);
         }
 
         &:hover {
-            background: rgba(58, 160, 255, 0.08);
+            background: color-mix(in srgb, var(--color-tabs) 8%, transparent);
         }
     }
 }

@@ -57,7 +57,7 @@ const list = [
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        color: #fff;
+        color: var(--color-panel-title);
         > div:first-child {
             background: var(--bg-content);
             border-radius: var(--radius-2);

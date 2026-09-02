@@ -83,6 +83,7 @@ $panel-footer-height: 64px;
     box-sizing: border-box;
     border-radius: 8px;
     overflow: hidden;
+    /* 浅色地图信息卡（设计稿既定：浮层白底高对比，独立于深色令牌体系） */
     background-color: #fff;
 
     .base-panel-header {

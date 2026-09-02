@@ -26,10 +26,10 @@
         justify-content: space-between;
         flex-direction: column;
         padding: 16px;
-        color: #fff;
+        color: var(--color-panel-title);
         border-radius: var(--radius-3);
         .el-col {
-            color: #b8b7b7;
+            color: var(--color-on-dark-sub);
             font-size: var(--font-desc);
         }
         .status {
@@ -39,7 +39,7 @@
         background: var(--bg-content);
 
         > span {
-            color: #b8b7b7;
+            color: var(--color-on-dark-sub);
             font-size: var(--font-desc);
         }
 

@@ -18,9 +18,9 @@ const timeText = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
 <style scoped lang="scss">
 .infraredHeader {
-    color: #fff;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
+    color: var(--color-panel-title);
+    border-top: 1px solid var(--border-on-dark-strong);
+    border-bottom: 1px solid var(--border-on-dark-strong);
     padding: 12px 0;
     box-sizing: border-box;
     .infraredHeader-title {

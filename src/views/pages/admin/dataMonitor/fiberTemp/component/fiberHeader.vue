@@ -17,7 +17,7 @@
 
 <style scoped lang="scss">
 .fiberHeader {
-    color: #fff;
+    color: var(--color-panel-title);
     .fiberHeader-title {
         font-size: var(--font-title);
     }

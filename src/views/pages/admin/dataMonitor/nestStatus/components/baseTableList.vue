@@ -30,7 +30,7 @@ const tableData = ref([
 .baseTableList {
     height: 100%;
     width: 100%;
-    color: #fff;
+    color: var(--color-panel-title);
     font-size: var(--font-desc);
     .baseTableList-item {
         display: flex;

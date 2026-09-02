@@ -43,16 +43,17 @@ const list = new Array(10).fill(0).map((_, index) => {
 
     .aside-item {
         padding: 8px;
-        border-bottom: 2px solid #ffffff38;
+        border-bottom: 2px solid var(--border-on-dark-strong);
         width: 100%;
-        color: #fff;
+        color: var(--color-panel-title);
         font-size: var(--font-desc);
         .aside-item-title {
             font-size: var(--font-body);
             width: 100%;
         }
         .progress {
-            background: #1b2845;
+            /* 轨道槽底：内容底再压暗一档（对应原 #1b2845） */
+            background: color-mix(in srgb, var(--bg-content) 80%, #000);
             border-radius: var(--radius-3);
             height: 3px;
             margin-top: 10px;

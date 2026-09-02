@@ -1,7 +1,7 @@
 /* ============================================================
    popper 悬浮层覆盖层（双主题令牌驱动）
    Tooltip / Popover / Dropdown 共用的 popper 体系
-   以下仅列出需要覆写的类名，具体样式请按设计稿填写
+   基础适配已完成，细项按设计稿微调
    如需主题变量/尺寸函数：@use '@/styles/tokens' as *;
    注意：popper 统一渲染在 body 下（teleport），
          双主题作用域（:root / .admin-shell）在 body 上依然成立
@@ -9,57 +9,55 @@
 
 /* ===== popper 通用（三类组件共用） ===== */
 .el-popper {
-    /* 面板容器：背景、边框、圆角、阴影 */
-}
-
-.el-popper.is-light {
-    /* 浅色主题 */
-}
-
-.el-popper.is-dark {
-    /* 深色主题 */
-}
-
-.el-popper__arrow {
-    /* 箭头 */
+    box-shadow: var(--shadow-2);
 }
 
 /* ===== tooltip ===== */
-.el-tooltip__popper {
-    /* 提示气泡（默认深色底） */
+.el-tooltip__popper.is-dark {
+    color: var(--color-main);
 }
 
 /* ===== popover ===== */
 .el-popover {
-    /* 气泡卡片 */
+    --el-popover-bg-color: var(--bg-floating);
+    --el-popover-text-color: var(--color-info);
+    --el-popover-border-color: var(--border-light);
+    border: 1px solid var(--border-light);
 }
 
 .el-popover__title {
-    /* 标题 */
+    color: var(--color-main);
 }
 
 /* ===== dropdown ===== */
 .el-dropdown__popper {
-    /* 下拉面板 */
+    --el-bg-color-overlay: var(--bg-floating);
+    --el-text-color-primary: var(--color-info);
+    --el-border-color-light: var(--border-light);
 }
 
 .el-dropdown-menu {
-    /* 菜单 */
+    border: 1px solid var(--border-light);
 }
 
 .el-dropdown-menu__item {
-    /* 菜单项 */
-}
+    color: var(--color-info);
 
-.el-dropdown-menu__item:hover,
-.el-dropdown-menu__item:focus {
-    /* 悬停 / 聚焦项 */
-}
+    &:hover,
+    &:focus {
+        background-color: var(--bg-selected-form-item);
+        color: var(--color-main);
+    }
 
-.el-dropdown-menu__item.is-disabled {
-    /* 禁用项 */
+    &.is-disabled {
+        color: var(--color-desc);
+    }
+
+    &.is-disabled:hover {
+        background-color: transparent;
+    }
 }
 
 .el-dropdown-menu__item--divided {
-    /* 分隔线 */
+    border-top: 1px solid var(--border-control);
 }

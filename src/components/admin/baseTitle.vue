@@ -26,7 +26,7 @@ withDefaults(
     background: var(--panel-title-bg);
     padding: var(--space-2);
     > span {
-        color: #fff;
+        color: var(--color-panel-title);
         font-size: var(--font-body);
         border-radius: var(--radius-2);
     }

@@ -39,6 +39,7 @@
     --color-brand: var(--c-cyan-400); /* 主色（强调青蓝） */
     --color-success: var(--c-green-400);
     --color-warning: var(--c-amber-300);
+    --color-warning-bright: var(--c-amber-300); /* 深底警告亮字（与 warning 同源，双端对称） */
     --color-danger: var(--c-red-300);
     --color-info: var(--c-blue-200);
     --color-tabs: var(--c-cyan-400); /* tabs 选中高亮 */
@@ -48,7 +49,13 @@
     --bg-list: var(--c-navy-950);
     --bg-panel: color-mix(in srgb, var(--c-navy-700) 72%, transparent);
     --bg-title: var(--c-blue-800); /* 标题/表头底色（管理端同义，供共享表格规则） */
+    /* 以下 4 个令牌被覆盖层/组件层共享规则引用（按钮/表格变体），
+       管理端有值而大屏缺值会静默失效，两端必须保持一一对应 */
+    --bg-back: var(--c-navy-800); /* 按钮/最底控制面（对应管理端 --c-blue-1000） */
+    --bg-content: var(--c-navy-900); /* 内容区底（对应管理端 --bg-content） */
+    --bg-light: var(--c-blue-600); /* 浅色表头底（对应管理端 --bg-light，大屏弱化版） */
     --border-panel: color-mix(in srgb, var(--c-blue-400) 35%, transparent);
+    --border-light: var(--border-control); /* 低对比描边（对应管理端 white 10%） */
 
     /* 表单元素 */
     --bg-form-item: color-mix(
@@ -135,6 +142,7 @@
 
     --color-warning-dark: color-mix(in srgb, var(--color-warning) 25%, transparent);
     --color-danger-dark: color-mix(in srgb, var(--color-danger) 25%, transparent);
+    --color-warning-bright: var(--c-amber-300); /* 深蓝底上的警告文字（浅底用 --color-warning 更暗） */
 
     /* 背景 */
     --bg-list: var(--c-navy-900);

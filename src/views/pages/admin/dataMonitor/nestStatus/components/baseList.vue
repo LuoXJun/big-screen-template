@@ -24,10 +24,10 @@ withDefaults(
 .baseList {
     height: 100%;
     width: 100%;
-    color: #fff;
+    color: var(--color-panel-title);
     .baseList-item {
         background: var(--bg-content);
-        border-top: 1px solid #bab9b984;
+        border-top: 1px solid var(--border-on-dark-strong);
         padding: var(--space-3) 0;
         margin-bottom: var(--space-3);
         border-left: 2px solid var(--color-success);

@@ -1,7 +1,7 @@
 <template>
     <el-container class="onlineStatus">
         <el-header>
-            <div class="search-list">
+            <div class="search-list lxj-form-deep">
                 <div>
                     <el-input placeholder="搜索设备编号/名称"></el-input>
                     <el-select placeholder="按区域筛选"></el-select>
@@ -77,16 +77,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
             align-items: center;
             justify-content: space-between;
             margin-top: 10px;
-            /* 本页表单控件背景统一用 --bg-form-item-deep */
-            :deep(.el-input__wrapper),
-            :deep(.el-select__wrapper) {
-                background-color: var(--bg-form-item-deep);
-                box-shadow: 0 0 0 1px var(--border-light) inset;
-                border-radius: 0;
-            }
-            .el-button {
-                border-radius: unset;
-            }
+            /* 深蓝控件变体（背景/描边/直角）由全局 .lxj-form-deep 承担 */
             > div:first-of-type {
                 gap: 10px;
                 flex: 60% 0 0;
@@ -114,7 +105,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
         flex: 100px 0 0;
         border: 1px solid var(--border-light);
         background: var(--panel-body-bg);
-        color: #fff;
+        color: var(--color-panel-title);
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -287,22 +287,6 @@ defineExpose({ toggleRowSelection, callBackInstance });
 .base-table {
     width: 100%;
     height: 100%;
-    // .checkAll {
-    //     position: relative;
-    //     text-align: left !important;
-    // }
-
-    // .checkAll .cell::after {
-    //     color: #909399;
-    //     font-size: 13px;
-    //     font-weight: bold;
-    //     content: '全选';
-    //     display: block;
-    //     position: absolute;
-    //     z-index: 1;
-    //     left: 35px;
-    // }
-
     /* 表头/表体文字色由覆盖层 --el-table-header-text-color / --el-table-text-color 接管 */
 }
 </style>

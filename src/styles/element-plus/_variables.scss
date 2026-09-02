@@ -39,8 +39,15 @@ $el-colors: (
     --el-text-color-placeholder: var(--color-info);
     --el-text-color-disabled: var(--color-desc);
 
-    /* 空白填充底色（按钮/输入框等组件默认底色 fallback） */
+    /* 填充底色体系（tag/checkbox/message-box 等内容填充，以控件底为基点
+       向白/黑两向混出阶梯，避免 EP 默认浅色在深色 UI 上割裂） */
     --el-fill-color-blank: var(--bg-form-item);
+    --el-fill-color: var(--bg-form-item);
+    --el-fill-color-light: color-mix(in srgb, var(--bg-form-item) 92%, #fff);
+    --el-fill-color-lighter: color-mix(in srgb, var(--bg-form-item) 85%, #fff);
+    --el-fill-color-extra-light: color-mix(in srgb, var(--bg-form-item) 78%, #fff);
+    --el-fill-color-dark: color-mix(in srgb, var(--bg-form-item) 88%, #000);
+    --el-fill-color-darker: color-mix(in srgb, var(--bg-form-item) 78%, #000);
 }
 
 :root {
