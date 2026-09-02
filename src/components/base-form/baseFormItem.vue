@@ -170,7 +170,9 @@
 
 <script setup lang="ts" generic="T extends Record<string, any>">
 const modelValue = defineModel<T>('modelValue', {
-    default: {}
+    default: (): T => {
+        return {} as T;
+    }
 });
 
 const emits = defineEmits<{
