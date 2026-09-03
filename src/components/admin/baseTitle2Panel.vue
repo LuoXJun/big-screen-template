@@ -26,7 +26,7 @@ withDefaults(
     height: 100%;
     .title {
         height: var(--title-height);
-        background: var(--panel-title-bg);
+        background: var(--bg-title);
         padding: var(--space-2);
         align-items: center;
         .el-col {

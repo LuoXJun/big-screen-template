@@ -104,7 +104,7 @@ const { pageInfo, tableData } = usePageTable(async () => {
     .el-footer {
         flex: 100px 0 0;
         border: 1px solid var(--border-light);
-        background: var(--panel-body-bg);
+        background: var(--bg-panel-content);
         color: var(--color-panel-title);
         display: flex;
         flex-direction: column;

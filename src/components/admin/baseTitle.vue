@@ -23,7 +23,7 @@ withDefaults(
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--panel-title-bg);
+    background: var(--bg-title);
     padding: var(--space-2);
     > span {
         color: var(--color-panel-title);

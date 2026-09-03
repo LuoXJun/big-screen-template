@@ -1,14 +1,14 @@
 /* ===== 表格整体 ===== */
 .el-table {
     height: 100%;
-    /* 整体：表体内容底、深底表头（值绑定组件变量，变体通过覆盖变量换肤） */
-    --el-table-bg-color: var(--table-bg); // 表体背景（行背景默认继承它）
-    --el-table-header-bg-color: var(--table-header-bg); // 表头背景
+    /* 整体：表体内容底、深底表头（值直连语义令牌） */
+    --el-table-bg-color: var(--bg-content); // 表体背景（行背景默认继承它）
+    --el-table-header-bg-color: var(--bg-title); // 表头背景
     --el-table-tr-bg-color: transparent; // 行背景（兜底，双保险）
-    --el-table-border-color: var(--table-border); // 外框与单元格分隔线
+    --el-table-border-color: var(--border-light); // 外框与单元格分隔线
     --el-table-row-hover-bg-color: transparent;
-    --el-table-text-color: var(--table-text); // 表体文字（深底浅字）
-    --el-table-header-text-color: var(--table-header-text); // 表头文字
+    --el-table-text-color: var(--color-on-dark); // 表体文字（深底浅字）
+    --el-table-header-text-color: var(--color-on-dark); // 表头文字
 
     // EP 底部线不依赖 border 类（--fit 默认挂载），去边框时一并隐藏
     &:not(.el-table--border) .el-table__inner-wrapper::before {
@@ -18,7 +18,7 @@
 
 /* ===== 变体：网格闭合（去外框线、仅保留 cell 边框、第一列补左线） ===== */
 .lxj-table--grid {
-    --table-header-bg: var(--bg-content);
+    --el-table-header-bg-color: var(--bg-content);
 
     &.el-table--border::before,
     &.el-table--border::after,
@@ -29,14 +29,8 @@
     }
 
     &.el-table--border .el-table__cell:first-child {
-        border-left: 1px solid var(--table-border);
+        border-left: 1px solid var(--border-light);
     }
-}
-
-/* ===== 变体：浅色表头（表头文字同步切深色） ===== */
-.lxj-table--light-header {
-    --table-header-bg: var(--bg-light);
-    --table-header-text: var(--color-sub);
 }
 
 /* ===== 默认骨架（待按设计稿填写） ===== */

@@ -86,12 +86,12 @@ const sideMenu = computed(() => {
         background: transparent;
         --el-menu-item-height: 46px;
         --el-menu-bg-color: transparent;
-        --el-menu-text-color: var(--menu-text);
+        --el-menu-text-color: var(--color-on-dark-sub);
         // --el-menu-active-color: var(--color-info);
-        --el-menu-hover-bg-color: var(--menu-hover-bg);
+        --el-menu-hover-bg-color: var(--bg-selected);
 
         :deep(.el-menu-item.is-active) {
-            background: var(--menu-active-bg);
+            background: var(--bg-selected);
         }
     }
 }

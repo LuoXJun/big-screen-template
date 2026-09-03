@@ -204,7 +204,7 @@ defineProps({
         type: Boolean,
         default: false
     },
-    /** 表格变体类（.lxj-table--grid 等），定义见 styles/element-plus/data-display/_table.scss */
+    /** 表格变体类，定义见 styles/element-plus/data-display/_table.scss */
     variant: {
         type: String,
         default: ''
