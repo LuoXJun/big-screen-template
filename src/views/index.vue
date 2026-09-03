@@ -52,7 +52,6 @@ const sideMenu = computed(() => {
 </script>
 
 <style scoped lang="scss">
-/* EP 浅色变量还原见 element-plus/_admin.scss（.admin-shell 作用域） */
 .admin-shell {
     width: 100vw;
     height: 100vh;

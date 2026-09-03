@@ -1,15 +1,3 @@
-/* ============================================================
-   表单控件覆盖层（双主题令牌驱动，无作用域限定）
-   大屏筛选区与管理端表单共用一份规则：
-   - 控件背景统一引用 --bg-form-item，选中态引用 --bg-selected-form-item
-   - 输入框描边有无由主题差异令牌 --form-item-border-shadow-* 承担
-     （大屏 1px 描边，管理端无边框）
-   - 浮层面板（Select/DatePicker 下拉）背景由 --bg-floating 承担
-     （大屏跟随面板 --bg-panel，管理端跟随控件 --bg-form-item）
-   注意：Select / DatePicker 的下拉面板渲染在 body 下（teleport），
-         双主题作用域（:root / .admin-shell）在 body 上依然成立
-   ============================================================ */
-
 /* ===== 输入框 ===== */
 .el-input__wrapper {
     background-color: var(--bg-form-item);

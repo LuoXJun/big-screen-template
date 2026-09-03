@@ -1,12 +1,1 @@
-/* ============================================================
-   设计令牌聚合入口（sass 约定：tokens/_index.scss）
-   vite.config.ts additionalData 注入到每个组件（@use 'tokens' as *）
-   只允许：@forward / 变量 / @function / @mixin —— 不产生 CSS 输出
-
-   暴露：
-   - functions：base() / font() 尺寸换算函数
-
-   色板与语义运行时变量（--text-* / --brand / --font-* 等）统一见
-   _semantic.scss，由 index.scss 全局加载一次，不注入组件。
-   ============================================================ */
 @forward './functions';
