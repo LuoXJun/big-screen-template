@@ -5,14 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from '@/stores/useMenuStore';
+import { useRouter } from 'vue-router';
 
-const store = useMenuStore();
+const router = useRouter();
 
-const login = async () => {
+const login = () => {
     sessionStorage.setItem('token', '555');
-    // 进入管理端：加载管理端菜单并动态注册路由
-    await store.enterAdmin();
+    router.push('/');
 };
 </script>
 

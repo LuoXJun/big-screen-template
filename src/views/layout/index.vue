@@ -2,10 +2,9 @@
     <div class="layout-shell">
         <!-- 全局顶部导航：左侧标题 + 右侧菜单 -->
         <header class="layout-navbar">
-            <h1 class="navbar-title">{{ menuStore.currentProject?.name ?? '大屏标题' }}</h1>
+            <h1 class="navbar-title">大屏可视化平台</h1>
             <div class="navbar-right">
                 <BaseMenu />
-                <button class="back-admin-btn" @click="backToAdmin">返回管理端</button>
             </div>
         </header>
 
@@ -39,22 +38,14 @@ import { showMapPopup } from '@/components/basePanel/mapPopup';
 import { createHandler, flyToLonLat, getViewer, toLonLat } from '@/cesium';
 import { layerControlConfig, initialView } from './config/layerControl';
 import PopupInfo from '@/components/basePanel/PopupInfo.vue';
-import { useMenuStore } from '@/stores/useMenuStore';
-
-const menuStore = useMenuStore();
-
-/** 返回管理端：切换菜单模式并跳转 */
-function backToAdmin(): void {
-    menuStore.enterAdmin();
-}
 
 /** 图层就绪后的全局行为：视角定位到设备区域 */
 function onLayersReady(): void {
     flyToLonLat(initialView.lng, initialView.lat, initialView.height);
 }
 
-/* 大屏主题作用域同步到 body：与大屏相关的 EP 浮层（Select/DatePicker 等 teleport 到 body 下）
-   通过 .layout-shell 解析到大屏语义令牌，与 .admin-shell 管理端作用域互不干扰 */
+/* 大屏主题作用域同步到 body：EP 浮层（Select/DatePicker 等 teleport 到 body 下）
+   通过 .layout-shell 解析到大屏语义令牌 */
 onMounted(() => document.body.classList.add('layout-shell'));
 onUnmounted(() => document.body.classList.remove('layout-shell'));
 
@@ -116,24 +107,6 @@ onMounted(() => {
         display: flex;
         align-items: center;
         gap: base(24px);
-    }
-
-    .back-admin-btn {
-        height: base(32px);
-        padding: 0 base(16px);
-        box-sizing: border-box;
-        font-size: var(--font-panel);
-        letter-spacing: 1px;
-        color: var(--color-main);
-        background: rgba(0, 168, 255, 0.12);
-        border: 1px solid rgba(0, 168, 255, 0.45);
-        border-radius: base(4px);
-        cursor: pointer;
-        transition: background 0.2s;
-
-        &:hover {
-            background: rgba(0, 168, 255, 0.24);
-        }
     }
 }
 

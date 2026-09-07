@@ -1,10 +1,28 @@
-import { useMenuStore } from '@/stores/useMenuStore';
-import { rebuildRoutes } from './rebuild';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
+import { screenRoutes } from './route';
 
-/** 路由配置导出：布局菜单等 UI 从路由派生，避免重复维护 */
+/** 大屏页面加载器：路径约定 views/pages/**\/index.vue，配置驱动避免手写 import */
+const views = import.meta.glob('@/views/pages/**/index.vue');
+const fallbackView = () => import('@/views/notFound.vue');
+
+/** layout 子路由由大屏配置生成，顶栏菜单（BaseMenu）从这些路由的 meta.title 派生 */
+const screenChildren: RouteRecordRaw[] = screenRoutes
+    .filter((item) => !item.isHidden)
+    .map((item) => ({
+        path: item.path,
+        name: item.name,
+        component: views[`/src/views/pages/${item.component}/index.vue`] ?? fallbackView,
+        meta: { title: item.title }
+    }));
+
 const routes: RouteRecordRaw[] = [
+    {
+        path: '/',
+        name: 'layout',
+        component: () => import('@/views/layout/index.vue'),
+        children: screenChildren
+    },
     {
         path: '/login',
         name: 'login',
@@ -16,7 +34,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/:pathMatch(.*)',
         name: '404',
-        component: () => import('@/views/notFound.vue')
+        component: fallbackView
     }
 ];
 
@@ -28,52 +46,13 @@ const router = createRouter({
     }
 });
 
-/** 菜单状态持久化到 sessionStorage（getState 据此恢复），仅注册一次 */
-let persistRegistered = false;
-
-router.beforeEach(async (to) => {
-    const store = useMenuStore();
-    if (!persistRegistered) {
-        persistRegistered = true;
-        store.$subscribe((_mutation, state) => {
-            sessionStorage.setItem('state', JSON.stringify(state));
-        });
-    }
-    const token = sessionStorage.getItem('token');
-
+/** 大屏登录校验：未登录重定向登录页，进入登录页即清理会话 */
+router.beforeEach((to) => {
     if (to.path === '/login') {
         sessionStorage.clear();
-        store.$reset();
         return;
     }
-
-    if (!token) {
-        return to.path !== '/login' ? '/login' : undefined;
-    }
-
-    // 大屏模式依赖当前项目：项目缺失（如状态损坏）时回退管理端，避免空状态大屏
-    if (store.mode === 'screen' && !store.currentProject) {
-        await store.enterAdmin();
-        return;
-    }
-
-    if (to.matched.length >= 2) {
-        store.currentMenu = {
-            length: to.matched.length,
-            name: to.matched[1]?.name as string,
-            // 使用完整路径，供顶栏菜单 is-selected 的 includes 判断使用
-            path: to.path
-        };
-    }
-
-    /**
-     * isNeedUpdate用来控制路由重新注册
-     * hasRoue用来防止路由没有注册成功的情况，即便这种情况不应该会发生
-     * */
-    if (store.isNeedUpdate || !router.hasRoute('layout')) {
-        await rebuildRoutes(store);
-        return to.fullPath;
-    }
+    if (!sessionStorage.getItem('token')) return '/login';
     return undefined;
 });
 
