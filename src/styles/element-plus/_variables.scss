@@ -39,8 +39,3 @@ $el-colors: (
 :root {
     @include el-theme-map;
 }
-
-/* 管理端作用域：仅差异参数不同（light-9 混色目标为带透明度的白） */
-.admin-shell {
-    @include el-theme-map(#ffffff17);
-}

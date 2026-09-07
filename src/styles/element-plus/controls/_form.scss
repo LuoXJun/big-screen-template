@@ -174,20 +174,6 @@
     background-color: var(--bg-form-item);
 }
 
-/* ===== 深蓝控件变体（筛选区/深底表单专用，消除逐页 scoped 重复） =====
-   深蓝底 + 直角描边，引用 .lxj-form-deep 挂载后输入框/选择器/按钮一起切换；
-   --bg-form-item-deep 为管理端专属令牌（见语义层） */
-.lxj-form-deep .el-input__wrapper,
-.lxj-form-deep .el-select__wrapper {
-    background-color: var(--bg-form-item-deep);
-    box-shadow: 0 0 0 1px var(--border-light) inset;
-    border-radius: 0;
-}
-
-.lxj-form-deep .el-button {
-    border-radius: unset;
-}
-
 /* ===== 开关 ===== */
 .el-switch.is-checked .el-switch__core {
     background-color: var(--bg-selected-form-item);
