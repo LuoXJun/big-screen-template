@@ -25,7 +25,7 @@ export const downloadFileFetch = (url: string, filename: string) => {
             const blobUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = blobUrl;
-             // 这里设置下载的文件名
+            // 这里设置下载的文件名
             a.download = filename;
 
             // 触发下载

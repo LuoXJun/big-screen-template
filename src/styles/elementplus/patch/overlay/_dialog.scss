@@ -5,9 +5,9 @@
 // =============================================================
 
 .el-dialog {
-  // ---- ① 变量绑定(断链项;圆角/阴影/遮罩本已引全局 --el-*,随主题层跟随) ----
-  --el-dialog-bg-color: var(--lxj-bg-overlay);
-  --el-dialog-title-font-size: var(--lxj-font-subtitle);
-  --el-dialog-content-font-size: var(--lxj-font-body);
-  --el-dialog-padding-primary: var(--lxj-space-overlay);
+    // ---- ① 变量绑定(断链项;圆角/阴影/遮罩本已引全局 --el-*,随主题层跟随) ----
+    --el-dialog-bg-color: var(--lxj-bg-overlay);
+    --el-dialog-title-font-size: var(--lxj-font-subtitle);
+    --el-dialog-content-font-size: var(--lxj-font-body);
+    --el-dialog-padding-primary: var(--lxj-space-overlay);
 }

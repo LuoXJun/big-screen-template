@@ -3,7 +3,10 @@
         <el-aside v-if="sideMenu.routes.length" width="220px" class="admin-aside">
             <div class="aside-brand">项目管理系统</div>
             <el-menu class="aside-menu" :default-active="activePath" router>
-                <baseMenuHorizontalAside :list="sideMenu.routes" :parent-path="sideMenu.parentPath" />
+                <baseMenuHorizontalAside
+                    :list="sideMenu.routes"
+                    :parent-path="sideMenu.parentPath"
+                />
             </el-menu>
         </el-aside>
         <el-container class="admin-body">
@@ -44,9 +47,7 @@ onUnmounted(() => {
  */
 const sideMenu = computed(() => {
     const cur = store.currentMenu.path;
-    const top = store.menu.find(
-        (m) => cur === m.path || cur.startsWith(m.path + '/')
-    );
+    const top = store.menu.find((m) => cur === m.path || cur.startsWith(m.path + '/'));
     if (!top?.children?.length) return { routes: [], parentPath: '' };
     return {
         routes: store.getRoutes(top.children),

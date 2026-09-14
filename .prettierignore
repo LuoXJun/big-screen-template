@@ -12,3 +12,7 @@ pnpm-lock.yaml
 *.gif
 *.webp
 *.ico
+
+# 自动生成（unplugin）——格式由生成器决定，prettier 改写会被下次构建覆盖
+src/types/autoImport.d.ts
+src/types/components.d.ts

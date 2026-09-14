@@ -5,7 +5,7 @@
 // =============================================================
 
 .el-card {
-  // ---- ① 变量绑定(仅断链项;背景/边框本已引全局 --el-*,随主题层跟随) ----
-  --el-card-border-radius: var(--lxj-radius-base);
-  --el-card-padding: var(--lxj-space-overlay);
+    // ---- ① 变量绑定(仅断链项;背景/边框本已引全局 --el-*,随主题层跟随) ----
+    --el-card-border-radius: var(--lxj-radius-base);
+    --el-card-padding: var(--lxj-space-overlay);
 }
