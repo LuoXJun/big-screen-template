@@ -1,111 +1,29 @@
-@use '@/styles/tokens' as *;
-@use './tokens/palette';
-@use './tokens/semantic';
-@use './base';
-@use './element-plus';
+// =============================================================
+// 全局唯一 SCSS 入口 —— main.ts 只允许 import 这一个样式文件
+// 本文件只做 @use 编排,不写任何具体规则
+// 加载顺序即层叠优先级:越靠后越有权
+// @use 顺序 = CSS 输出顺序(同优先级规则后写者胜)
+// =============================================================
 
-/* ===== 字体定义 ===== */
-@font-face {
-    font-family: 'YouSheBiaoTiHei';
-    src: url('@/assets/font/YouSheBiaoTiHei-2.ttf');
-}
+// ① EP 组件样式(全量引入)
+@use 'element-plus/theme-chalk/src/index.scss' as *;
 
-/* 苹方 */
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Ultralight.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
+// ② 设计值层 + 语义层(--lxj-* 纯 CSS 变量,零 sass 变量)
+//    语义三作用域::root 通用(shared) / html[data-app='admin'] / html[data-app='screen']
+@use './tokens/base';
+@use './tokens/shared';
+@use './tokens/admin';
+@use './tokens/screen';
 
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Thin.woff2') format('woff2');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
+// ③ 全局基础层:元素级默认样式(根上应用字体族等)
+//    as *:匿名空间,避免与 tokens/_base 的默认命名空间 "base" 重名
+@use './base' as *;
 
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
+// ④ EP 主题绑定层:覆盖 EP 编译产物中的 :root 默认值(必须在 EP 之后)
+@use './elementplus/theme';
 
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+// ⑤ 组件补丁层:变量绑定 + 属性规则(每个组件一个文件,改哪找哪)
+@use './elementplus/patch';
 
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'PingFang SC';
-    src: url('@/assets/font/PingFangSC/PingFangSC-Semibold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ===== 基础样式 ===== */
-html,
-body,
-#app {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-::-webkit-scrollbar {
-    width: 2px;
-    /* 竖向滚动条宽度 */
-    height: 2px;
-    /* 横向滚动条高度 */
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    /*滚动条里面小方块*/
-    border-radius: 20px;
-    background-color: var(--c-blue-300);
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.5) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.5) 50%,
-        rgba(255, 255, 255, 0.5) 75%,
-        transparent 75%,
-        transparent
-    );
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--c-gray-200);
-    /* 滚动条悬浮颜色 */
-}
-
-::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
-    background: transparent;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track-piece {
-    /* 滚动条背景颜色 */
-    background: transparent;
-    border-radius: 10px;
-}
+// ⑥ 工具层:通用工具类(带 lxj- 前缀,不污染 el- 命名空间)
+@use './utilities';

@@ -1,3 +1,13 @@
+// =============================================================
+// ★ 令牌工具函数(编译期;零 sass 值输出,只做数值换算)
+// 自适应基准 --screen-base(定义于 _screen.scss,默认 100vw):
+//   base($design-px) —— 线性换算:设计稿 px × (--screen-base / 1920);
+//   font($design-px) —— 字号专用:base 基础上叠加 clamp 限幅
+//     (默认下限 design×0.5+4px 保可读性;上限 design×1.1 防臃肿);
+// 调用须传带单位的 px 值(如 base(80px));自定义属性内须插值:#{base(80px)};
+// 经 vite additionalData 全局注入,组件 scoped 样式内可直接裸调;
+// tokens/ 内 partial 不经注入,须自写 @use "./functions" as * 后同样裸调
+// =============================================================
 /* sass:math 必须位于文件顶部（Sass 模块规则约束） */
 @use 'sass:math';
 

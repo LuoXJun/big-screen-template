@@ -48,33 +48,41 @@ onBeforeUnmount(() => window.clearInterval(timer));
     align-items: center;
     justify-content: space-between;
     padding: 0 base(24px);
-    background: linear-gradient(180deg, rgba(0, 84, 168, 0.35), rgba(0, 84, 168, 0.05));
-    border-bottom: 1px solid rgba(0, 168, 255, 0.35);
+    background: var(--lxj-bg-header);
+    border-bottom: 1px solid var(--lxj-color-border);
 
     .header-title {
-        font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
-        font-size: var(--font-hero);
-        letter-spacing: var(--letter-spacing-hero);
-        color: var(--color-main);
-        text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
+        font-family: var(--lxj-font-family-title);
+        font-size: var(--lxj-font-hero);
+        letter-spacing: var(--lxj-letter-spacing-hero);
+        color: var(--lxj-color-text-primary);
+        text-shadow: 0 0 base(18px) color-mix(in srgb, var(--lxj-color-primary) 65%, transparent);
         margin: 0;
     }
 
     .header-wing {
         display: flex;
         align-items: center;
-        gap: 12px;
-        color: var(--color-sub);
-        font-size: var(--font-desc);
+        gap: base(12px);
+        color: var(--lxj-color-text-secondary);
+        font-size: var(--lxj-font-desc);
 
         .wing-line {
-            width: 140px;
+            width: base(140px);
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8));
+            background: linear-gradient(
+                90deg,
+                transparent,
+                color-mix(in srgb, var(--lxj-color-primary) 80%, transparent)
+            );
         }
 
         &--right .wing-line {
-            background: linear-gradient(90deg, rgba(0, 212, 255, 0.8), transparent);
+            background: linear-gradient(
+                90deg,
+                color-mix(in srgb, var(--lxj-color-primary) 80%, transparent),
+                transparent
+            );
         }
     }
 }

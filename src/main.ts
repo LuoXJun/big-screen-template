@@ -5,10 +5,9 @@ import AppElEment from './App.vue';
 import router from './router';
 import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
-import 'normalize.css';
-import 'element-plus/dist/index.css';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
-// 项目样式最后加载，保证 :root 变量覆盖 EP 默认主题
+// 全局唯一样式入口：EP 组件样式(SCSS 源) + 设计/语义令牌 + 基础层 + EP 绑定 + 补丁 + 工具层
+// normalize 与 EP 编译产物已由该入口承接，勿再单引
 import '@/styles/index.scss';
 
 const app = createApp(AppElEment);

@@ -53,10 +53,14 @@ function onLayersReady(): void {
     flyToLonLat(initialView.lng, initialView.lat, initialView.height);
 }
 
-/* 大屏主题作用域同步到 body：与大屏相关的 EP 浮层（Select/DatePicker 等 teleport 到 body 下）
-   通过 .layout-shell 解析到大屏语义令牌，与 .admin-shell 管理端作用域互不干扰 */
-onMounted(() => document.body.classList.add('layout-shell'));
-onUnmounted(() => document.body.classList.remove('layout-shell'));
+/* 主题作用域同步到 html[data-app]：语义令牌层按端解析，
+   teleport 到 body 的 EP 浮层同样命中，与管理端 admin 作用域互不干扰 */
+onMounted(() => {
+    document.documentElement.dataset.app = 'screen';
+});
+onUnmounted(() => {
+    delete document.documentElement.dataset.app;
+});
 
 // 点击实体 → 弹窗显示名称与类型（viewer 就绪后注册；handler 由 BaseCesium 卸载时统一清理）
 onMounted(() => {
@@ -86,7 +90,12 @@ onMounted(() => {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(0, 120, 255, 0.16), transparent 55%), var(--bg-list);
+        radial-gradient(
+            ellipse at 50% 0%,
+            color-mix(in srgb, var(--lxj-color-primary) 16%, transparent),
+            transparent 55%
+        ),
+        var(--lxj-bg-page);
 }
 
 .layout-navbar {
@@ -94,21 +103,21 @@ onMounted(() => {
     top: 0;
     left: 0;
     right: 0;
-    height: var(--header-height);
+    height: var(--lxj-header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 base(32px);
-    background: linear-gradient(180deg, rgba(0, 84, 168, 0.35), rgba(0, 84, 168, 0.05));
-    border-bottom: 1px solid rgba(0, 168, 255, 0.35);
+    background: var(--lxj-bg-header);
+    border-bottom: 1px solid var(--lxj-color-border);
     z-index: 20;
 
     .navbar-title {
-        font-family: 'YouSheBiaoTiHei', 'PingFang SC', sans-serif;
-        font-size: var(--font-hero);
-        letter-spacing: var(--letter-spacing-hero);
-        color: var(--color-main);
-        text-shadow: 0 0 18px rgba(0, 212, 255, 0.65);
+        font-family: var(--lxj-font-family-title);
+        font-size: var(--lxj-font-hero);
+        letter-spacing: var(--lxj-letter-spacing-hero);
+        color: var(--lxj-color-text-primary);
+        text-shadow: 0 0 base(18px) color-mix(in srgb, var(--lxj-color-primary) 65%, transparent);
         margin: 0;
     }
 
@@ -122,17 +131,17 @@ onMounted(() => {
         height: base(32px);
         padding: 0 base(16px);
         box-sizing: border-box;
-        font-size: var(--font-panel);
+        font-size: var(--lxj-font-panel);
         letter-spacing: 1px;
-        color: var(--color-main);
-        background: rgba(0, 168, 255, 0.12);
-        border: 1px solid rgba(0, 168, 255, 0.45);
+        color: var(--lxj-color-primary);
+        background: color-mix(in srgb, var(--lxj-color-primary) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--lxj-color-primary) 45%, transparent);
         border-radius: base(4px);
         cursor: pointer;
         transition: background 0.2s;
 
         &:hover {
-            background: rgba(0, 168, 255, 0.24);
+            background: color-mix(in srgb, var(--lxj-color-primary) 24%, transparent);
         }
     }
 }
@@ -154,8 +163,8 @@ onMounted(() => {
 /* 全局图层控制：右侧固定浮层，以顶部导航高度为偏移基准，不随页面布局变化 */
 .layer-panel {
     position: absolute;
-    top: calc(var(--header-height) + var(--space-screen));
-    left: calc(base(350px) + var(--space-screen));
+    top: calc(var(--lxj-header-height) + var(--lxj-space-screen));
+    left: calc(base(350px) + var(--lxj-space-screen));
     width: base(300px);
     z-index: 10;
 

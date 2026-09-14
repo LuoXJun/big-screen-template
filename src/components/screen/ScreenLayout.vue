@@ -53,10 +53,10 @@
     inset: 0;
     display: flex;
     flex-direction: column;
-    /* 内容区从全局顶栏下方开始；底部留出全局底部栏高度（--footer-height） */
-    padding-top: var(--header-height);
-    padding-bottom: var(--footer-height);
-    font-size: var(--font-body); /* 基础字号随视口自适应 */
+    /* 内容区从全局顶栏下方开始；底部留出全局底部栏高度（--lxj-footer-height） */
+    padding-top: var(--lxj-header-height);
+    padding-bottom: var(--lxj-footer-height);
+    font-size: var(--lxj-font-body); /* 基础字号随视口自适应 */
     pointer-events: none; /* 整层穿透：地图交互不受 UI 层遮挡 */
 }
 
@@ -65,8 +65,8 @@
     min-height: 0;
     display: flex;
     justify-content: space-between;
-    gap: var(--space-screen);
-    padding: var(--space-screen);
+    gap: var(--lxj-space-screen);
+    padding: var(--lxj-space-screen);
     pointer-events: none; /* 空白容器穿透，中央地图可交互 */
 }
 

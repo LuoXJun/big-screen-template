@@ -56,15 +56,15 @@ const onClick = (label: string) => {
     justify-content: space-between;
     .baseTab-item {
         flex: 30% 0 0;
-        color: var(--color-info);
-        border: 1px solid var(--color-info);
+        color: var(--lxj-color-info);
+        border: 1px solid var(--lxj-color-info);
         padding: 6px 12px;
         display: flex;
         align-items: center;
         cursor: pointer;
         &.active {
-            color: var(--color-warning);
-            border: 1px solid var(--color-warning);
+            color: var(--lxj-color-warning);
+            border: 1px solid var(--lxj-color-warning);
         }
         > img {
             width: 12px;

@@ -287,6 +287,5 @@ defineExpose({ toggleRowSelection, callBackInstance });
 .base-table {
     width: 100%;
     height: 100%;
-    /* 表头/表体文字色由覆盖层 --el-table-header-text-color / --el-table-text-color 接管 */
 }
 </style>

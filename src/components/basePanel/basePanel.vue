@@ -81,26 +81,26 @@ $panel-footer-height: 64px;
     top: 100px;
     user-select: none;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: var(--radius-8);
     overflow: hidden;
     /* 浅色地图信息卡（设计稿既定：浮层白底高对比，独立于深色令牌体系） */
-    background-color: #fff;
+    background-color: var(--color-white);
 
     .base-panel-header {
         height: $panel-header-height;
-        background: var(--bg-list);
+        background: var(--color-slate-800);
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 24px;
         box-sizing: border-box;
 
-        color: #fff;
+        color: var(--color-white);
 
-        font-family: 'PingFang SC';
-        font-size: 18px;
+        font-family: var(--font-family-base);
+        font-size: var(--font-18);
         font-style: normal;
-        font-weight: 600;
+        font-weight: var(--font-weight-600);
         line-height: 26px; /* 144.444% */
         > .el-icon {
             cursor: pointer;
@@ -108,7 +108,7 @@ $panel-footer-height: 64px;
     }
     .base-panel-content {
         height: calc(100% - #{$panel-header-height} - #{$panel-footer-height});
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid var(--color-gray-200);
         padding: 40px 32px;
         box-sizing: border-box;
         overflow: auto;

@@ -29,10 +29,14 @@ const route = useRoute();
 
 const activePath = computed(() => route.path);
 
-/* 管理端主题作用域同步到 body：Select/DatePicker 等浮层 teleport 到 body 下，
-   脱离 .admin-shell 布局作用域，需在 body 上也挂 .admin-shell 才能解析到管理端语义令牌 */
-onMounted(() => document.body.classList.add('admin-shell'));
-onUnmounted(() => document.body.classList.remove('admin-shell'));
+/* 主题作用域同步到 html[data-app]：语义令牌层（styles/tokens）按端解析，
+   挂 html 而非布局根，teleport 到 body 的 EP 弹层同样命中 */
+onMounted(() => {
+    document.documentElement.dataset.app = 'admin';
+});
+onUnmounted(() => {
+    delete document.documentElement.dataset.app;
+});
 
 /**
  * 侧边菜单跟随顶栏选中项：取其一二级子菜单渲染（转换后带 meta 字段）；
@@ -56,12 +60,12 @@ const sideMenu = computed(() => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--bg-sidebar) 0%, var(--bg-list) 100%);
+    background: linear-gradient(180deg, var(--lxj-bg-sidebar) 0%, var(--lxj-bg-page) 100%);
 }
 
 .admin-aside {
-    background: var(--bg-sidebar);
-    border-right: 1px solid var(--border-on-dark);
+    background: var(--lxj-bg-sidebar);
+    border-right: 1px solid var(--lxj-color-border);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -71,11 +75,11 @@ const sideMenu = computed(() => {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: var(--font-weight-title);
-        font-size: var(--font-panel);
-        letter-spacing: var(--letter-spacing-title);
-        color: var(--color-title);
-        border-bottom: 1px solid var(--border-on-dark);
+        font-weight: var(--font-weight-600);
+        font-size: var(--lxj-font-panel);
+        letter-spacing: 1px;
+        color: var(--lxj-color-text-primary);
+        border-bottom: 1px solid var(--lxj-color-border);
         flex-shrink: 0;
     }
 
@@ -86,12 +90,11 @@ const sideMenu = computed(() => {
         background: transparent;
         --el-menu-item-height: 46px;
         --el-menu-bg-color: transparent;
-        --el-menu-text-color: var(--color-on-dark-sub);
-        // --el-menu-active-color: var(--color-info);
-        --el-menu-hover-bg-color: var(--bg-selected);
+        --el-menu-text-color: var(--lxj-color-text-regular);
+        --el-menu-hover-bg-color: var(--lxj-bg-hover);
 
         :deep(.el-menu-item.is-active) {
-            background: var(--bg-selected);
+            background: var(--lxj-bg-active);
         }
     }
 }
@@ -102,8 +105,8 @@ const sideMenu = computed(() => {
 }
 
 .admin-header {
-    background: var(--bg-header);
-    border-bottom: 1px solid var(--border-on-dark);
+    background: var(--lxj-bg-header);
+    border-bottom: 1px solid var(--lxj-color-border);
     padding: 0;
 }
 
@@ -111,8 +114,7 @@ const sideMenu = computed(() => {
     flex: 1;
     min-height: 0;
     overflow: auto;
-    padding: var(--space-4);
-    // background: var(--bg-content);
-    background: var(--bg-sidebar);
+    padding: var(--lxj-space-16);
+    background: var(--lxj-bg-page);
 }
 </style>

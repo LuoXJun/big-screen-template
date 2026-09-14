@@ -45,24 +45,25 @@ function onSelect(path: string): void {
 .base-menu {
     flex-shrink: 0;
     --el-menu-bg-color: transparent;
-    --el-menu-text-color: var(--color-on-dark-sub);
+    --el-menu-text-color: var(--lxj-color-text-primary);
     /* 选中色走 EP 变量机制（内部规则取值），避免逐条覆盖 + !important */
-    --el-menu-active-color: var(--color-tabs);
+    --el-menu-active-color: var(--lxj-color-primary);
     --el-menu-hover-bg-color: transparent;
     border-bottom: none;
 
     :deep(.el-menu-item) {
-        font-size: var(--font-panel);
+        font-size: var(--lxj-font-body);
         letter-spacing: 1px;
         border-bottom: 2px solid transparent;
 
         &.is-active {
-            border-bottom-color: var(--color-tabs);
-            text-shadow: 0 0 10px color-mix(in srgb, var(--color-tabs) 60%, transparent);
+            border-bottom-color: var(--lxj-color-primary);
+            text-shadow: 0 0 base(10px)
+                color-mix(in srgb, var(--lxj-color-primary) 60%, transparent);
         }
 
         &:hover {
-            background: color-mix(in srgb, var(--color-tabs) 8%, transparent);
+            background: color-mix(in srgb, var(--lxj-color-primary) 8%, transparent);
         }
     }
 }

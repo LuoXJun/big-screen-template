@@ -1,0 +1,48 @@
+// =============================================================
+// ★ 语义层 · 共享默认(注册在 :root)
+// 模式:「共享默认 + 差异端覆盖」——
+//   两端同值的尺寸型语义(字号/间距/圆角)在此写 px 默认值,
+//   大屏端 vw 换算在 _screen.scss 覆盖;
+//   颜色/背景/阴影等分端语义在 _admin.scss / _screen.scss 各自写全
+// 全 CSS 原生变量;组件/页面零 @use,var() 即用
+// =============================================================
+
+:root {
+  // ---- 层级(业务自建浮层须 < 2000;2000+ 为 EP 弹层池,
+  //       --el-index-popper(2000) 起动态分配,EP 弹层天然在最上层) ----
+  --lxj-z-sticky: 100;
+  --lxj-z-dropdown: 1000;
+  --lxj-z-mask: 1100;
+  --lxj-z-modal: 1200;
+  --lxj-z-toast: 1300;
+  --lxj-z-loading: 1400;
+
+  // ---- 字号(px 默认;大屏 vw 覆盖见 _screen.scss) ----
+  --lxj-font-metric: var(--font-32);
+  --lxj-font-title: var(--font-24);
+  --lxj-font-subtitle: var(--font-18);
+  --lxj-font-panel: var(--font-16);
+  --lxj-font-body: var(--font-14);
+  --lxj-font-desc: var(--font-12);
+
+  // ---- 字体族(占位,待设计稿校准) ----
+  --lxj-font-family: var(--font-family-base);
+  --lxj-font-family-title: var(--font-family-base);
+  --lxj-font-family-num: var(--font-family-numeric);
+
+  // ---- 间距(px 默认;大屏 vw 覆盖见 _screen.scss) ----
+  --lxj-space-4: var(--space-4);
+  --lxj-space-8: var(--space-8);
+  --lxj-space-12: var(--space-12);
+  --lxj-space-16: var(--space-16);
+  --lxj-space-20: var(--space-20);
+  --lxj-space-24: var(--space-24);
+  --lxj-space-32: var(--space-32);
+  --lxj-space-page: var(--space-16);
+  --lxj-space-overlay: var(--space-20);
+
+  // ---- 圆角(px 默认;大屏 vw 覆盖见 _screen.scss) ----
+  --lxj-radius-base: var(--radius-6);
+  --lxj-radius-round: var(--radius-20);
+  --lxj-radius-circle: var(--radius-half);
+}

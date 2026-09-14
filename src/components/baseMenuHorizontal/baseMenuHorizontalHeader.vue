@@ -64,32 +64,18 @@ const isMenuActive = (menu: RouteOptions) => {
         .lxj-menu-item {
             cursor: pointer;
             > span {
-                color: var(--color-on-dark);
+                color: var(--lxj-color-text-primary);
                 margin-right: 20px;
                 display: inline-block;
                 padding: 8px 20px;
                 transition: background 0.2s;
                 &:hover {
-                    background: var(--bg-selected);
+                    background: var(--lxj-bg-hover);
                 }
                 &.is-selected {
-                    background: color-mix(in srgb, var(--bg-selected) 80%, transparent);
+                    background: var(--lxj-bg-active);
                 }
             }
-        }
-    }
-
-    // 退出登录按钮：深色玻璃风，适配深蓝顶栏
-    :deep(.el-button) {
-        color: var(--color-on-dark);
-        background: var(--bg-selected);
-        border-color: var(--border-on-dark-strong);
-        transition: all 0.2s;
-
-        &:hover {
-            background: var(--bg-selected);
-            border-color: var(--color-brand);
-            color: var(--color-brand);
         }
     }
 }

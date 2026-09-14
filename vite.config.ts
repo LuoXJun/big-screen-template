@@ -32,7 +32,8 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: `@use '@/styles/tokens' as *;`
+                // 令牌函数层全局注入：组件 scoped 样式内可裸调 base() / font()
+                additionalData: `@use '@/styles/tokens/functions' as *;`
             }
         }
     },

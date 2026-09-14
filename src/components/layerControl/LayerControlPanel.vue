@@ -124,18 +124,18 @@ function applyLayerVisible(node: LayerTreeNode, visible: boolean): void {
 }
 
 .row-group {
-    font-weight: 600;
+    font-weight: var(--font-weight-600);
     letter-spacing: 1px;
-    color: var(--color-title);
+    color: var(--lxj-color-text-primary);
 }
 
 .row-layer {
-    font-size: var(--font-panel);
-    color: var(--color-title);
+    font-size: var(--lxj-font-panel);
+    color: var(--lxj-color-text-primary);
 }
 
 .row-item {
-    font-size: calc(var(--font-panel) * 0.9);
-    color: color-mix(in srgb, var(--color-title) 85%, transparent);
+    font-size: calc(var(--lxj-font-panel) * 0.9);
+    color: color-mix(in srgb, var(--lxj-color-text-primary) 85%, transparent);
 }
 </style>

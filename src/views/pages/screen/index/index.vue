@@ -29,7 +29,7 @@ import ScreenPanel from '@/components/screen/ScreenPanel.vue';
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-screen);
+    gap: var(--lxj-space-screen);
     min-height: 0;
     pointer-events: auto;
 }
