@@ -76,17 +76,19 @@ pnpm build       # 类型检查 + 生产构建（产物在 dist/）
 
 ### 目录与摆放位置
 
-| 路径                      | 层                           | 放什么                                                                    |
-| ------------------------- | ---------------------------- | ------------------------------------------------------------------------- |
-| `tokens/_base.scss`       | 设计值层                     | 纯色板与数值尺度（"值仓库"，无消费语义）：新增品牌色、字号/间距档位放这里 |
-| `tokens/_shared.scss`     | 语义层 · 共享默认（`:root`） | 两端同值的尺寸型语义：字号、间距、圆角、层级 `--lxj-z-*`                  |
-| `tokens/_admin.scss`      | 语义层 · 管理端              | `html[data-app="admin"]` 下管理端专属：颜色、背景、填充、阴影             |
-| `tokens/_screen.scss`     | 语义层 · 大屏                | `html[data-app="screen"]` 下大屏专属：颜色类 + 尺寸语义的 vw 换算覆盖     |
-| `tokens/_functions.scss`  | 编译期函数                   | `base()` / `font()` 数值换算，经 vite `additionalData` 全局注入           |
-| `base/`                   | 全局基础层                   | 元素级归置（reset）与 `@font-face` 字体声明，零类选择器                   |
-| `elementplus/_theme.scss` | EP 绑定层                    | `--el-*: var(--lxj-*)` 全量绑定，EP 色阶用 `color-mix()` 运行时推导       |
-| `elementplus/patch/`      | 组件补丁层                   | 一个组件一个文件（`_button.scss` / `_card.scss` / `_dialog.scss`）        |
-| `utilities/`              | 工具层                       | 通用工具类，只允许 `lxj-` 前缀，禁止触碰 `el-*`                           |
+| 路径                      | 层                           | 放什么                                                                                                        |
+| ------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `tokens/_base.scss`       | 设计值层                     | 纯色板与数值尺度（"值仓库"，无消费语义）：新增品牌色、字号/间距档位放这里                                     |
+| `tokens/_shared.scss`     | 语义层 · 共享默认（`:root`） | 两端同值的尺寸型语义：字号、间距、圆角、层级 `--lxj-z-*`                                                      |
+| `tokens/_admin.scss`      | 语义层 · 管理端              | `html[data-app="admin"]` 下管理端专属：颜色、背景、填充、阴影                                                 |
+| `tokens/_screen.scss`     | 语义层 · 大屏                | `html[data-app="screen"]` 下大屏专属：颜色类 + 尺寸语义的 vw 换算覆盖                                         |
+| `tokens/_functions.scss`  | 编译期函数                   | `base()` / `font()` 数值换算，经 vite `additionalData` 全局注入                                               |
+| `base/`                   | 全局基础层                   | 元素级归置（reset）与 `@font-face` 字体声明，零类选择器                                                       |
+| `elementplus/_theme.scss` | EP 绑定层                    | `--el-*: var(--lxj-*)` 全量绑定，EP 色阶用 `color-mix()` 运行时推导                                           |
+| `elementplus/patch/`      | 组件补丁层                   | 一个组件一个文件，按样式维护视角分类：`base/` `form/` `display/` `overlay/` `nav/`（浮层类统一归 `overlay/`） |
+| `utilities/`              | 工具层                       | 通用工具类，只允许 `lxj-` 前缀，禁止触碰 `el-*`                                                               |
+
+> 分层原则：**仅在单目录文件数逼近 8（硬约束上限）时才拆子目录**——`patch/` 因 EP 组件数量多已按维护视角分类预留，其余层保持扁平，避免过度分层。
 
 ### 命名规则
 
