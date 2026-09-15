@@ -41,7 +41,7 @@ defineProps<{ title: string }>();
         }
 
         .panel-title {
-            font-size: var(--lxj-font-panel);
+            font-size: var(--lxj-font-section);
             font-weight: var(--font-weight-500);
             color: var(--lxj-color-text-primary);
             letter-spacing: 1px;

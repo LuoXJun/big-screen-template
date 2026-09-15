@@ -1,5 +1,5 @@
 import { createOSMImagery, type IconItem } from '@/cesium';
-import type { LayerControlConfig, LayerTreeNode } from '@/components/layerControl/types';
+import type { LayerControlConfig, LayerTreeNode } from '@/components/screen/layerControl/types';
 
 // 演示数据（架子验证用占位，业务数据由接口提供，替换下方生成函数即可）
 

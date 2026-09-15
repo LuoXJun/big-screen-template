@@ -22,10 +22,13 @@ $el-colors: (
     @each $name, $src in $el-colors {
         --el-color-#{$name}: var(--lxj-color-#{$src});
 
+        // 百分比写成 #{100% - $n * 10%} 而非 #{100 - $n * 10}%:
+        // 后者 "}%" 相邻会让 VSCode 内置 SCSS 语言服务解析错位(整文件报红),
+        // 把 % 收进插值内部可绕开,编译产物完全一致
         @for $n from 1 through 9 {
             --el-color-#{$name}-light-#{$n}: color-mix(
                 in srgb,
-                var(--lxj-color-#{$src}) #{100 - $n * 10}%,
+                var(--lxj-color-#{$src}) #{100% - $n * 10%},
                 #fff
             );
         }

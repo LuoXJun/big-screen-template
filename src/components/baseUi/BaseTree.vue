@@ -1,6 +1,7 @@
 <template>
     <el-tree
         ref="treeRef"
+        class="base-tree"
         :data="data"
         :node-key="nodeKey"
         :props="treeProps"
@@ -82,20 +83,20 @@ defineExpose({ setCheckedKeys });
 <style scoped lang="scss">
 .base-tree {
     background: transparent;
-    --el-tree-node-hover-bg-color: rgba(58, 160, 255, 0.1);
+    --el-tree-node-hover-bg-color: var(--lxj-bg-hover);
     --el-tree-node-expanded-bg-color: transparent;
 
     :deep(.el-tree-node__content) {
         height: auto;
-        min-height: base(28px);
-        padding: base(2px) 0;
-        border-radius: 4px;
+        min-height: var(--lxj-space-24);
+        padding: var(--lxj-space-4) 0;
+        border-radius: var(--lxj-radius-base);
     }
 
     :deep(.el-tree-node__children) {
-        padding-left: base(10px);
-        border-left: 1px solid rgba(58, 160, 255, 0.2);
-        margin-left: base(4px);
+        padding-left: var(--lxj-space-8);
+        border-left: 1px solid color-mix(in srgb, var(--lxj-color-primary) 20%, transparent);
+        margin-left: var(--lxj-space-4);
     }
 }
 </style>

@@ -30,15 +30,15 @@
 <script setup lang="ts">
 import { h, onMounted, onUnmounted } from 'vue';
 import * as Cesium from 'cesium';
-import BaseCesium from '@/components/baseCesium/BaseCesium.vue';
-import BaseMenu from '@/components/baseUi/BaseMenu.vue';
+import BaseCesium from '@/components/screen/baseCesium/BaseCesium.vue';
+import BaseMenu from '@/components/screen/BaseMenu.vue';
 import ScreenPanel from '@/components/screen/ScreenPanel.vue';
 import ScreenFooter from '@/components/screen/ScreenFooter.vue';
-import LayerControlPanel from '@/components/layerControl/LayerControlPanel.vue';
-import { showMapPopup } from '@/components/basePanel/mapPopup';
+import LayerControlPanel from '@/components/screen/layerControl/LayerControlPanel.vue';
+import { showMapPopup } from '@/components/screen/mapPopup/mapPopup';
 import { createHandler, flyToLonLat, getViewer, toLonLat } from '@/cesium';
 import { layerControlConfig, initialView } from './config/layerControl';
-import PopupInfo from '@/components/basePanel/PopupInfo.vue';
+import PopupInfo from '@/components/screen/mapPopup/PopupInfo.vue';
 import { useMenuStore } from '@/stores/useMenuStore';
 
 const menuStore = useMenuStore();
@@ -131,7 +131,7 @@ onMounted(() => {
         height: base(32px);
         padding: 0 base(16px);
         box-sizing: border-box;
-        font-size: var(--lxj-font-panel);
+        font-size: var(--lxj-font-section);
         letter-spacing: 1px;
         color: var(--lxj-color-primary);
         background: color-mix(in srgb, var(--lxj-color-primary) 12%, transparent);

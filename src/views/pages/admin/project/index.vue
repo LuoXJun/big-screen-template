@@ -35,7 +35,7 @@ function enterScreen(project: { id: string; name: string }): void {
         cursor: pointer;
 
         .project-name {
-            font-size: var(--lxj-font-panel);
+            font-size: var(--lxj-font-section);
             font-weight: var(--font-weight-600);
             color: var(--lxj-color-text-primary);
         }

@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { ref, type VNode } from 'vue';
-import BasePanel from './basePanel.vue';
+import BasePanel from '@/components/basePanel/basePanel.vue';
 
 /**
  * 地图弹窗面板（内部组件，不直接使用，由 showMapPopup 挂载）

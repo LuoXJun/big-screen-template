@@ -23,8 +23,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
-import baseMenuHorizontalAside from '@/components/baseMenuHorizontal/baseMenuHorizontalAside.vue';
-import baseMenuHorizontalHeader from '@/components/baseMenuHorizontal/baseMenuHorizontalHeader.vue';
+import baseMenuHorizontalAside from '@/components/admin/baseMenuHorizontal/baseMenuHorizontalAside.vue';
+import baseMenuHorizontalHeader from '@/components/admin/baseMenuHorizontal/baseMenuHorizontalHeader.vue';
 import { useMenuStore } from '@/stores/useMenuStore';
 
 const store = useMenuStore();
@@ -77,7 +77,7 @@ const sideMenu = computed(() => {
         align-items: center;
         justify-content: center;
         font-weight: var(--font-weight-600);
-        font-size: var(--lxj-font-panel);
+        font-size: var(--lxj-font-section);
         letter-spacing: 1px;
         color: var(--lxj-color-text-primary);
         border-bottom: 1px solid var(--lxj-color-border);

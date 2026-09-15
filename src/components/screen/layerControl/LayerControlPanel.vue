@@ -130,12 +130,12 @@ function applyLayerVisible(node: LayerTreeNode, visible: boolean): void {
 }
 
 .row-layer {
-    font-size: var(--lxj-font-panel);
+    font-size: var(--lxj-font-section);
     color: var(--lxj-color-text-primary);
 }
 
 .row-item {
-    font-size: calc(var(--lxj-font-panel) * 0.9);
+    font-size: calc(var(--lxj-font-section) * 0.9);
     color: color-mix(in srgb, var(--lxj-color-text-primary) 85%, transparent);
 }
 </style>
