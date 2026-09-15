@@ -19,10 +19,8 @@
         "analyze": "vue-mess-detector analyze ./src"
     },
     "dependencies": {
-        "@element-plus/icons-vue": "^2.3.2",
         "axios": "^1.19.0",
         "cesium": "~1.131.0",
-        "echarts": "^6.1.0",
         "element-plus": "^2.14.4",
         "pinia": "^4.0.3",
         "qs": "^6.15.3",
@@ -30,8 +28,6 @@
         "vue-router": "^5.2.0"
     },
     "devDependencies": {
-        "@types/geojson": "^7946.0.16",
-        "@types/js-yaml": "^4.0.9",
         "@types/node": "^24.13.3",
         "@types/qs": "^6.15.1",
         "@vitejs/plugin-vue": "^6.0.8",
@@ -41,7 +37,6 @@
         "eslint": "^10.8.1",
         "eslint-plugin-vue": "^10.10.0",
         "jiti": "^2.7.0",
-        "js-yaml": "^5.4.1",
         "knip": "^6.32.2",
         "prettier": "^3.9.6",
         "sass": "^1.102.0",

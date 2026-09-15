@@ -20,7 +20,7 @@ withDefaults(defineProps<{ text?: string; status?: string }>(), {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--lxj-space-24);
+    gap: var(--lxj-gap-oversize);
     font-size: var(--lxj-font-body);
     color: var(--lxj-color-text-secondary);
     background: var(--lxj-bg-panel);

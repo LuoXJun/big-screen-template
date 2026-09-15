@@ -3,9 +3,3 @@
 // 结构:①变量绑定(--el-* 纯净绑定,DevTools 入口)
 //       ②属性规则(EP 没有变量的结构项)
 // =============================================================
-
-.el-card {
-    // ---- ① 变量绑定(仅断链项;背景/边框本已引全局 --el-*,随主题层跟随) ----
-    --el-card-border-radius: var(--lxj-radius-base);
-    --el-card-padding: var(--lxj-space-overlay);
-}

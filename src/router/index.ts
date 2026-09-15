@@ -1,22 +1,52 @@
-import { useMenuStore } from '@/stores/useMenuStore';
-import { rebuildRoutes } from './rebuild';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 
-/** 路由配置导出：布局菜单等 UI 从路由派生，避免重复维护 */
+/**
+ * 路由即菜单：布局路由(meta.isHidden 未设)的 children 中带 meta.title 的项自动成为菜单条目。
+ * 管理端(/admin)与大屏(/screen)各自独立、互不联动，两端之间靠业务自行 router.push 跳转。
+ * 子路由一律写绝对路径，便于一眼看清完整地址，也让菜单组件免去拼接前缀。
+ */
 const routes: RouteRecordRaw[] = [
+    { path: '/', redirect: '/admin' },
     {
         path: '/login',
         name: 'login',
-        meta: {
-            title: '登录'
-        },
-        component: () => import('@/views/pages/login/index.vue')
+        component: () => import('@/views/login/index.vue'),
+        meta: { isHidden: true }
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: () => import('@/views/admin/layout.vue'),
+        redirect: '/admin/project',
+        children: [
+            {
+                path: '/admin/project',
+                name: 'adminProject',
+                component: () => import('@/views/admin/project/index.vue'),
+                meta: { title: '项目列表' }
+            }
+        ]
+    },
+    {
+        path: '/screen',
+        name: 'screen',
+        component: () => import('@/views/screen/layout.vue'),
+        redirect: '/screen/index',
+        children: [
+            {
+                path: '/screen/index',
+                name: 'screenIndex',
+                component: () => import('@/views/screen/index/index.vue'),
+                meta: { title: '首页' }
+            }
+        ]
     },
     {
         path: '/:pathMatch(.*)',
-        name: '404',
-        component: () => import('@/views/notFound.vue')
+        name: 'notFound',
+        component: () => import('@/views/notFound.vue'),
+        meta: { isHidden: true }
     }
 ];
 
@@ -26,55 +56,6 @@ const router = createRouter({
     scrollBehavior() {
         return { top: 0 };
     }
-});
-
-/** 菜单状态持久化到 sessionStorage（getState 据此恢复），仅注册一次 */
-let persistRegistered = false;
-
-router.beforeEach(async (to) => {
-    const store = useMenuStore();
-    if (!persistRegistered) {
-        persistRegistered = true;
-        store.$subscribe((_mutation, state) => {
-            sessionStorage.setItem('state', JSON.stringify(state));
-        });
-    }
-    const token = sessionStorage.getItem('token');
-
-    if (to.path === '/login') {
-        sessionStorage.clear();
-        store.$reset();
-        return;
-    }
-
-    if (!token) {
-        return to.path !== '/login' ? '/login' : undefined;
-    }
-
-    // 大屏模式依赖当前项目：项目缺失（如状态损坏）时回退管理端，避免空状态大屏
-    if (store.mode === 'screen' && !store.currentProject) {
-        await store.enterAdmin();
-        return;
-    }
-
-    if (to.matched.length >= 2) {
-        store.currentMenu = {
-            length: to.matched.length,
-            name: to.matched[1]?.name as string,
-            // 使用完整路径，供顶栏菜单 is-selected 的 includes 判断使用
-            path: to.path
-        };
-    }
-
-    /**
-     * isNeedUpdate用来控制路由重新注册
-     * hasRoue用来防止路由没有注册成功的情况，即便这种情况不应该会发生
-     * */
-    if (store.isNeedUpdate || !router.hasRoute('layout')) {
-        await rebuildRoutes(store);
-        return to.fullPath;
-    }
-    return undefined;
 });
 
 export default router;

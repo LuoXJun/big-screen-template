@@ -10,8 +10,6 @@
             <slot name="header" />
             <div class="layout-body">
                 <slot name="left" />
-                <!-- 中央空隙：露出地图，事件穿透 -->
-                <div class="main-gap" />
                 <slot name="right" />
             </div>
         </div>
@@ -65,13 +63,7 @@
     min-height: 0;
     display: flex;
     justify-content: space-between;
-    gap: var(--lxj-space-screen);
-    padding: var(--lxj-space-screen);
+    padding: var(--lxj-space-page);
     pointer-events: none; /* 空白容器穿透，中央地图可交互 */
-}
-
-.main-gap {
-    flex: 1;
-    min-width: 0;
 }
 </style>

@@ -3,9 +3,11 @@
 // 尺寸体系:大屏为「运行时基准 × 线性换算 + 字号 clamp 限幅」自适应——
 //   基准 --screen-base(默认 100vw)可按部署形态调整(如 min() 封顶);
 //   base(80px) = 设计稿 px × (基准 / 1920),线性随屏缩放;
-//   font(24px) = 在 base 上叠加 clamp 限幅(小屏保可读下限、大屏防臃肿);
-// 结构:尺寸型语义为「覆盖共享默认」(_shared.scss 的 px 值);
-//       颜色/背景/填充/阴影等分端语义在此写全
+//   font(24px) = 在 base 上叠加 clamp 限幅(小屏保可读下限、大屏防臃肿)。
+// 缩放判据——只缩放「版式骨架」,内容侧尺寸吃 _shared.scss 的固定 px:
+//   小尺寸(栅格间距/圆角)等比缩放会打破 4px 栅格、且与 clamp 字号比例失衡
+//   (4K 下字号已封顶,间距却翻倍),收益为负,故不缩放
+// 结构:仅版式骨架覆盖共享默认,颜色/背景/填充/阴影等分端语义在此写全
 // 注:颜色值/新增语义值为占位,待大屏设计图校准
 // EP 绑定层零改动:--el-* 均为 var(--lxj-*) 间接引用,运行时自动跟随
 // =============================================================
@@ -15,73 +17,4 @@
 html[data-app='screen'] {
     // ---- 自适应基准(被 base/font 换算消费;可改 min(100vw, 2560px) 等封顶策略) ----
     --screen-base: 100vw;
-
-    // ---- 品牌/功能色(占位) ----
-    --lxj-color-primary: var(--color-cyan-400);
-    --lxj-color-success: var(--color-green-500);
-    --lxj-color-warning: var(--color-orange-500);
-    --lxj-color-danger: var(--color-red-400);
-    --lxj-color-info: var(--color-gray-400);
-
-    // ---- 文字色(占位) ----
-    --lxj-color-text-primary: var(--color-slate-100);
-    --lxj-color-text-regular: var(--color-slate-100);
-    --lxj-color-text-secondary: var(--color-gray-400);
-    --lxj-color-text-placeholder: var(--color-gray-500);
-    --lxj-color-text-disabled: var(--color-slate-700);
-    --lxj-color-text-inverse: var(--color-slate-900);
-
-    // ---- 边框(占位) ----
-    --lxj-color-border: var(--color-slate-700);
-    --lxj-color-border-light: rgb(255 255 255 / 12%);
-
-    // ---- 字号(设计稿 px;font() 限幅:小屏保底 / 大屏防臃肿) ----
-    --lxj-font-hero: #{font(40px)}; // 占位:主标题
-    --lxj-font-title: #{font(32px)};
-    --lxj-font-subtitle: #{font(24px)};
-    --lxj-font-section: #{font(18px)}; // 占位:区块标题
-    --lxj-font-body: #{font(16px)};
-    --lxj-font-desc: #{font(14px)};
-    --lxj-font-metric: #{font(48px)};
-    --lxj-letter-spacing-hero: #{base(2px)}; // 占位:主标题字距
-
-    // ---- 字体族(仅覆盖:大屏标题用展示字体;其余吃共享默认) ----
-    --lxj-font-family-title: var(--font-family-display);
-
-    // ---- 大屏壳(全局布局高度;占位待设计稿) ----
-    --lxj-header-height: #{base(80px)};
-    --lxj-footer-height: #{base(40px)};
-
-    // ---- 间距(设计稿 px;base() 线性换算) ----
-    --lxj-space-4: #{base(4px)};
-    --lxj-space-8: #{base(8px)};
-    --lxj-space-12: #{base(12px)};
-    --lxj-space-16: #{base(16px)};
-    --lxj-space-20: #{base(20px)};
-    --lxj-space-24: #{base(24px)};
-    --lxj-space-32: #{base(32px)};
-    --lxj-space-page: #{base(16px)};
-    --lxj-space-overlay: #{base(20px)};
-    --lxj-space-screen: #{base(20px)}; // 占位:大屏布局主间距
-    --lxj-space-panel: #{base(16px)}; // 占位:面板内边距
-
-    // ---- 背景(占位) ----
-    --lxj-bg-page: var(--color-slate-900);
-    --lxj-bg-panel: var(--color-slate-800);
-    --lxj-bg-header: var(--color-slate-800);
-    --lxj-bg-overlay: var(--color-slate-800);
-    --lxj-bg-hover: rgb(255 255 255 / 8%);
-    --lxj-bg-active: color-mix(in srgb, var(--lxj-color-primary) 15%, transparent);
-    --lxj-bg-mask: rgb(0 0 0 / 60%);
-
-    // ---- 填充(占位) ----
-    --lxj-fill-blank: var(--color-slate-800);
-
-    // ---- 圆角(base() 换算) ----
-    --lxj-radius-base: #{base(6px)};
-    --lxj-radius-round: #{base(20px)};
-
-    // ---- 阴影(尺寸经 base();深色端面板不加阴影,浮层加重) ----
-    --lxj-shadow-panel: none;
-    --lxj-shadow-overlay: 0 #{base(8px)} #{base(24px)} rgb(0 0 0 / 40%);
 }

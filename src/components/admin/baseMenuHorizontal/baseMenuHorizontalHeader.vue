@@ -1,51 +1,49 @@
 <template>
     <div class="base-horizontal-menu-header">
         <div class="menu-part">
-            <template v-for="menu in menus" :key="menu.name">
-                <div v-if="!menu.isHidden" class="lxj-menu-item" @click="goPath(menu)">
+            <template v-for="menu in menus" :key="menu.path">
+                <div class="lxj-menu-item" @click="goPath(menu)">
                     <span :class="{ 'is-selected': isMenuActive(menu) }">
-                        {{ menu.title }}
+                        {{ menu.meta?.title }}
                     </span>
                 </div>
             </template>
         </div>
         <div class="operation-part">
-            <el-button @click="$router.push('/login')">退出登录</el-button>
+            <el-button @click="router.push('/login')">退出登录</el-button>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from '@/stores/useMenuStore';
-import { useRouter } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
+
 const router = useRouter();
-const store = useMenuStore();
+const route = useRoute();
 
-const menus = computed(() => {
-    return store.menu.sort((a, b) => {
-        return a.sort! - b.sort!;
-    });
-});
+/** 顶栏菜单 = 布局路由的子路由中带 meta.title 且未隐藏的项（路由即菜单） */
+const menus = computed(() => (route.matched[0]?.children ?? []).filter(isMenuItem));
 
-const getRedirect = (menu: RouteOptions, path = '') => {
-    path = path ? path + '/' + menu.path : menu.path;
+function isMenuItem(record: RouteRecordRaw): boolean {
+    return Boolean(record.meta?.title) && !record.meta?.isHidden;
+}
 
-    if (menu.children && menu.children.length > 0) return getRedirect(menu.children[0], path);
+/** 父级非页面时，跳其第一个可见子路由 */
+function targetPath(menu: RouteRecordRaw): string {
+    const first = (menu.children ?? []).find(isMenuItem);
+    return first ? targetPath(first) : menu.path;
+}
 
-    return path;
-};
+function isMenuActive(menu: RouteRecordRaw): boolean {
+    const path = targetPath(menu);
+    return route.path === path || route.path.startsWith(`${path}/`);
+}
 
-const goPath = (menu: RouteOptions) => {
-    const path = getRedirect(menu);
-
-    router.push(path);
-};
-
-/** 顶栏选中判断：精确路径前缀匹配，避免 '/' 永远命中 */
-const isMenuActive = (menu: RouteOptions) => {
-    const cur = store.currentMenu.path;
-    return cur === menu.path || cur.startsWith(menu.path + '/');
-};
+function goPath(menu: RouteRecordRaw): void {
+    router.push(targetPath(menu));
+}
 </script>
 
 <style scoped lang="scss">

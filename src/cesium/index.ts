@@ -8,17 +8,6 @@ export {
     setCleanScene
 } from './core/viewer';
 export {
-    flyTo,
-    flyToLonLat,
-    setView,
-    setViewLonLat,
-    flyToRectangle,
-    pickLonLat,
-    getCameraLonLat,
-    type FlyTarget,
-    type LonLatViewOptions
-} from './core/camera';
-export {
     addImageryLayer,
     getImageryLayer,
     hasImageryLayer,
@@ -35,12 +24,6 @@ export {
     removeAllDataSources
 } from './core/layer';
 export {
-    createAmapImagery,
-    createOSMImagery,
-    createArcGisImagery,
-    createTianDiTuImagery
-} from './core/providers';
-export {
     addEntity,
     getEntity,
     hasEntity,
@@ -55,15 +38,7 @@ export {
     type LineStyle
 } from './core/entity';
 export { createHandler, clearHandler, clearHandlers } from './core/event';
-export { MapPopup } from './core/popup';
-export {
-    toCartesian3,
-    toCartesian3List,
-    toLonLat,
-    distanceInMeters,
-    forEachFeature,
-    type LeafGeometry
-} from './core/utils';
+export { toCartesian3, toCartesian3List, toLonLat, distanceInMeters } from './core/utils';
 
 // 图层管理架子
 export {
@@ -95,16 +70,3 @@ export {
     type HeatmapPolygon,
     type HeatmapStyle
 } from './layers';
-
-// 效果工具层
-export {
-    GroundMaterialEffect,
-    type GroundMaterialEffectOptions
-} from './effects/GroundMaterialEffect';
-export { createCircleGeometry, createSquareGeometry } from './effects/groundGeometry';
-export { LineEffect, type LineEffectOptions } from './effects/LineEffect';
-export {
-    PostProcessStageEffect,
-    type PostProcessStageEffectOptions
-} from './effects/PostProcessStageEffect';
-export { RenderGeoJsonByGround } from './effects/RenderGeoJsonByGround';

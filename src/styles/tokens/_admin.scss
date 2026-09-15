@@ -1,48 +1,5 @@
 // =============================================================
 // ★ 语义层 · 管理端专属(html[data-app="admin"])
-// 判据:承载两端视觉差异的语义(颜色/背景/填充/阴影等);
-//       尺寸型语义(字号/间距/圆角)吃共享默认(见 _shared.scss)
-// 尺寸体系:管理端为普通响应式,设计值保持 px;
-//           大屏端同一批尺寸语义经 to-vw 换算为 vw(见 _screen.scss)
-// 全 CSS 原生变量;组件/页面零 @use,var() 即用
-// 语义名一律 --lxj-<语义>(业务/组件只允许引用本层)
-// 注:以下值为占位,待设计图校准
+// 当前无端级差异:全部语义吃 _shared.scss 的默认值。
+// 两端取值不同的语义(取色/阴影等)才在此覆盖,尺寸型语义无需重复声明。
 // =============================================================
-
-html[data-app='admin'] {
-    // ---- 品牌/功能色 ----
-    --lxj-color-primary: var(--color-blue-400);
-    --lxj-color-success: var(--color-green-500);
-    --lxj-color-warning: var(--color-orange-500);
-    --lxj-color-danger: var(--color-red-400);
-    --lxj-color-info: var(--color-gray-400);
-
-    // ---- 文字色(primary → disabled 逐级减淡) ----
-    --lxj-color-text-primary: var(--color-gray-900);
-    --lxj-color-text-regular: var(--color-gray-700);
-    --lxj-color-text-secondary: var(--color-gray-400);
-    --lxj-color-text-placeholder: var(--color-gray-500);
-    --lxj-color-text-disabled: var(--color-gray-300);
-    --lxj-color-text-inverse: var(--color-white);
-
-    // ---- 边框 ----
-    --lxj-color-border: var(--color-gray-200);
-    --lxj-color-border-light: var(--color-gray-100);
-
-    // ---- 背景 ----
-    --lxj-bg-sidebar: var(--color-gray-100);
-    --lxj-bg-page: var(--color-gray-100);
-    --lxj-bg-panel: var(--color-white);
-    --lxj-bg-header: var(--color-white);
-    --lxj-bg-overlay: var(--color-white);
-    --lxj-bg-hover: var(--color-gray-100);
-    --lxj-bg-active: color-mix(in srgb, var(--lxj-color-primary) 10%, var(--color-white));
-    --lxj-bg-mask: rgb(0 0 0 / 50%);
-
-    // ---- 填充(输入框等空白底) ----
-    --lxj-fill-blank: var(--color-white);
-
-    // ---- 阴影 ----
-    --lxj-shadow-panel: 0 1px 4px rgb(0 0 0 / 8%);
-    --lxj-shadow-overlay: 0 8px 24px rgb(0 0 0 / 12%);
-}
