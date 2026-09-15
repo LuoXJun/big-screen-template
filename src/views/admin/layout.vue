@@ -100,5 +100,6 @@ const sideMenu = computed(() => route.matched[1]?.children ?? []);
     min-height: 0;
     overflow: auto;
     background: var(--lxj-bg-page);
+    padding: var(--lxj-space-page);
 }
 </style>
